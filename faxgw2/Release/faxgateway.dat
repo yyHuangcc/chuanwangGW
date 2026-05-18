@@ -1,0 +1,7 @@
+[SYSTEM]
+Host=127.0.0.1
+Port=8080
+UID=tegest
+SCode=123456
+Path=E:\fax\
+ServerPort=9988

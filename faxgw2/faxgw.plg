@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: faxgw - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPE.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ws2_32.lib userdata.lib /nologo /subsystem:console /incremental:no /pdb:"Release/faxgw.pdb" /debug /machine:I386 /out:"C:\Program Files\Tegest\TBXGateway\faxgw.exe" /libpath:"..\lib" 
+.\Release\CRC32.OBJ
+.\Release\d3des.obj
+.\Release\faxgw.obj
+.\Release\FileSession.obj
+.\Release\Log.obj
+.\Release\LZW.obj
+.\Release\md5.obj
+.\Release\packet.obj
+.\Release\rwini.obj
+.\Release\StdAfx.obj
+.\Release\tcppacket.obj
+.\Release\tcpsession.obj
+.\Release\faxgw.res
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPE.tmp"
+<h3>Output Window</h3>
+Linking...
+
+
+
+<h3>Results</h3>
+faxgw.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
