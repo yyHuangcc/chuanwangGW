@@ -36,7 +36,8 @@ int main(int argc, char* argv[])
 	g_log.SetLevel(5);
 	g_log.SetMode(Log::ToConsole | Log::ToDebug);
 	g_log.SetFile((char*)"faxgw.log");
-	
+	g_log.Print(3, "sizeof(PAG_HEADER)=%d (should be 12)\n", (int)sizeof(PAG_HEADER));
+    g_log.Print(3, "sizeof(GW_HEADER)=%d (should be 7)\n", (int)sizeof(GW_HEADER));
 	// On Linux, no WSAStartup needed - sockets work natively
 	
 	InitializeCriticalSection(&g_csRecvList);
@@ -150,7 +151,10 @@ void MsgReceiver(void* lpParam)
 	while(true)
 	{
 		//if(m_bIsStopAudio) return -1;
-		int nRet = g_tcpSession.ReadData(buff, 256);
+		//int nRet = g_tcpSession.ReadData(buff, 256);
+		g_log.Print(5, "MsgReceiver: calling ReadData...\n");
+        int nRet = g_tcpSession.ReadData(buff, 256);
+        g_log.Print(5, "MsgReceiver: ReadData returned %d\n", nRet);
 		if(nRet > 0)
 		{
 			Sleep(0);

@@ -117,57 +117,101 @@ void TcpSession::Close()
 	closesocket(m_tcpSock);
 }
 
-void TcpSession::connect(const char* strSrvAdd, int nPort)
+// void TcpSession::connect(const char* strSrvAdd, int nPort)
+// {
+// 	//SOCKET	sTest;
+// 	//sockaddr_in TestAddr;
+//     struct hostent    *host = NULL;
+
+// 	lstrcpyn(m_strSrvAdd,strSrvAdd,128);
+// 	m_nPort = nPort;
+
+// 	memset(&m_destAddr, 0, sizeof(m_destAddr));
+// 	m_destAddr.sin_family = AF_INET;
+// 	if ((m_destAddr.sin_addr.s_addr = inet_addr(strSrvAdd)) == INADDR_NONE)
+// 	{
+// 		host = gethostbyname(strSrvAdd);
+// 		if(host != NULL)
+// 		{
+// 			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0],
+// 			    host->h_length);
+// 		}
+// 		//need check function success?
+// 	}
+// 	m_destAddr.sin_port = htons((uint16)nPort);
+
+//     m_tcpSock = socket(AF_INET, SOCK_STREAM, 0);
+//     if (m_tcpSock >= 0)
+// 	{
+// 		if (::connect(m_tcpSock, (struct sockaddr *)&m_destAddr, 
+// 			sizeof(m_destAddr)) < 0)
+// 		{
+// 			g_bySystem = 0;
+// 			return;
+// 		}
+// 	}
+
+// 	SetEvent(g_hRecvEvent);
+// 	//Get my ip to server.
+// 	/*sTest = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+// 	if(INVALID_SOCKET != sTest)
+// 	{
+// 		memcpy(&TestAddr,&m_destAddr,sizeof(TestAddr));
+// 		m_ServerIP = ntohl(TestAddr.sin_addr.S_un.S_addr);
+// 		if (::connect(sTest, (sockaddr *) &TestAddr, sizeof(TestAddr)) == 0)
+// 		{
+// 			int nlen = sizeof(TestAddr);
+// 			getsockname(sTest, (sockaddr *) &TestAddr, &nlen);
+// 			m_realIP = ntohl(TestAddr.sin_addr.s_addr);
+// 		}
+// 		::closesocket(sTest);
+// 	}*/
+// }
+
+void TcpSession::connect(LPCTSTR strSrvAdd, int nPort)
 {
-	//SOCKET	sTest;
-	//sockaddr_in TestAddr;
     struct hostent    *host = NULL;
 
-	lstrcpyn(m_strSrvAdd,strSrvAdd,128);
-	m_nPort = nPort;
+    g_log.Print(3, "connect: trying to connect to %s:%d\n", strSrvAdd, nPort);
 
-	memset(&m_destAddr, 0, sizeof(m_destAddr));
-	m_destAddr.sin_family = AF_INET;
-	if ((m_destAddr.sin_addr.s_addr = inet_addr(strSrvAdd)) == INADDR_NONE)
-	{
-		host = gethostbyname(strSrvAdd);
-		if(host != NULL)
-		{
-			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0],
-			    host->h_length);
-		}
-		//need check function success?
-	}
-	m_destAddr.sin_port = htons((uint16)nPort);
+    lstrcpyn(m_strSrvAdd, strSrvAdd, 128);
+    m_nPort = nPort;
 
-    m_tcpSock = socket(AF_INET, SOCK_STREAM, 0);
-    if (m_tcpSock >= 0)
-	{
-		if (::connect(m_tcpSock, (struct sockaddr *)&m_destAddr, 
-			sizeof(m_destAddr)) < 0)
-		{
-			g_bySystem = 0;
-			return;
-		}
-	}
+    memset(&m_destAddr, 0, sizeof(m_destAddr));
+    m_destAddr.sin_family = AF_INET;
+    if ((m_destAddr.sin_addr.s_addr = inet_addr(strSrvAdd)) == INADDR_NONE)
+    {
+        host = gethostbyname(strSrvAdd);
+        if(host != NULL)
+        {
+            memcpy(&m_destAddr.sin_addr, host->h_addr_list[0], host->h_length);
+        }
+        else
+        {
+            g_log.Print(3, "connect: gethostbyname failed for %s\n", strSrvAdd);
+        }
+    }
+    m_destAddr.sin_port = htons((uint16)nPort);
 
-	SetEvent(g_hRecvEvent);
-	//Get my ip to server.
-	/*sTest = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-	if(INVALID_SOCKET != sTest)
-	{
-		memcpy(&TestAddr,&m_destAddr,sizeof(TestAddr));
-		m_ServerIP = ntohl(TestAddr.sin_addr.S_un.S_addr);
-		if (::connect(sTest, (sockaddr *) &TestAddr, sizeof(TestAddr)) == 0)
-		{
-			int nlen = sizeof(TestAddr);
-			getsockname(sTest, (sockaddr *) &TestAddr, &nlen);
-			m_realIP = ntohl(TestAddr.sin_addr.s_addr);
-		}
-		::closesocket(sTest);
-	}*/
+    m_tcpSock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+    if (m_tcpSock < 0)
+    {
+        g_log.Print(3, "connect: socket creation failed, errno=%d\n", errno);
+        return;
+    }
+
+    g_log.Print(3, "connect: socket created, connecting...\n");
+
+    if (::connect(m_tcpSock, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
+    {
+        g_log.Print(3, "connect: connection failed, errno=%d\n", errno);
+        g_bySystem = 0;
+        return;
+    }
+
+    g_log.Print(3, "connect: connected successfully to %s:%d\n", strSrvAdd, nPort);
+    SetEvent(g_hRecvEvent);
 }
-
 void TcpSession::connect(uint32 ip, uint16 port)
 {
 	memset(&m_destAddr, 0, sizeof(m_destAddr));
@@ -176,16 +220,49 @@ void TcpSession::connect(uint32 ip, uint16 port)
 	m_destAddr.sin_port = htons(port);
 }
 
-int TcpSession::ReadData(char* lpBuff,int nSize)
+// int TcpSession::ReadData(char* lpBuff,int nSize)
+// {
+// 	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
+// 	if(nRet <=0)
+// 	{
+// 		//m_bIsAlive = FALSE;
+// 		m_bIsLogin = FALSE;
+// 		ResetEvent(g_hConnectEvent);
+// 	}
+// 	return nRet;
+// }
+int TcpSession::ReadData(char* lpBuff, int nSize)
 {
-	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
-	if(nRet <=0)
-	{
-		//m_bIsAlive = FALSE;
-		m_bIsLogin = FALSE;
-		ResetEvent(g_hConnectEvent);
-	}
-	return nRet;
+    g_log.Print(5, "ReadData: waiting for data, max %d bytes\n", nSize);
+    
+    int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
+    
+    if(nRet > 0)
+    {
+        // 打印前16字节的十六进制
+        g_log.Print(3, "ReadData: received %d bytes\n", nRet);
+        
+        // 打印前16字节的十六进制
+        char hexbuf[256] = {0};
+        for(int i = 0; i < (nRet > 16 ? 16 : nRet); i++) {
+            sprintf(hexbuf + i*3, "%02X ", (unsigned char)lpBuff[i]);
+        }
+        g_log.Print(3, "ReadData: hex data: %s\n", hexbuf);
+    }
+    else if(nRet == 0)
+    {
+        g_log.Print(3, "ReadData: connection closed by peer (recv returned 0)\n");
+        m_bIsLogin = FALSE;
+        ResetEvent(g_hConnectEvent);
+    }
+    else if(nRet < 0)
+    {
+        g_log.Print(3, "ReadData: recv error, errno=%d\n", errno);
+        m_bIsLogin = FALSE;
+        ResetEvent(g_hConnectEvent);
+    }
+    
+    return nRet;
 }
 
 void TcpSession::initSession()
@@ -305,6 +382,13 @@ void TcpSession::sendDirect(TCPOutPacket *p)
 		nLoopTime = nSize/8;
 		nCryptSize = nSize;
 	}
+	// 在 deskey(fixedkey, EN0); 这一行之前添加
+    g_log.Print(3, "sendDirect: before encrypt, plain data (%d bytes):\n", nSize);
+    char plain_hex[256] = {0};
+    for(int i = 0; i < (nSize > 32 ? 32 : nSize); i++) {
+        sprintf(plain_hex + (i*3), "%02X ", (unsigned char)pData[i]);
+    }
+    g_log.Print(3, "sendDirect: plain hex: %s\n", plain_hex);
     deskey(fixedkey, EN0);
 	pchar1 = pData;
 	pchar2 = (char *)sendbuf+sizeof(PAG_HEADER)+sizeof(int);
@@ -324,6 +408,13 @@ void TcpSession::sendDirect(TCPOutPacket *p)
 	nCryptSize += sizeof(PAG_HEADER);
 	*((int*)(sendbuf + sizeof(PAG_HEADER)))= nSize;
 	//}
+    g_log.Print(3, "sendDirect: sending %d bytes to server\n", nCryptSize);
+	    // 打印发送的数据内容（前32字节）
+    char hexbuf[256] = {0};
+    for(int i = 0; i < (nCryptSize > 32 ? 32 : nCryptSize); i++) {
+        sprintf(hexbuf + (i*3), "%02X ", (unsigned char)sendbuf[i]);
+    }
+    g_log.Print(3, "sendDirect: hex dump: %s\n", hexbuf);
 
 	if(send(m_tcpSock, (char *)sendbuf, nCryptSize , 0) < 0)
 	{
@@ -372,26 +463,50 @@ bool TcpSession::onAck(uint16 seq, uint16& cmd, uint32& dwCallID)
 	return false;
 }
 
+// void TcpSession::onLoginReply(TCPInPacket &in)
+// {
+// 	uint8 error;
+// 	in >> error >> m_ServerID;
+
+// 	if(error == LOGIN_SUCCESS)
+// 	{
+// 		//m_uin = in.header.uin;
+// 		m_bIsLogin = TRUE;
+// 		m_nWaitAlive = 0;
+// 		g_log.Print(5,"%d login in success.\r\n",m_ServerID);
+// 		SetEvent(g_hConnectEvent);
+// 		in >> g_bySystem;
+// 	}
+// 	else
+// 	{
+// 		ResetEvent(g_hConnectEvent);
+// 		m_bIsLogin = FALSE;
+// 		g_bySystem = 0;
+// 	}
+// }
 void TcpSession::onLoginReply(TCPInPacket &in)
 {
-	uint8 error;
-	in >> error >> m_ServerID;
-
-	if(error == LOGIN_SUCCESS)
-	{
-		//m_uin = in.header.uin;
-		m_bIsLogin = TRUE;
-		m_nWaitAlive = 0;
-		g_log.Print(5,"%d login in success.\r\n",m_ServerID);
-		SetEvent(g_hConnectEvent);
-		in >> g_bySystem;
-	}
-	else
-	{
-		ResetEvent(g_hConnectEvent);
-		m_bIsLogin = FALSE;
-		g_bySystem = 0;
-	}
+    uint8 error;
+    in >> error >> m_ServerID;
+    
+    g_log.Print(3, "onLoginReply: error=%d, ServerID=%d\n", error, m_ServerID);
+    
+    if(error == LOGIN_SUCCESS)
+    {
+        m_bIsLogin = TRUE;
+        m_nWaitAlive = 0;
+        g_log.Print(3, "%d login in success.\r\n", m_ServerID);
+        SetEvent(g_hConnectEvent);
+        in >> g_bySystem;
+        g_log.Print(3, "g_bySystem=%d\n", g_bySystem);
+    }
+    else
+    {
+        g_log.Print(3, "Login failed! error code: %d\n", error);
+        ResetEvent(g_hConnectEvent);
+        m_bIsLogin = FALSE;
+        g_bySystem = 0;
+    }
 }
 
 void TcpSession::onKeepAliveReply(TCPInPacket &in)
@@ -721,14 +836,29 @@ int TcpSession::receive(char *data, int n, sockaddr_in *pSockAddr)
 }
 
 
+// int TcpSession::onLogin()
+// {
+// 	TCPOutPacket *out =createPacket(TCP_LOGIN);
+// 	*out << (const char *)g_sysParam.strUser << (const char *)g_sysParam.strPasswd;
+// 	sendDirect(out);
+// 	delete out;
+// 	return 0;
+// }
 int TcpSession::onLogin()
 {
-	TCPOutPacket *out =createPacket(TCP_LOGIN);
-	*out << (const char *)g_sysParam.strUser << (const char *)g_sysParam.strPasswd;
-	sendDirect(out);
-	delete out;
-	return 0;
+    g_log.Print(3, "onLogin: preparing login...\n");
+    g_log.Print(3, "Username: %s, Password: %s\n", 
+                g_sysParam.strUser, g_sysParam.strPasswd);
+    
+    TCPOutPacket *out = createPacket(TCP_LOGIN);
+    *out << (const char *)g_sysParam.strUser << (const char *)g_sysParam.strPasswd;
+    sendDirect(out);
+    delete out;
+    
+    g_log.Print(3, "onLogin: login packet sent\n");
+    return 0;
 }
+
 
 int TcpSession::onKeepAlive()
 {
