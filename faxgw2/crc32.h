@@ -1,31 +1,20 @@
-/************************************************************************
- *																		*
- *   This file is a part of fax gateway system.							*
- *																		*
- *   copyright(C) 2007 by �ڽ�											*
- *   Auther	: Zhq														*
- ************************************************************************/
-
-#if !defined _CRC32_
+#ifndef _CRC32_
 #define _CRC32_
 
 #pragma once
 
 #include "linux_compat.h"
-
-typedef unsigned long ULONG;
-typedef unsigned long       DWORD;
+#include <stdint.h>
 
 class CRC32
 {
 public:
     CRC32();
-	int Get_CRC(char* csData, DWORD dwSize); // Creates a CRC from a string buffer
+    uint32_t Get_CRC(char* csData, DWORD dwSize);
 
 protected:
-	ULONG crc32_table[256]; // Lookup table arrays
-
-	ULONG Reflect(ULONG ref, char ch); // Reflects CRC bits in the lookup table
+    uint32_t crc32_table[256];
+    uint32_t Reflect(uint32_t ref, char ch);
 };
 
 #endif

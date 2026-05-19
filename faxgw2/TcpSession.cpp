@@ -220,50 +220,50 @@ void TcpSession::connect(uint32 ip, uint16 port)
 	m_destAddr.sin_port = htons(port);
 }
 
-// int TcpSession::ReadData(char* lpBuff,int nSize)
-// {
-// 	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
-// 	if(nRet <=0)
-// 	{
-// 		//m_bIsAlive = FALSE;
-// 		m_bIsLogin = FALSE;
-// 		ResetEvent(g_hConnectEvent);
-// 	}
-// 	return nRet;
-// }
-int TcpSession::ReadData(char* lpBuff, int nSize)
+int TcpSession::ReadData(char* lpBuff,int nSize)
 {
-    g_log.Print(5, "ReadData: waiting for data, max %d bytes\n", nSize);
-    
-    int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
-    
-    if(nRet > 0)
-    {
-        // 打印前16字节的十六进制
-        g_log.Print(3, "ReadData: received %d bytes\n", nRet);
-        
-        // 打印前16字节的十六进制
-        char hexbuf[256] = {0};
-        for(int i = 0; i < (nRet > 16 ? 16 : nRet); i++) {
-            sprintf(hexbuf + i*3, "%02X ", (unsigned char)lpBuff[i]);
-        }
-        g_log.Print(3, "ReadData: hex data: %s\n", hexbuf);
-    }
-    else if(nRet == 0)
-    {
-        g_log.Print(3, "ReadData: connection closed by peer (recv returned 0)\n");
-        m_bIsLogin = FALSE;
-        ResetEvent(g_hConnectEvent);
-    }
-    else if(nRet < 0)
-    {
-        g_log.Print(3, "ReadData: recv error, errno=%d\n", errno);
-        m_bIsLogin = FALSE;
-        ResetEvent(g_hConnectEvent);
-    }
-    
-    return nRet;
+	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
+	if(nRet <=0)
+	{
+		//m_bIsAlive = FALSE;
+		m_bIsLogin = FALSE;
+		ResetEvent(g_hConnectEvent);
+	}
+	return nRet;
 }
+// int TcpSession::ReadData(char* lpBuff, int nSize)
+// {
+//     g_log.Print(5, "ReadData: waiting for data, max %d bytes\n", nSize);
+    
+//     int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
+    
+//     if(nRet > 0)
+//     {
+//         // 打印前16字节的十六进制
+//         g_log.Print(3, "ReadData: received %d bytes\n", nRet);
+        
+//         // 打印前16字节的十六进制
+//         char hexbuf[256] = {0};
+//         for(int i = 0; i < (nRet > 16 ? 16 : nRet); i++) {
+//             sprintf(hexbuf + i*3, "%02X ", (unsigned char)lpBuff[i]);
+//         }
+//         g_log.Print(3, "ReadData: hex data: %s\n", hexbuf);
+//     }
+//     else if(nRet == 0)
+//     {
+//         g_log.Print(3, "ReadData: connection closed by peer (recv returned 0)\n");
+//         m_bIsLogin = FALSE;
+//         ResetEvent(g_hConnectEvent);
+//     }
+//     else if(nRet < 0)
+//     {
+//         g_log.Print(3, "ReadData: recv error, errno=%d\n", errno);
+//         m_bIsLogin = FALSE;
+//         ResetEvent(g_hConnectEvent);
+//     }
+    
+//     return nRet;
+// }
 
 void TcpSession::initSession()
 {
@@ -351,81 +351,62 @@ void TcpSession::sendAckPacket(uint16 seq)
 
 void TcpSession::sendDirect(TCPOutPacket *p)
 {
-	char *pData;
-	int	 nSize;
-	int  nCRC32;
-	int  nLoopTime;
-	CRC32 crc32Gen;
-	xLONG32 outkey[40] = { 0 };
-	xLONG8 sendbuf[MAX_PACKET_SIZE] = { 0 };		
-	int	 nCryptSize;
-	PAG_HEADER*		ppagHeader;
-	char*		pchar1;
-	char*		pchar2;
-//	char		strDebug[256];
+    char *pData;
+    int  nSize;
+    uint32_t nCRC32;
+    int  nLoopTime;
+    CRC32 crc32Gen;
+    xLONG32 outkey[40] = { 0 };
+    xLONG8 sendbuf[MAX_PACKET_SIZE] = { 0 };        
+    int  nCryptSize;
+    PAG_HEADER* ppagHeader;
+    char* pchar1;
+    char* pchar2;
 
-	//����CRC32У��
-	pData = (char *)p->getData();
-	nSize = p->getLength();
-	nCRC32 = crc32Gen.Get_CRC(pData,nSize);
-	*((int *)&pData[nSize]) = nCRC32;
-	nSize += sizeof(int);
+    // 产生CRC32校验
+    pData = (char *)p->getData();
+    nSize = p->getLength();
+    nCRC32 = crc32Gen.Get_CRC(pData, nSize);
+    *((uint32_t *)&pData[nSize]) = nCRC32;
+    nSize += sizeof(uint32_t);
 
-	//{���ܷ�����Ϣ
-	if(nSize%8!=0) 
-	{
-		nLoopTime = nSize/8+1;
-		nCryptSize = nLoopTime*8;
-	}
-	else 
-	{
-		nLoopTime = nSize/8;
-		nCryptSize = nSize;
-	}
-	// 在 deskey(fixedkey, EN0); 这一行之前添加
-    g_log.Print(3, "sendDirect: before encrypt, plain data (%d bytes):\n", nSize);
-    char plain_hex[256] = {0};
-    for(int i = 0; i < (nSize > 32 ? 32 : nSize); i++) {
-        sprintf(plain_hex + (i*3), "%02X ", (unsigned char)pData[i]);
+    // 加密发送信息
+    if(nSize % 8 != 0) 
+    {
+        nLoopTime = nSize / 8 + 1;
+        nCryptSize = nLoopTime * 8;
     }
-    g_log.Print(3, "sendDirect: plain hex: %s\n", plain_hex);
+    else 
+    {
+        nLoopTime = nSize / 8;
+        nCryptSize = nSize;
+    }
+    
     deskey(fixedkey, EN0);
-	pchar1 = pData;
-	pchar2 = (char *)sendbuf+sizeof(PAG_HEADER)+sizeof(int);
-	for(int i=0;i<nLoopTime;i++)
-	{
-		des((unsigned char *)pchar1, (unsigned char *)pchar2);
-		pchar1+=8;
-		pchar2+=8;
-	}
-
-	nCryptSize += sizeof(int);
-	ppagHeader=(PAG_HEADER*)sendbuf;
-	ppagHeader->byHeader1 = 0x3E;
-	ppagHeader->byHeader2 = 0xE3;
-	ppagHeader->nLength = nCryptSize;
-	ppagHeader->nVer = 100;
-	nCryptSize += sizeof(PAG_HEADER);
-	*((int*)(sendbuf + sizeof(PAG_HEADER)))= nSize;
-	//}
-    g_log.Print(3, "sendDirect: sending %d bytes to server\n", nCryptSize);
-	    // 打印发送的数据内容（前32字节）
-    char hexbuf[256] = {0};
-    for(int i = 0; i < (nCryptSize > 32 ? 32 : nCryptSize); i++) {
-        sprintf(hexbuf + (i*3), "%02X ", (unsigned char)sendbuf[i]);
+    pchar1 = pData;
+    pchar2 = (char *)sendbuf + sizeof(PAG_HEADER) + sizeof(int);
+    for(int i = 0; i < nLoopTime; i++)
+    {
+        des((unsigned char *)pchar1, (unsigned char *)pchar2);
+        pchar1 += 8;
+        pchar2 += 8;
     }
-    g_log.Print(3, "sendDirect: hex dump: %s\n", hexbuf);
 
-	if(send(m_tcpSock, (char *)sendbuf, nCryptSize , 0) < 0)
-	{
-		int nErr = errno;
-		//closesocket(m_tcpSock);
-		//m_bIsAlive = FALSE;
-		m_bIsLogin = FALSE;
-		ResetEvent(g_hConnectEvent);
-	}
+    nCryptSize += sizeof(int);
+    ppagHeader = (PAG_HEADER*)sendbuf;
+    ppagHeader->byHeader1 = 0x3E;
+    ppagHeader->byHeader2 = 0xE3;
+    ppagHeader->nLength = nCryptSize;
+    ppagHeader->nVer = 100;
+    nCryptSize += sizeof(PAG_HEADER);
+    *((int*)(sendbuf + sizeof(PAG_HEADER))) = nSize;
+
+    if(send(m_tcpSock, (char *)sendbuf, nCryptSize, 0) < 0)
+    {
+        m_bIsLogin = FALSE;
+        ResetEvent(g_hConnectEvent);
+    }
 }
-
 void TcpSession::onSendError(TCPOutPacket *p)
 {
 	//icqLink->onSendError(p->seq);
@@ -851,14 +832,17 @@ int TcpSession::onLogin()
                 g_sysParam.strUser, g_sysParam.strPasswd);
     
     TCPOutPacket *out = createPacket(TCP_LOGIN);
-    *out << (const char *)g_sysParam.strUser << (const char *)g_sysParam.strPasswd;
+    
+    // 使用 writeData（会自动加长度前缀）
+    out->writeData(g_sysParam.strUser, strlen(g_sysParam.strUser) + 1);
+    out->writeData(g_sysParam.strPasswd, strlen(g_sysParam.strPasswd) + 1);
+    
     sendDirect(out);
     delete out;
     
     g_log.Print(3, "onLogin: login packet sent\n");
     return 0;
 }
-
 
 int TcpSession::onKeepAlive()
 {
@@ -971,7 +955,7 @@ int SendRSAPacket(SOCKET tcpSock,TCPOutPacket* p)
 {
 	char *pData;
 	int	 nSize;
-	int  nCRC32;
+	uint32_t  nCRC32;
 	int  nLoopTime;
 	CRC32 crc32Gen;
 	xLONG32 outkey[40] = { 0 };
@@ -986,7 +970,7 @@ int SendRSAPacket(SOCKET tcpSock,TCPOutPacket* p)
 	pData = (char *)p->getData();
 	nSize = p->getLength();
 	nCRC32 = crc32Gen.Get_CRC(pData,nSize);
-	*((int *)&pData[nSize]) = nCRC32;
+	*((uint32_t *)&pData[nSize]) = nCRC32;
 	nSize += sizeof(int);
 
 	//{���ܷ�����Ϣ

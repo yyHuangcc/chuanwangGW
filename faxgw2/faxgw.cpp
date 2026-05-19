@@ -121,10 +121,23 @@ bool CheckPacket(PBYTE pbyPacket)
 		return false;
 	}
 	//CRC32���
+	// int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
+	// int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
+	// if(nCRC1 != nCRC2)
+	// {
+	// 	g_log.Print(5,"packet CRC-32 check error.\r\n");
+    //     return false;
+	// }
+		//CRC32���
 	int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
 	int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
+	
+	// 添加日志
+	g_log.Print(3, "CheckPacket: nCRC1=0x%08X, nCRC2=0x%08X, datalen=%d\n", nCRC1, nCRC2, datalen);
+	
 	if(nCRC1 != nCRC2)
 	{
+		g_log.Print(3, "CheckPacket: CRC MISMATCH!\n");
 		g_log.Print(5,"packet CRC-32 check error.\r\n");
         return false;
 	}
@@ -152,9 +165,7 @@ void MsgReceiver(void* lpParam)
 	{
 		//if(m_bIsStopAudio) return -1;
 		//int nRet = g_tcpSession.ReadData(buff, 256);
-		g_log.Print(5, "MsgReceiver: calling ReadData...\n");
         int nRet = g_tcpSession.ReadData(buff, 256);
-        g_log.Print(5, "MsgReceiver: ReadData returned %d\n", nRet);
 		if(nRet > 0)
 		{
 			Sleep(0);
