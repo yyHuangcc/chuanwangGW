@@ -220,50 +220,31 @@ void TcpSession::connect(uint32 ip, uint16 port)
 	m_destAddr.sin_port = htons(port);
 }
 
-int TcpSession::ReadData(char* lpBuff,int nSize)
-{
-	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
-	if(nRet <=0)
-	{
-		//m_bIsAlive = FALSE;
-		m_bIsLogin = FALSE;
-		ResetEvent(g_hConnectEvent);
-	}
-	return nRet;
-}
-// int TcpSession::ReadData(char* lpBuff, int nSize)
+// int TcpSession::ReadData(char* lpBuff,int nSize)
 // {
-//     g_log.Print(5, "ReadData: waiting for data, max %d bytes\n", nSize);
-    
-//     int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
-    
-//     if(nRet > 0)
-//     {
-//         // 打印前16字节的十六进制
-//         g_log.Print(3, "ReadData: received %d bytes\n", nRet);
-        
-//         // 打印前16字节的十六进制
-//         char hexbuf[256] = {0};
-//         for(int i = 0; i < (nRet > 16 ? 16 : nRet); i++) {
-//             sprintf(hexbuf + i*3, "%02X ", (unsigned char)lpBuff[i]);
-//         }
-//         g_log.Print(3, "ReadData: hex data: %s\n", hexbuf);
-//     }
-//     else if(nRet == 0)
-//     {
-//         g_log.Print(3, "ReadData: connection closed by peer (recv returned 0)\n");
-//         m_bIsLogin = FALSE;
-//         ResetEvent(g_hConnectEvent);
-//     }
-//     else if(nRet < 0)
-//     {
-//         g_log.Print(3, "ReadData: recv error, errno=%d\n", errno);
-//         m_bIsLogin = FALSE;
-//         ResetEvent(g_hConnectEvent);
-//     }
-    
-//     return nRet;
+// 	int nRet=recv(m_tcpSock, lpBuff, nSize, 0);
+// 	if(nRet <=0)
+// 	{
+// 		//m_bIsAlive = FALSE;
+// 		m_bIsLogin = FALSE;
+// 		ResetEvent(g_hConnectEvent);
+// 	}
+// 	return nRet;
 // }
+int TcpSession::ReadData(char* lpBuff, int nSize)
+{
+    int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
+    g_log.Print(3, "ReadData: recv returned %d, errno=%d\n", nRet, errno);
+    
+    if(nRet <= 0)
+    {
+        g_log.Print(3, "ReadData: setting m_bIsLogin=FALSE\n");
+        m_bIsLogin = FALSE;
+        ResetEvent(g_hConnectEvent);
+    }
+    return nRet;
+}
+
 
 void TcpSession::initSession()
 {
@@ -351,6 +332,7 @@ void TcpSession::sendAckPacket(uint16 seq)
 
 void TcpSession::sendDirect(TCPOutPacket *p)
 {
+	
     char *pData;
     int  nSize;
     uint32_t nCRC32;
@@ -365,6 +347,10 @@ void TcpSession::sendDirect(TCPOutPacket *p)
 
     // 产生CRC32校验
     pData = (char *)p->getData();
+	 if(pData && p->getLength() > 0) {
+        uint8 cmd = (uint8)pData[0];
+        g_log.Print(3, "sendDirect: sending cmd=%d, length=%d\n", cmd, p->getLength());
+    }
     nSize = p->getLength();
     nCRC32 = crc32Gen.Get_CRC(pData, nSize);
     *((uint32_t *)&pData[nSize]) = nCRC32;
@@ -403,6 +389,8 @@ void TcpSession::sendDirect(TCPOutPacket *p)
 
     if(send(m_tcpSock, (char *)sendbuf, nCryptSize, 0) < 0)
     {
+		        g_log.Print(3, "sendDirect: send failed, setting m_bIsLogin=FALSE\n");
+
         m_bIsLogin = FALSE;
         ResetEvent(g_hConnectEvent);
     }
@@ -479,6 +467,8 @@ void TcpSession::onLoginReply(TCPInPacket &in)
         g_log.Print(3, "%d login in success.\r\n", m_ServerID);
         SetEvent(g_hConnectEvent);
         in >> g_bySystem;
+		        onKeepAlive();
+
         g_log.Print(3, "g_bySystem=%d\n", g_bySystem);
     }
     else
@@ -556,6 +546,9 @@ void TcpSession::onSendRequestReply(TCPInPacket &in)
 		lstrcpyn(g_strIP,strTemp,20);
 	if(g_nPort==0) g_nPort = g_sysParam.nFilePort;
 	in >> g_nFileSize;
+	    // 添加详细日志
+    g_log.Print(3, "onSendRequestReply: g_bySendCode=%d, g_strIP=%s, g_nPort=%d, g_strUUID=%s, g_nFileSize=%d\n",
+                g_bySendCode, g_strIP, g_nPort, g_strUUID, g_nFileSize);
 	SetEvent(g_hSendRequest);
 }
 
@@ -652,16 +645,20 @@ void TcpSession::onLCRReportReply(TCPInPacket &in)
 
 void TcpSession::onSrvUpdate(TCPInPacket &in)
 {
-	char	strFilePath[MAX_PATH];
-	lstrcpyn(strFilePath,g_strFilePath,MAX_PATH);
-	lstrcat(strFilePath,"AutoUpdate.exe");
-	// On Linux, just log the update request
-	g_log.Print(3,"Server update requested: %s\r\n",strFilePath);
+	// char	strFilePath[MAX_PATH];
+	// lstrcpyn(strFilePath,g_strFilePath,MAX_PATH);
+	// lstrcat(strFilePath,"AutoUpdate.exe");
+	// // On Linux, just log the update request
+	// g_log.Print(3,"Server update requested: %s\r\n",strFilePath);
+	    g_log.Print(3, "Server update requested, ignored on Linux\n");
+
 }
 
 bool TcpSession::onReceive(TCPInPacket &in)
 {
+
 	uint8 cmd = in.header.cmd;
+	g_log.Print(3, "onReceive: received cmd=%d\n", cmd);
 	string		strVersion;	
 
 	switch (cmd) {
@@ -670,15 +667,28 @@ bool TcpSession::onReceive(TCPInPacket &in)
 		break;
 
 	case TCP_KEEPALIVE:
-		m_nWaitAlive = 0;
-		in >> m_sessionCount >> strVersion;
-		if(strVersion.length()!=0 && strVersion.compare(g_strVersion)!=0)
-		{
-			onSrvUpdate(in);
-			lstrcpyn(g_strVersion,strVersion.c_str(),30);
-		}
-		g_log.Print(6,"get keep alive return.\r\n");
-		break;
+	//     g_log.Print(3, "TCP_KEEPALIVE response received!\n");
+    // g_log.Print(3, "Keepalive response: sessionCount=%d, version=%s\n", m_sessionCount, strVersion.c_str());
+	// 	m_nWaitAlive = 0;
+	// 	in >> m_sessionCount >> strVersion;
+	// 	if(strVersion.length()!=0 && strVersion.compare(g_strVersion)!=0)
+	// 	{
+	// 		onSrvUpdate(in);
+	// 		lstrcpyn(g_strVersion,strVersion.c_str(),30);
+	// 	}
+	// 	g_log.Print(6,"get keep alive return.\r\n");
+	// 	break;
+	    g_log.Print(3, "TCP_KEEPALIVE response received!\n");
+    m_nWaitAlive = 0;
+    
+    // 根据协议，心跳响应应该是: 是否有传真要接收(2B) + 网关连接状态(1B)
+    uint16 hasFaxToReceive;
+    uint8 connectionStatus;
+    in >> hasFaxToReceive >> connectionStatus;
+    
+    g_log.Print(3, "Keepalive response: hasFaxToReceive=%d, connectionStatus=%d\n", 
+                hasFaxToReceive, connectionStatus);
+				break;
 
 	case TCP_FAX_REQUESTSEND:
 		onSendRequestReply(in);
@@ -846,17 +856,31 @@ int TcpSession::onLogin()
 
 int TcpSession::onKeepAlive()
 {
+	static int last_login_state = -1;
+    if(last_login_state != m_bIsLogin) {
+        g_log.Print(3, "onKeepAlive: m_bIsLogin changed from %d to %d\n", last_login_state, m_bIsLogin);
+        last_login_state = m_bIsLogin;
+    }
+
+	g_log.Print(3, "onKeepAlive: m_bIsLogin=%d, m_nWaitAlive=%d\n", m_bIsLogin, m_nWaitAlive);
+
 	if(m_bIsLogin && m_nWaitAlive <6)
 	{
 		m_nWaitAlive++;
+		        g_log.Print(3, "onKeepAlive: sending heartbeat, attempt %d/6\n", m_nWaitAlive);
+
 		TCPOutPacket *out =createPacket(TCP_KEEPALIVE);
 		sendDirect(out);
 		delete out;
+		        g_log.Print(3, "onKeepAlive: heartbeat sent\n");
+
 	}
 	else
 	{
 		if(m_nPort!=0)
 		{
+			            g_log.Print(3,"onKeepAlive: timeout, reconect the fax center.\n");
+
 			g_log.Print(3,"reconect the fax center.\r\n");
 			Close();
 			connect(m_strSrvAdd,m_nPort);

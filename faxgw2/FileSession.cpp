@@ -360,21 +360,24 @@ void* FileSession::MainThreadProc(void* lpParam)
 
 	while(TRUE)
 	{
-		DWORD dwWaitRet = WaitForSingleObject(m_hSemaphore,INFINITE);
-		if(dwWaitRet==WAIT_OBJECT_0)
-		{
+		// DWORD dwWaitRet = WaitForSingleObject(m_hSemaphore,INFINITE);
+		// if(dwWaitRet==WAIT_OBJECT_0)
+		// {
 			iAddrSize = sizeof(client);
 			sClient = accept(sMain, (struct sockaddr *)&client, (socklen_t*)&iAddrSize);
 			if (sClient < 0)
-			{        
+			{            
+				g_log.Print(3, "accept failed, errno=%d\n", errno);
+
 				//printf("accept() failed: %d\n", errno);
 				closesocket(sMain);
 				return (void*)1;
 			}
+			g_log.Print(3, "MainThreadProc: accepted client, socket=%d\n", sClient);
 
 			StartThread(TCPSThreadProc,(LPVOID)sClient);
 
-		}
+		//}
 	}
 
 	//create thread for thread
@@ -793,10 +796,413 @@ int SendLCROper(const char* strUUID,BYTE byLCRcmd,BYTE byLCRcode,BYTE byLCRResul
 	}
 	return 0;
 }
+int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSION &faxSess)
+{
+    g_log.Print(3, "ReceivePacketEx: cmd=%d, bodyLen=%d\n", cmd, bodyLen);
+    
+    switch(cmd)
+    {
+        case GW_LOGIN:
+        {
+            if(bodyLen < 2) {
+                g_log.Print(3, "GW_LOGIN: body too short\n");
+                return -1;
+            }
+            int strLen = (body[0] << 8) | body[1];
+            if(bodyLen < 2 + strLen) {
+                g_log.Print(3, "GW_LOGIN: string length mismatch\n");
+                return -1;
+            }
+            char* strCode1 = new char[strLen + 1];
+            memcpy(strCode1, body + 2, strLen);
+            strCode1[strLen] = '\0';
+            
+            g_log.Print(3, "GW_LOGIN: gatewayKey from client=%s, expected=%s\n", 
+                        strCode1, g_sysParam.strGWKey);
+            
+            if(strcmp(strCode1, g_sysParam.strGWKey) == 0)
+            {
+                faxSess.bIsLogin = true;
+                TCPOutPacket out;
+                out << (uint8)GW_LOGIN;
+                out << (uint8)LOGIN_SUCCESS;
+                out << (uint8)LOGIN_SUCCESS;
+                if(SendPacket(tcpSock, out, faxSess) == -1)
+                {
+                    delete[] strCode1;
+                    return -1;
+                }
+                g_log.Print(3, "GW_LOGIN success.\n");
+            }
+            else
+            {
+                TCPOutPacket out;
+                out << (uint8)GW_LOGIN;
+                out << (uint8)LOGIN_INVALID_USER;
+                SendPacket(tcpSock, out, faxSess);
+                delete[] strCode1;
+                return -1;
+            }
+            delete[] strCode1;
+            break;
+        }
+    	case GW_KEEPALIVE:
+        {
+            g_log.Print(3, "GW_KEEPALIVE received\n");
+            
+            // 构建心跳响应
+            TCPOutPacket out;
+            out << (uint8)GW_KEEPALIVE;
+            out << g_nReceive;      // 待接收传真数量
+            out << (uint8)g_bySystem;  // 系统状态
+            if(SendPacket(tcpSock, out, faxSess) == -1)
+            {
+                g_log.Print(3, "GW_KEEPALIVE: SendPacket failed\n");
+                return -1;
+            }
+            g_log.Print(3, "GW_KEEPALIVE response sent, g_nReceive=%d, g_bySystem=%d\n", g_nReceive, g_bySystem);
+            break;
+        }
+        
+		case GW_FAX_REQUESTSEND:
+        {
+            g_log.Print(3, "GW_FAX_REQUESTSEND received, bodyLen=%d\n", bodyLen);
+            // 处理前检查并重置
+            if(faxSess.nType != 0 && faxSess.nType != 1)
+            {
+                g_log.Print(3, "GW_FAX_REQUESTSEND: invalid session state\n");
+                return -1;
+            }
+            if(faxSess.nType != 0)
+            {
+                g_log.Print(3, "GW_FAX_REQUESTSEND: invalid session state\n");
+                return -1;
+            }
+            
+            faxSess.nType = 1;
+            ResetEvent(g_hSendRequest);
+            
+            // 解析 body 中的数据
+            // body 格式: [国家代码][区号][传真号码][分机号][文件大小][CSID]
+            int offset = 0;
+            
+            // 国家代码
+            int strLen = (body[offset] << 8) | body[offset+1];
+            offset += 2;
+            char* strCountryCode = new char[strLen + 1];
+            memcpy(strCountryCode, body + offset, strLen);
+            strCountryCode[strLen] = '\0';
+            offset += strLen;
+            
+            // 区号
+            strLen = (body[offset] << 8) | body[offset+1];
+            offset += 2;
+            char* strAreaCode = new char[strLen + 1];
+            memcpy(strAreaCode, body + offset, strLen);
+            strAreaCode[strLen] = '\0';
+            offset += strLen;
+            
+            // 传真号码
+            strLen = (body[offset] << 8) | body[offset+1];
+            offset += 2;
+            char* strFaxCode = new char[strLen + 1];
+            memcpy(strFaxCode, body + offset, strLen);
+            strFaxCode[strLen] = '\0';
+            offset += strLen;
+            
+            // 分机号
+            strLen = (body[offset] << 8) | body[offset+1];
+            offset += 2;
+            char* strExtCode = new char[strLen + 1];
+            memcpy(strExtCode, body + offset, strLen);
+            strExtCode[strLen] = '\0';
+            offset += strLen;
+            
+            // 文件大小
+            DWORD dwFileSize = (body[offset] << 24) | (body[offset+1] << 16) | 
+                               (body[offset+2] << 8) | body[offset+3];
+            offset += 4;
+            
+            // CSID
+            strLen = (body[offset] << 8) | body[offset+1];
+            offset += 2;
+            char* strCSID = new char[strLen + 1];
+            memcpy(strCSID, body + offset, strLen);
+            strCSID[strLen] = '\0';
+            offset += strLen;
+            
+            g_log.Print(5, "send FAX request %s%s-%s-%s, CSID=%s, fileSize=%u\n", 
+                        strCountryCode, strAreaCode, strFaxCode, strExtCode, strCSID, dwFileSize);
+            
+            // 调用 TcpSession 处理发送请求
+            g_tcpSession.onSendRequest(strCountryCode, strAreaCode, strFaxCode, strExtCode, dwFileSize, strCSID);
+            
+            // 等待响应
+            DWORD dwResult = WaitForSingleObject(g_hSendRequest, 5000);
+            if(dwResult != WAIT_OBJECT_0)
+            {
+                g_log.Print(5, "server not respond the send FAX request\n");
+                delete[] strCountryCode;
+                delete[] strAreaCode;
+                delete[] strFaxCode;
+                delete[] strExtCode;
+                delete[] strCSID;
+                return -1;
+            }
+            
+            // 连接到文件服务器
+            if(g_bySendCode != 0)
+            {
+                if(ConnectFileSrv(tcpSock) == -1)
+                {
+                    g_bySendCode = 0;
+                }
+            }
+            
+            int ntemp = g_bySendCode;
+            g_log.Print(5, "return send FAX request: %d, IP:%s Port:%d, UUID:%s\n", 
+                        ntemp, g_strIP, g_nPort, g_strUUID);
+            
+            // 构建响应
+            TCPOutPacket out;
+            out.cmd = GW_FAX_REQUESTSEND;
+            out << (uint8)GW_FAX_REQUESTSEND;
+            out << g_bySendCode;
+            out << g_strUUID;
+			out << g_strIP;      // 添加文件服务器 IP
+            out << g_nPort;      // 添加文件服务器端口
+            
+            if(SendPacket(tcpSock, out, faxSess) == -1)
+            {
+                delete[] strCountryCode;
+                delete[] strAreaCode;
+                delete[] strFaxCode;
+                delete[] strExtCode;
+                delete[] strCSID;
+                return -1;
+            }
+            
+            delete[] strCountryCode;
+            delete[] strAreaCode;
+            delete[] strFaxCode;
+            delete[] strExtCode;
+            delete[] strCSID;
 
+			faxSess.nType = 0;
+            break;
+        }
+        // ============================================================
+        // 接收传真处理 - 文件服务器发送数据给网关
+        // ============================================================
+        case GW_FAX_RECV:
+        {
+            g_log.Print(3, "GW_FAX_RECV received, nType=%d, bodyLen=%d\n", faxSess.nType, bodyLen);
+            
+            if(faxSess.nType != 4)
+            {
+                g_log.Print(3, "GW_FAX_RECV: invalid session state (expected 4, got %d)\n", faxSess.nType);
+                return -1;
+            }
+            
+            if(bodyLen < 1) {
+                g_log.Print(3, "GW_FAX_RECV: no data\n");
+                return -1;
+            }
+            
+            // 第一个字节是 byCode（0=成功，1=失败）
+            BYTE byCode = body[0];
+            BYTE* fileData = body + 1;
+            int dataLen = bodyLen - 1;
+            
+            g_log.Print(3, "GW_FAX_RECV: byCode=%d, dataLen=%d\n", byCode, dataLen);
+            
+            if(faxSess.bIsEnd)
+            {
+                // 文件已结束，发送停止接收
+                g_log.Print(3, "GW_FAX_RECV: file end, sending STOPRECV\n");
+                faxSess.nType = 5;
+                TCPOutPacket out;
+                out << (uint8)GW_FAX_STOPRECV;
+                if(SendPacket(tcpSock, out, faxSess) == -1)
+                    return -1;
+            }
+            else
+            {
+                if(faxSess.hSendFile == NULL || faxSess.hSendFile == INVALID_HANDLE_VALUE)
+                {
+                    g_log.Print(3, "GW_FAX_RECV: hSendFile is NULL, cannot write\n");
+                    return -1;
+                }
+                
+                DWORD dwWritten;
+                if(WriteFile(faxSess.hSendFile, fileData, dataLen, &dwWritten, NULL))
+                {
+                    if(dwWritten == (DWORD)dataLen)
+                    {
+                        // 发送接收成功响应
+                        TCPOutPacket out;
+                        out << (uint8)GW_FAX_RECV;
+                        out << (uint8)0;
+                        if(SendPacket(tcpSock, out, faxSess) == -1)
+                            return -1;
+                        g_log.Print(3, "GW_FAX_RECV: wrote %d bytes, sent ACK\n", dataLen);
+                        
+                        if(faxSess.dwFileSize >= (DWORD)dataLen)
+                            faxSess.dwFileSize -= dataLen;
+                        else
+                            faxSess.dwFileSize = 0;
+                    }
+                    else
+                    {
+                        g_log.Print(3, "GW_FAX_RECV: WriteFile wrote %d/%d bytes\n", dwWritten, dataLen);
+                        TCPOutPacket out;
+                        out << (uint8)GW_FAX_RECV;
+                        out << (uint8)1;
+                        SendPacket(tcpSock, out, faxSess);
+                        return -1;
+                    }
+                }
+                else
+                {
+                    g_log.Print(3, "GW_FAX_RECV: WriteFile failed, errno=%d\n", errno);
+                    TCPOutPacket out;
+                    out << (uint8)GW_FAX_RECV;
+                    out << (uint8)1;
+                    SendPacket(tcpSock, out, faxSess);
+                    return -1;
+                }
+            }
+            break;
+        }
+        
+        // ============================================================
+        // 接收传真完成处理
+        // ============================================================
+        case GW_FAX_STOPRECV:
+        {
+            g_log.Print(3, "GW_FAX_STOPRECV received, nType=%d, bodyLen=%d\n", faxSess.nType, bodyLen);
+            
+            if(faxSess.nType != 5)
+            {
+                g_log.Print(3, "GW_FAX_STOPRECV: invalid session state (expected 5, got %d)\n", faxSess.nType);
+                // 仍然尝试关闭
+            }
+            
+            BYTE byCode = 0;
+            if(bodyLen >= 1) {
+                byCode = body[0];
+            }
+            
+            g_log.Print(3, "GW_FAX_STOPRECV: byCode=%d\n", byCode);
+            
+            if(byCode == 0)
+            {
+                // 关闭文件句柄
+                if(faxSess.hSendFile != NULL && faxSess.hSendFile != INVALID_HANDLE_VALUE)
+                {
+                    CloseHandle(faxSess.hSendFile);
+                    faxSess.hSendFile = NULL;
+                    g_log.Print(3, "GW_FAX_STOPRECV: file handle closed\n");
+                }
+                
+                // 发送停止接收响应
+                TCPOutPacket out;
+                out << (uint8)GW_FAX_STOPRECV;
+                out << (uint8)0;
+                SendPacket(tcpSock, out, faxSess);
+                
+                g_log.Print(3, "GW_FAX_STOPRECV: receive completed successfully\n");
+            }
+            else
+            {
+                g_log.Print(3, "GW_FAX_STOPRECV: receive failed\n");
+            }
+            
+            // 关闭 socket 连接
+            closesocket(tcpSock);
+            faxSess.nType = 0;
+            break;
+        }
+   case GW_FAX_REQUESTRECV:
+{
+    g_log.Print(3, "GW_FAX_REQUESTRECV received, pending count=%d\n", g_nReceive);
+    
+    if(faxSess.nType == 0)
+    {
+        faxSess.nType = 4;
+        
+        if(g_nReceive > 0)
+        {
+            EnterCriticalSection(&g_csRecvList);
+            list<FAX_RECVLIST *>::iterator iter = g_lsRecvFax.begin();
+            
+            if(iter != g_lsRecvFax.end())
+            {
+                FAX_RECVLIST* pFax = *iter;
+                
+                // 获取文件大小
+                DWORD dwFileLow = 0;
+                DWORD dwFileHigh = 0;
+                HANDLE hFile = CreateFile(pFax->strFileName, GENERIC_READ, FILE_SHARE_READ, 
+                                          NULL, OPEN_EXISTING, 0, NULL);
+                if(hFile != INVALID_HANDLE_VALUE)
+                {
+                    dwFileLow = GetFileSize(hFile, &dwFileHigh);
+                    CloseHandle(hFile);
+                }
+                
+                // 确保传真类型有效
+                if(pFax->nFAXType != 1 && pFax->nFAXType != 2)
+                    pFax->nFAXType = 1;
+                
+                g_log.Print(5, "%s request recv %d, fileSize=%u\n", 
+                           pFax->strTID, pFax->nFAXType, dwFileLow);
+                
+                TCPOutPacket out;
+                out << (uint8)GW_FAX_REQUESTRECV;
+                out << (uint8)pFax->nFAXType;
+                out << (uint32)dwFileLow;
+                out << pFax->strCountryCode;
+                out << pFax->strAreaCode;
+                out << pFax->strFaxCode;
+                out << pFax->strExtCode;
+                out << pFax->strCallerID;
+                out << pFax->strTID;
+                out << pFax->strCSID;
+                
+                if(SendPacket(tcpSock, out, faxSess) == -1)
+                {
+                    LeaveCriticalSection(&g_csRecvList);
+                    return -1;
+                }
+            }
+            LeaveCriticalSection(&g_csRecvList);
+        }
+        else
+        {
+            // 无待接收传真，只发送类型0
+            TCPOutPacket out;
+            out << (uint8)GW_FAX_REQUESTRECV;
+            out << (uint8)0;
+            if(SendPacket(tcpSock, out, faxSess) == -1)
+                return -1;
+        }
+        
+        faxSess.nType = 0;  // 重置状态
+    }
+    break;
+}
+				
+        default:
+            g_log.Print(3, "ReceivePacketEx: unknown cmd=%d\n", cmd);
+            break;
+    }
+    return 0;
+}
 
 int ReceivePacket(SOCKET tcpSock,TCPInPacket &in,FAX_SESSION &faxSess)
 {
+	g_log.Print(3, "ReceivePacket: cmd=%d\n", in.header.cmd);
 	const char *strCode1;
 	const char *strCode2;
 	const char *strCode3;
@@ -813,10 +1219,15 @@ int ReceivePacket(SOCKET tcpSock,TCPInPacket &in,FAX_SESSION &faxSess)
 	switch(in.header.cmd)
 	{
 		case GW_LOGIN:
-			in >> strCode1;
+		    g_log.Print(3, "ReceivePacket: processing GW_LOGIN\n");
 
+			in >> strCode1;
+   g_log.Print(3, "ReceivePacket: gatewayKey from client=%s, expected=%s\n", 
+                strCode1, g_sysParam.strGWKey);
 			if(strcmp(strCode1,g_sysParam.strGWKey)==0)
 			{
+				        g_log.Print(3, "ReceivePacket: gatewayKey matched!\n");
+
 				faxSess.bIsLogin = true;
 				TCPOutPacket out;
 				out << (uint8)GW_LOGIN;
@@ -840,6 +1251,8 @@ int ReceivePacket(SOCKET tcpSock,TCPInPacket &in,FAX_SESSION &faxSess)
 			return 0;
 			break;
 		case GW_FAX_REQUESTSEND:
+		    g_log.Print(3, "GW_FAX_REQUESTSEND received,  faxSess.nType=%d\n", 
+                faxSess.nType);
 			if(faxSess.nType==0)
 			{
 				faxSess.nType=1;
@@ -897,6 +1310,8 @@ int ReceivePacket(SOCKET tcpSock,TCPInPacket &in,FAX_SESSION &faxSess)
 				return -1;
 			break;
 		case GW_KEEPALIVE:
+		    g_log.Print(3, "GW_KEEPALIVE received, g_nReceive=%d, g_bySystem=%d\n", g_nReceive, g_bySystem);
+
 			if(faxSess.nType==0)
 			{
 				TCPOutPacket out;
@@ -1071,285 +1486,438 @@ int ReceivePacket(SOCKET tcpSock,TCPInPacket &in,FAX_SESSION &faxSess)
 	return 0;
 }
 
+
 void* FileSession::TCPSThreadProc(void* lpParam)
 {
+    BYTE            byBuff[512];
+    BYTE            m_byLastChar = 0;
+    int             ntype = 0;
+    int             nPointer = 0;
+    GW_HEADER       header;           // 使用 GW_HEADER (7字节)
+    BYTE            byPacket[2048];
+    int             nSize;
+    FAX_SESSION     faxSess;
+    SOCKET          tcpSock;
 
-	BYTE	byBuff[512];
-	BYTE			m_byLastChar;
-	int				ntype;
-	int				nPointer;
-	GW_HEADER		header;
-	BYTE			byPacket[2048];
-	int				nSize;
-	FAX_SESSION		faxSess;
-	SOCKET			tcpSock;
+    tcpSock = (SOCKET)(long)lpParam;
+    g_log.Print(3, "TCPSThreadProc: entered, socket=%d\n", tcpSock);
 
-	tcpSock = (SOCKET)(long)lpParam;
-	ZeroMemory(&faxSess,sizeof(faxSess));
-	faxSess.bIsLogin = false;
-	faxSess.nType = 0;
-	ntype=0;
-	while(true)
-	{
-		nSize = 512;
-		nSize = recv(tcpSock, (char *)byBuff, nSize, 0);
-		if(nSize > 0)
-		{
-			for(int i=0;i< nSize ;i++)
-			{
-				if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype==0)
-				{
-					//��ʼ�����Ϣ��.
-					ntype = 1;
-					nPointer= 0;
+	if (tcpSock < 0) {
+	g_log.Print(3, "TCPSThreadProc: invalid socket\n");
+	return (void*)-1;
+    }
+    
+    ZeroMemory(&faxSess, sizeof(faxSess));
+    faxSess.bIsLogin = false;
+    faxSess.nType = 0;
 
-					*((PBYTE)&header + nPointer)=0x3E;
-					nPointer++;
-					*((PBYTE)&header + nPointer)=0xE3;
-					nPointer++;
-				}
-				else
-				{
-					if(ntype == 1)
-					{
-						*((PBYTE)&header + nPointer)=(BYTE)byBuff[i];
-						nPointer++;
-						if(nPointer >= sizeof(GW_HEADER))
-						{
-							ntype = 2;
-							nPointer = 0;
-						}
-					}
-					else if(ntype == 2)
-					{
-						byPacket[nPointer] = (BYTE)byBuff[i];
-						nPointer++; 
+    while(true)
+    {
+        nSize = 512;
+		        g_log.Print(3, "TCPSThreadProc: calling recv on socket %d\n", tcpSock);
+
+        nSize = recv(tcpSock, (char *)byBuff, nSize, 0);
+		        g_log.Print(3, "TCPSThreadProc: recv returned %d, errno=%d\n", nSize, errno);
+
+        if(nSize > 0)
+        {
+
+			g_log.Print(3, "TCPSThreadProc: received %d bytes\n", nSize);
+            // 打印前16字节
+            char hexbuf[64] = {0};
+            for(int i = 0; i < (nSize > 16 ? 16 : nSize); i++) {
+                sprintf(hexbuf + i*3, "%02X ", byBuff[i]);
+            }
+            g_log.Print(3, "TCPSThreadProc: data: %s\n", hexbuf);
+            for(int i = 0; i < nSize; i++)
+            {
+				  g_log.Print(3, "TCPSThreadProc: byte[%d]=0x%02X, lastChar=0x%02X, ntype=%d\n", 
+                i, byBuff[i], m_byLastChar, ntype);
+    
+                if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype == 0)
+                {
+					        g_log.Print(3, "TCPSThreadProc: found packet start\n");
+
+                    ntype = 1;
+                    nPointer = 0;
+                    *((PBYTE)&header + nPointer) = 0x3E;
+                    nPointer++;
+                    *((PBYTE)&header + nPointer) = 0xE3;
+                    nPointer++;
+                }
+                else
+                {
+                    if(ntype == 1)
+                    {
+                        *((PBYTE)&header + nPointer) = (BYTE)byBuff[i];
+                        nPointer++;
+						            g_log.Print(3, "TCPSThreadProc: header pos %d, value 0x%02X\n", nPointer-1, (BYTE)byBuff[i]);
+                        if(nPointer >= sizeof(GW_HEADER))
+                        {
+							    header.nLength = ntohl(header.nLength);
+
+							                g_log.Print(3, "TCPSThreadProc: header complete, nLength=%d\n", header.nLength);
+
+                            ntype = 2;
+                            nPointer = 0;
+                        }
+                    }
+                    else if(ntype == 2)
+                    {
+                        byPacket[nPointer] = (BYTE)byBuff[i];
+                        nPointer++;
+                        // if(nPointer >= header.nLength)
+                        // {
+						// 	                g_log.Print(3, "TCPSThreadProc: packet complete, body length=%d\n", header.nLength);
+
+                        //     ntype = 0;
+                        //     nPointer = 0;
+
+                        //     // 明文数据，直接处理
+                        //     // TCPInPacket in(byPacket, header.nLength, 1);
+    					// 	TCPInPacket in(byPacket, header.nLength, 1);
+
+						// 	g_log.Print(3, "TCPSThreadProc: calling ReceivePacket\n");
+
+                        //     if(ReceivePacket(tcpSock, in, faxSess) == -1)
+                        //     {
+                        //         closesocket(tcpSock);
+                        //         ReleaseSemaphore(FileSession::m_hSemaphore, 1, NULL);
+                        //         return (void*)-1;
+                        //     }
+                        // }
 						if(nPointer >= header.nLength)
 						{
 							ntype = 0;
 							nPointer = 0;
 
-								// ����Ϣ���������
-								TCPInPacket in(byPacket, header.nLength,1);
-								if(ReceivePacket(tcpSock,in,faxSess)==-1)
+							if(header.nLength > 0)
+							{
+								BYTE cmd = byPacket[0];
+								BYTE* body = byPacket + 1;
+								int bodyLen = header.nLength - 1;
+								
+								g_log.Print(3, "TCPSThreadProc: calling ReceivePacketEx, cmd=%d, bodyLen=%d\n", cmd, bodyLen);
+								
+								if(ReceivePacketEx(tcpSock, cmd, body, bodyLen, faxSess) == -1)
 								{
 									closesocket(tcpSock);
-									if(faxSess.nType==1)
-									{
-										if(g_sSend)
-										{
-											closesocket(g_sSend);
-											g_sSend = 0;
-										}
-									}
-									else if(faxSess.nType==4 || faxSess.nType==5)
-									{
-										if(!(INVALID_HANDLE_VALUE == faxSess.hSendFile || NULL == faxSess.hSendFile))
-										{
-											CloseHandle(faxSess.hSendFile);
-											faxSess.hSendFile = NULL;
-										}
-									}
-
-									ReleaseSemaphore(FileSession::m_hSemaphore,1,NULL);
+									ReleaseSemaphore(FileSession::m_hSemaphore, 1, NULL);
 									return (void*)-1;
-
 								}
-								//in.handle();
-									//onPacketReceived(in,&SenderAddr);
+							}
 						}
-
-					}
-				}
-				m_byLastChar = (BYTE)byBuff[i];
-			}
-		}
-		else
-		{
-			closesocket(tcpSock);
-			break;
-		}
-	}
-	if(faxSess.nType==1)
-	{
-		if(g_sSend)
-		{
-			closesocket(g_sSend);
-			g_sSend = 0;
-		}
-	}
-	else if(faxSess.nType==4 || faxSess.nType==5)
-	{
-		if(!(INVALID_HANDLE_VALUE == faxSess.hSendFile || NULL == faxSess.hSendFile))
-		{
-			CloseHandle(faxSess.hSendFile);
-			faxSess.hSendFile = NULL;
-		}
-	}
-	ReleaseSemaphore(FileSession::m_hSemaphore,1,NULL);
-
-
-/*    SOCKET        sMain,
-                  sClient;
-    int           iAddrSize;
-    struct sockaddr_in local,
-                       client;
-	DWORD			dwFileSize;
-	DWORD			dwReadSize;
-	DWORD			dwRet;
-
-	FileSession *filesess=(FileSession *)lpParam;
-	BYTE bNewActive=1,bOldActive;
-
-
-    // Create our main socket
-    sMain = socket(AF_INET, SOCK_STREAM, 0);
-    if (sMain < 0)
-    {
-        //printf("socket() failed: %d\n", errno);
-		SetEvent(filesess->m_hReadyEvent);
-        return 1;
+                    }
+                }
+                m_byLastChar = (BYTE)byBuff[i];
+            }
+        }
+		else if(nSize == 0)
+        {
+            g_log.Print(3, "TCPSThreadProc: connection closed by peer\n");
+            closesocket(tcpSock);
+            break;
+        }
+        else
+        {
+            closesocket(tcpSock);
+            break;
+        }
     }
-    local.sin_family = AF_INET;
-
-	if(filesess -> m_bIsListen)
-	{
-		local.sin_addr.s_addr = htonl(INADDR_ANY);
-		
-		for(;filesess->m_nPort<10000;filesess->m_nPort++)
-		{
-			local.sin_port = htons(filesess->m_nPort);
-			if (bind(sMain, (struct sockaddr *)&local, 
-				sizeof(local)) >= 0)
-				break;
-		}
-		if(filesess->m_nPort == 10000)
-		{
-			//printf("bind() failed: %d\n", errno);
-			closesocket(sMain);
-			SetEvent(filesess->m_hReadyEvent);
-			return 1;
-		}
-
-		listen(sMain, 1);
-		
-		SetEvent(filesess->m_hReadyEvent);
-		iAddrSize = sizeof(client);
-		sClient = accept(sMain, (struct sockaddr *)&client,
-			&iAddrSize); 
-	}
-	else
-	{
-		local.sin_addr.s_addr = htonl(filesess->m_nHost);
-		local.sin_port = htons(filesess->m_nPort);
-		if (connect(sMain, (struct sockaddr *)&local, 
-			sizeof(local)) < 0)
-		{
-			//printf("connect() failed: %d\n", errno);
-			return 1;
-		}
-		sClient = sMain;
-	}
-	if (sClient < 0)
-	{        
-		//printf("accept() failed: %d\n", errno);
-		closesocket(sMain);
-		return 1;
-	}
-	//printf("Accepted client: %s:%d\n", 
-	//	inet_ntoa(client.sin_addr), ntohs(client.sin_port));
-	
-	filesess->m_dwCurSize =0;
-	filesess->ReadData(sClient,(unsigned char *)&dwFileSize,sizeof(DWORD));
-	if(dwFileSize == -1) 
-	{        
-		closesocket(sMain);
-		return 1;
-	}
-	if(filesess->InitializeFile(TRUE,TRUE) == -1)
-	{
-		dwRet = -1;
-		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
-	}
-	else
-	{
-		dwRet = 0;
-		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
-		filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
-		while(1)
-		{
-			bOldActive=bNewActive;
-			if(WaitForSingleObject(filesess->m_hExitEvent,0)!=WAIT_TIMEOUT)
-			{
-				if(bOldActive) InterlockedDecrement(&filesess->m_ActiveCount);
-				break;
-			}
-			
-			if(!filesess->m_ActiveCount)
-			{
-				SetEvent(filesess->m_hExitEvent);
-				filesess->m_ExitCode=filesess->EXIT;
-				break;
-			}
-			
-			if(bNewActive!=bOldActive)
-			{
-				bNewActive?InterlockedIncrement(&filesess->m_ActiveCount):InterlockedDecrement(&filesess->m_ActiveCount);
-			}
-			else if(!bNewActive)continue;
-			
-			// add function code
-			dwRet = dwFileSize - filesess->m_dwCurSize;
-			if(dwRet < MAX_FILEBUFF)
-			{
-				dwReadSize = filesess->ReadData(sClient,filesess->m_byFileBuff,dwRet);
-				if(dwRet != dwReadSize)
-				{
-					dwRet = -1;
-					break;
-				}
-				filesess->m_dwCurSize = dwFileSize;
-				break;
-			}
-			else
-			{
-				if(MAX_FILEBUFF != filesess->ReadData(sClient,filesess->m_byFileBuff,MAX_FILEBUFF))
-				{
-					dwRet = -1;
-					break;
-				}
-				filesess->m_dwCurSize += MAX_FILEBUFF;
-			}
-			if(filesess->WriteFile(filesess->m_byFileBuff,MAX_FILEBUFF)== -1)
-			{
-				dwRet = -1;
-				send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
-				break;
-			}
-			dwReadSize = 0;
-			dwRet = 0;
-			send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
-			filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
-		}
-	}
-	if(dwReadSize!=0 && dwRet!=-1)
-	{
-		if(filesess->WriteFile(filesess->m_byFileBuff,dwReadSize)== -1)
-		{
-			dwRet = -1;
-		}
-		else
-			dwRet = 0;
-		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
-	}
-	filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
-	filesess->CloseFile();
-    if(filesess -> m_bIsListen) closesocket(sClient);
-    closesocket(sMain);
-	
-	delete filesess;*/
-	return 0;
+    ReleaseSemaphore(FileSession::m_hSemaphore, 1, NULL);
+    return 0;
 }
+// void* FileSession::TCPSThreadProc(void* lpParam)
+// {
+
+// 	BYTE	byBuff[512];
+// 	BYTE			m_byLastChar;
+// 	int				ntype;
+// 	int				nPointer;
+// 	GW_HEADER		header;
+// 	BYTE			byPacket[2048];
+// 	int				nSize;
+// 	FAX_SESSION		faxSess;
+// 	SOCKET			tcpSock;
+
+// 	tcpSock = (SOCKET)(long)lpParam;
+// 	g_log.Print(3, "TCPSThreadProc: entered, socket=%d\n", tcpSock);
+// 	ZeroMemory(&faxSess,sizeof(faxSess));
+// 	faxSess.bIsLogin = false;
+// 	faxSess.nType = 0;
+// 	ntype=0;
+// 	while(true)
+// 	{
+// 		nSize = 512;
+// 		g_log.Print(3, "TCPSThreadProc: waiting for recv on socket %d\n", tcpSock);
+// 		nSize = recv(tcpSock, (char *)byBuff, nSize, 0);
+// 		g_log.Print(3, "TCPSThreadProc: recv returned %d\n", nSize);
+// 		if(nSize > 0) {
+// 		    char hexbuf[512] = {0};
+// 		    for(int i = 0; i < (nSize > 32 ? 32 : nSize); i++) {
+// 		        sprintf(hexbuf + i*3, "%02X ", byBuff[i]);
+// 		    }
+// 		    g_log.Print(3, "TCPSThreadProc: data: %s\n", hexbuf);
+// 		}
+// 		g_log.Print(3, "TCPSThreadProc: recv returned %d\n", nSize);
+
+// 		if(nSize > 0)
+// 		{
+// 			for(int i=0;i< nSize ;i++)
+// 			{
+// 				if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype==0)
+// 				{
+// 					//��ʼ�����Ϣ��.
+// 					ntype = 1;
+// 					nPointer= 0;
+
+// 					*((PBYTE)&header + nPointer)=0x3E;
+// 					nPointer++;
+// 					*((PBYTE)&header + nPointer)=0xE3;
+// 					nPointer++;
+// 				}
+// 				else
+// 				{
+// 					if(ntype == 1)
+// 					{
+// 						*((PBYTE)&header + nPointer)=(BYTE)byBuff[i];
+// 						nPointer++;
+// 						if(nPointer >= sizeof(GW_HEADER))
+// 						{
+// 							ntype = 2;
+// 							nPointer = 0;
+// 						}
+// 					}
+// 					else if(ntype == 2)
+// 					{
+// 						byPacket[nPointer] = (BYTE)byBuff[i];
+// 						nPointer++; 
+// 						if(nPointer >= header.nLength)
+// 						{
+// 							ntype = 0;
+// 							nPointer = 0;
+
+// 								// ����Ϣ���������
+// 								TCPInPacket in(byPacket, header.nLength,1);
+// 								if(ReceivePacket(tcpSock,in,faxSess)==-1)
+// 								{
+// 									closesocket(tcpSock);
+// 									if(faxSess.nType==1)
+// 									{
+// 										if(g_sSend)
+// 										{
+// 											closesocket(g_sSend);
+// 											g_sSend = 0;
+// 										}
+// 									}
+// 									else if(faxSess.nType==4 || faxSess.nType==5)
+// 									{
+// 										if(!(INVALID_HANDLE_VALUE == faxSess.hSendFile || NULL == faxSess.hSendFile))
+// 										{
+// 											CloseHandle(faxSess.hSendFile);
+// 											faxSess.hSendFile = NULL;
+// 										}
+// 									}
+
+// 									ReleaseSemaphore(FileSession::m_hSemaphore,1,NULL);
+// 									return (void*)-1;
+
+// 								}
+// 								//in.handle();
+// 									//onPacketReceived(in,&SenderAddr);
+// 						}
+
+// 					}
+// 				}
+// 				m_byLastChar = (BYTE)byBuff[i];
+// 			}
+// 		}
+// 		else
+// 		{
+// 			closesocket(tcpSock);
+// 			break;
+// 		}
+// 	}
+// 	if(faxSess.nType==1)
+// 	{
+// 		if(g_sSend)
+// 		{
+// 			closesocket(g_sSend);
+// 			g_sSend = 0;
+// 		}
+// 	}
+// 	else if(faxSess.nType==4 || faxSess.nType==5)
+// 	{
+// 		if(!(INVALID_HANDLE_VALUE == faxSess.hSendFile || NULL == faxSess.hSendFile))
+// 		{
+// 			CloseHandle(faxSess.hSendFile);
+// 			faxSess.hSendFile = NULL;
+// 		}
+// 	}
+// 	ReleaseSemaphore(FileSession::m_hSemaphore,1,NULL);
+
+
+// /*    SOCKET        sMain,
+//                   sClient;
+//     int           iAddrSize;
+//     struct sockaddr_in local,
+//                        client;
+// 	DWORD			dwFileSize;
+// 	DWORD			dwReadSize;
+// 	DWORD			dwRet;
+
+// 	FileSession *filesess=(FileSession *)lpParam;
+// 	BYTE bNewActive=1,bOldActive;
+
+
+//     // Create our main socket
+//     sMain = socket(AF_INET, SOCK_STREAM, 0);
+//     if (sMain < 0)
+//     {
+//         //printf("socket() failed: %d\n", errno);
+// 		SetEvent(filesess->m_hReadyEvent);
+//         return 1;
+//     }
+//     local.sin_family = AF_INET;
+
+// 	if(filesess -> m_bIsListen)
+// 	{
+// 		local.sin_addr.s_addr = htonl(INADDR_ANY);
+		
+// 		for(;filesess->m_nPort<10000;filesess->m_nPort++)
+// 		{
+// 			local.sin_port = htons(filesess->m_nPort);
+// 			if (bind(sMain, (struct sockaddr *)&local, 
+// 				sizeof(local)) >= 0)
+// 				break;
+// 		}
+// 		if(filesess->m_nPort == 10000)
+// 		{
+// 			//printf("bind() failed: %d\n", errno);
+// 			closesocket(sMain);
+// 			SetEvent(filesess->m_hReadyEvent);
+// 			return 1;
+// 		}
+
+// 		listen(sMain, 1);
+		
+// 		SetEvent(filesess->m_hReadyEvent);
+// 		iAddrSize = sizeof(client);
+// 		sClient = accept(sMain, (struct sockaddr *)&client,
+// 			&iAddrSize); 
+// 	}
+// 	else
+// 	{
+// 		local.sin_addr.s_addr = htonl(filesess->m_nHost);
+// 		local.sin_port = htons(filesess->m_nPort);
+// 		if (connect(sMain, (struct sockaddr *)&local, 
+// 			sizeof(local)) < 0)
+// 		{
+// 			//printf("connect() failed: %d\n", errno);
+// 			return 1;
+// 		}
+// 		sClient = sMain;
+// 	}
+// 	if (sClient < 0)
+// 	{        
+// 		//printf("accept() failed: %d\n", errno);
+// 		closesocket(sMain);
+// 		return 1;
+// 	}
+// 	//printf("Accepted client: %s:%d\n", 
+// 	//	inet_ntoa(client.sin_addr), ntohs(client.sin_port));
+	
+// 	filesess->m_dwCurSize =0;
+// 	filesess->ReadData(sClient,(unsigned char *)&dwFileSize,sizeof(DWORD));
+// 	if(dwFileSize == -1) 
+// 	{        
+// 		closesocket(sMain);
+// 		return 1;
+// 	}
+// 	if(filesess->InitializeFile(TRUE,TRUE) == -1)
+// 	{
+// 		dwRet = -1;
+// 		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
+// 	}
+// 	else
+// 	{
+// 		dwRet = 0;
+// 		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
+// 		filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
+// 		while(1)
+// 		{
+// 			bOldActive=bNewActive;
+// 			if(WaitForSingleObject(filesess->m_hExitEvent,0)!=WAIT_TIMEOUT)
+// 			{
+// 				if(bOldActive) InterlockedDecrement(&filesess->m_ActiveCount);
+// 				break;
+// 			}
+			
+// 			if(!filesess->m_ActiveCount)
+// 			{
+// 				SetEvent(filesess->m_hExitEvent);
+// 				filesess->m_ExitCode=filesess->EXIT;
+// 				break;
+// 			}
+			
+// 			if(bNewActive!=bOldActive)
+// 			{
+// 				bNewActive?InterlockedIncrement(&filesess->m_ActiveCount):InterlockedDecrement(&filesess->m_ActiveCount);
+// 			}
+// 			else if(!bNewActive)continue;
+			
+// 			// add function code
+// 			dwRet = dwFileSize - filesess->m_dwCurSize;
+// 			if(dwRet < MAX_FILEBUFF)
+// 			{
+// 				dwReadSize = filesess->ReadData(sClient,filesess->m_byFileBuff,dwRet);
+// 				if(dwRet != dwReadSize)
+// 				{
+// 					dwRet = -1;
+// 					break;
+// 				}
+// 				filesess->m_dwCurSize = dwFileSize;
+// 				break;
+// 			}
+// 			else
+// 			{
+// 				if(MAX_FILEBUFF != filesess->ReadData(sClient,filesess->m_byFileBuff,MAX_FILEBUFF))
+// 				{
+// 					dwRet = -1;
+// 					break;
+// 				}
+// 				filesess->m_dwCurSize += MAX_FILEBUFF;
+// 			}
+// 			if(filesess->WriteFile(filesess->m_byFileBuff,MAX_FILEBUFF)== -1)
+// 			{
+// 				dwRet = -1;
+// 				send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
+// 				break;
+// 			}
+// 			dwReadSize = 0;
+// 			dwRet = 0;
+// 			send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
+// 			filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
+// 		}
+// 	}
+// 	if(dwReadSize!=0 && dwRet!=-1)
+// 	{
+// 		if(filesess->WriteFile(filesess->m_byFileBuff,dwReadSize)== -1)
+// 		{
+// 			dwRet = -1;
+// 		}
+// 		else
+// 			dwRet = 0;
+// 		send(sClient, (const char *)&dwRet, sizeof(DWORD), 0);
+// 	}
+// 	filesess->m_TransCallBackFunc(filesess->m_dwCallID,dwFileSize,filesess->m_dwCurSize);
+// 	filesess->CloseFile();
+//     if(filesess -> m_bIsListen) closesocket(sClient);
+//     closesocket(sMain);
+	
+// 	delete filesess;*/
+// 	return 0;
+// }
 
 void* FileSession::TCPCThreadProc(void* lpParam)
 {

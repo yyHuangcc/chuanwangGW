@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 	while(true)
 	{
 		//g_tcpSession.onLogin();
-		Sleep(8*1000);
+		Sleep(5*1000);
 		g_tcpSession.onKeepAlive();
 	}
 
