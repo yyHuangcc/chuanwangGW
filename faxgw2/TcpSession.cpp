@@ -1145,7 +1145,15 @@ int ReceivePacket(SOCKET tcpSock,FAX_RECVLIST* pRecvFaxInfo,TCPInPacket &in)
 				TCPOutPacket out;
 				out << (uint8)TCP_FAX_STOPSEND;
 				out << (uint8)0;
-				SendRSAPacket(tcpSock,&out);
+				int result =SendRSAPacket(tcpSock,&out);
+				if (result == -1)
+    {
+        g_log.Print(3, "TCP_FAX_STOPSEND: SendRSAPacket failed!\n");
+    }
+    else
+    {
+        g_log.Print(3, "TCP_FAX_STOPSEND: response sent successfully\n");
+    }
 			}
 			return 0;
 			break;
@@ -1234,180 +1242,248 @@ int ReceivePacket(SOCKET tcpSock,FAX_RECVLIST* pRecvFaxInfo,TCPInPacket &in)
 	}
 	return -1;
 }
-
-int GetPacket(SOCKET tcpSock,PAG_HEADER* pheader,int& ntype,BYTE* byPacket,int& nPointer,BYTE& m_byLastChar,FAX_RECVLIST* pRecvFaxInfo)
+int GetPacket(SOCKET tcpSock, PAG_HEADER* pheader, int& ntype, BYTE* byPacket,
+              int& nPointer, BYTE& m_byLastChar, FAX_RECVLIST* pRecvFaxInfo)
 {
-	BYTE			byBuff[2048];
-	int				nSize;
+    BYTE byBuff[2048];
+    int nSize;
 
-	while(true)
-	{
-		nSize = 2048;
-		nSize = recv(tcpSock, (char *)byBuff, nSize, 0);
-		//cout << "receive data :"<<nSize<<endl;
-		if(nSize > 0)
-		{
-			for(int i=0;i< nSize ;i++)
-			{
-				if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype==0)
-				{
-					//��ʼ�����Ϣ��.
-					ntype = 1;
-					nPointer= 0;
+    while (true)
+    {
+        nSize = recv(tcpSock, (char*)byBuff, sizeof(byBuff), 0);
+        if (nSize > 0)
+        {
+            for (int i = 0; i < nSize; i++)
+            {
+                if ((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype == 0)
+                {
+                    ntype = 1;
+                    nPointer = 0;
+                    *((PBYTE)pheader + nPointer) = 0x3E;
+                    nPointer++;
+                    *((PBYTE)pheader + nPointer) = 0xE3;
+                    nPointer++;
+                }
+                else
+                {
+                    if (ntype == 1)
+                    {
+                        *((PBYTE)pheader + nPointer) = (BYTE)byBuff[i];
+                        nPointer++;
+                        if (nPointer >= sizeof(PAG_HEADER))
+                        {
+                            ntype = 2;
+                            nPointer = 0;
+                        }
+                    }
+                    else if (ntype == 2)
+                    {
+                        byPacket[nPointer] = (BYTE)byBuff[i];
+                        nPointer++;
+                        if (nPointer >= pheader->nLength)
+                        {
+                            ntype = 0;
+                            nPointer = 0;
 
-					*((PBYTE)pheader + nPointer)=0x3E;
-					nPointer++;
-					*((PBYTE)pheader + nPointer)=0xE3;
-					nPointer++;
-				}
-				else
-				{
-					if(ntype == 1)
-					{
-						*((PBYTE)pheader + nPointer)=(BYTE)byBuff[i];
-						nPointer++;
-						if(nPointer >= sizeof(PAG_HEADER))
-						{
-							ntype = 2;
-							nPointer = 0;
-						}
-					}
-					else if(ntype == 2)
-					{
-						byPacket[nPointer] = (BYTE)byBuff[i];
-						nPointer++; 
-						if(nPointer >= pheader->nLength)
-						{
-							PBYTE	pbyPacket;
-							ntype = 0;
-							nPointer = 0;
-
-							pbyPacket = new BYTE [sizeof(DWORD)+sizeof(PAG_HEADER)+pheader->nLength];
-
-							if(pbyPacket)
-							{
-								CopyMemory(pbyPacket,pheader,sizeof(PAG_HEADER));
-								CopyMemory(pbyPacket+sizeof(PAG_HEADER),byPacket,pheader->nLength);
-								if(CheckPacket(pbyPacket))
-								{
-									TCPInPacket in(pbyPacket+sizeof(PAG_HEADER), pheader->nLength,1);
-									if(ReceivePacket(tcpSock,pRecvFaxInfo,in)==-1)
-									{
-										if(pRecvFaxInfo->hRecvFile && pRecvFaxInfo->hRecvFile!=INVALID_HANDLE_VALUE)
-										{
-											CloseHandle(pRecvFaxInfo->hRecvFile);
-											pRecvFaxInfo->hRecvFile = NULL;
-										}
-										if(!pRecvFaxInfo->nSuccess)
-											delete pRecvFaxInfo;
-										closesocket(tcpSock);
-										delete [] pbyPacket;
-										return -1;
-									}
-								}
-								delete [] pbyPacket;
-							}
-							else
-							{
-								if(pRecvFaxInfo->hRecvFile && pRecvFaxInfo->hRecvFile!=INVALID_HANDLE_VALUE)
-								{
-									CloseHandle(pRecvFaxInfo->hRecvFile);
-									pRecvFaxInfo->hRecvFile = NULL;
-								}
-								if(!pRecvFaxInfo->nSuccess)
-									delete pRecvFaxInfo;
-								closesocket(tcpSock);
-								return -1;
-							}
-						}
-
-					}
-				}
-				m_byLastChar = (BYTE)byBuff[i];
-			}
-		}
-		else
-		{
-			if(pRecvFaxInfo->hRecvFile && pRecvFaxInfo->hRecvFile!=INVALID_HANDLE_VALUE)
-			{
-				CloseHandle(pRecvFaxInfo->hRecvFile);
-				pRecvFaxInfo->hRecvFile = NULL;
-			}
-			if(!pRecvFaxInfo->nSuccess)
-				delete pRecvFaxInfo;
-			closesocket(tcpSock);
-			return -1;
-		}
-	}
-	return 0;
+                            // 构建完整包并处理
+                            PBYTE pbyPacket = new BYTE[sizeof(DWORD) + sizeof(PAG_HEADER) + pheader->nLength];
+                            if (pbyPacket)
+                            {
+                                CopyMemory(pbyPacket, pheader, sizeof(PAG_HEADER));
+                                CopyMemory(pbyPacket + sizeof(PAG_HEADER), byPacket, pheader->nLength);
+                                if (CheckPacket(pbyPacket))
+                                {
+                                    // 解密成功后，创建 TCPInPacket 并调用 ReceivePacket
+                                    TCPInPacket in(pbyPacket + sizeof(PAG_HEADER), pheader->nLength, 1);
+                                    int ret = ReceivePacket(tcpSock, pRecvFaxInfo, in);
+                                    delete[] pbyPacket;
+                                    return ret;  // 直接返回 ReceivePacket 的结果
+                                }
+                                delete[] pbyPacket;
+                            }
+                        }
+                    }
+                }
+                m_byLastChar = (BYTE)byBuff[i];
+            }
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    return 0;
 }
+// void ReceiveFax(void* lpParam)
+// {
+// 	FAX_RECVLIST*	pRecvFaxInfo;
+//     struct hostent	*host = NULL;
+// 	sockaddr_in		destAddr;
+// 	BYTE			m_byLastChar;
+// 	int				ntype;
+// 	int				nPointer;
+// 	PAG_HEADER		header;
+// 	BYTE			byPacket[2048];
+// 	int				nSize;
+// 	BYTE			byResult;
+// 	SOCKET			sRecvSock;
+
+// 	pRecvFaxInfo = (FAX_RECVLIST*)lpParam;
+ 
+// 	memset(&destAddr, 0, sizeof(destAddr));
+// 	destAddr.sin_family = AF_INET;
+// 	if ((destAddr.sin_addr.s_addr = inet_addr(pRecvFaxInfo->strIP)) == INADDR_NONE)
+// 	{
+// 		host = gethostbyname(pRecvFaxInfo->strIP);
+// 		if(host != NULL)
+// 		{
+// 			memcpy(&destAddr.sin_addr, host->h_addr_list[0],
+// 			    host->h_length);
+// 		}
+// 		//need check function success?
+// 	}
+// 	destAddr.sin_port = htons((uint16)pRecvFaxInfo->nPort);
+
+//     sRecvSock = socket(AF_INET, SOCK_STREAM, 0);
+//     if (sRecvSock >= 0)
+// 	{
+// 		if (::connect(sRecvSock, (struct sockaddr *)&destAddr, 
+// 			sizeof(destAddr)) < 0)
+// 		{
+// 			closesocket(sRecvSock);
+// 			return;
+// 		}
+// 	}
+// 	g_log.Print(5,"connect to File server %s\r\n", pRecvFaxInfo->strIP);
+
+// 	{
+// 		TCPOutPacket p;
+// 		p << (uint8)GW_FAX_REQUESTRECV;
+// 		p << pRecvFaxInfo->strTID;
+// 		SendRSAPacket(sRecvSock,&p);
+// 		//GetPacket(sRecvSock,byBuff,&header,ntype, nPointer,m_byLastChar, pRecvFaxInfo);
+// 		g_log.Print(5,"send GW_FAX_REQUESTRECV\r\n");
+// 	}
+
+// 	ntype = 0;
+// 	while(1)
+// 	{
+// 		byResult = 1;
+// 		if(GetPacket(sRecvSock,&header,ntype, byPacket, nPointer,m_byLastChar, pRecvFaxInfo)==-1)
+// 			break;
+		
+// 		/*TCPOutPacket p;
+// 		p << (uint8)GW_FAX_REQUESTRECV;
+// 		p << pRecvFaxInfo->strTID;
+// 		SendPacket(sRecvSock,&p);*/
+
+// 	}
+
+// 	closesocket(sRecvSock);
+
+// }
 
 void ReceiveFax(void* lpParam)
 {
-	FAX_RECVLIST*	pRecvFaxInfo;
-    struct hostent	*host = NULL;
-	sockaddr_in		destAddr;
-	BYTE			m_byLastChar;
-	int				ntype;
-	int				nPointer;
-	PAG_HEADER		header;
-	BYTE			byPacket[2048];
-	int				nSize;
-	BYTE			byResult;
-	SOCKET			sRecvSock;
+    FAX_RECVLIST* pRecvFaxInfo = (FAX_RECVLIST*)lpParam;
+    struct hostent* host = NULL;
+    sockaddr_in destAddr;
+    BYTE m_byLastChar = 0;
+    int ntype = 0;
+    int nPointer = 0;
+    PAG_HEADER header;
+    BYTE byPacket[2048];
+    int nSize;
+    BYTE byResult;
+    SOCKET sRecvSock;
+    HANDLE hRecvFile = NULL;
+    char szFileName1[MAX_PATH];
+    char szFileName2[MAX_PATH];
 
-	pRecvFaxInfo = (FAX_RECVLIST*)lpParam;
- 
-	memset(&destAddr, 0, sizeof(destAddr));
-	destAddr.sin_family = AF_INET;
-	if ((destAddr.sin_addr.s_addr = inet_addr(pRecvFaxInfo->strIP)) == INADDR_NONE)
-	{
-		host = gethostbyname(pRecvFaxInfo->strIP);
-		if(host != NULL)
-		{
-			memcpy(&destAddr.sin_addr, host->h_addr_list[0],
-			    host->h_length);
-		}
-		//need check function success?
-	}
-	destAddr.sin_port = htons((uint16)pRecvFaxInfo->nPort);
+    memset(&destAddr, 0, sizeof(destAddr));
+    destAddr.sin_family = AF_INET;
+    if ((destAddr.sin_addr.s_addr = inet_addr(pRecvFaxInfo->strIP)) == INADDR_NONE)
+    {
+        host = gethostbyname(pRecvFaxInfo->strIP);
+        if (host != NULL)
+        {
+            memcpy(&destAddr.sin_addr, host->h_addr_list[0], host->h_length);
+        }
+    }
+    destAddr.sin_port = htons((uint16)pRecvFaxInfo->nPort);
 
     sRecvSock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sRecvSock >= 0)
-	{
-		if (::connect(sRecvSock, (struct sockaddr *)&destAddr, 
-			sizeof(destAddr)) < 0)
-		{
-			closesocket(sRecvSock);
-			return;
-		}
-	}
-	g_log.Print(5,"connect to File server %s\r\n", pRecvFaxInfo->strIP);
+    if (sRecvSock < 0)
+    {
+        g_log.Print(3, "ReceiveFax: socket creation failed\n");
+        delete pRecvFaxInfo;
+        return;
+    }
 
-	{
-		TCPOutPacket p;
-		p << (uint8)GW_FAX_REQUESTRECV;
-		p << pRecvFaxInfo->strTID;
-		SendRSAPacket(sRecvSock,&p);
-		//GetPacket(sRecvSock,byBuff,&header,ntype, nPointer,m_byLastChar, pRecvFaxInfo);
-		g_log.Print(5,"send GW_FAX_REQUESTRECV\r\n");
-	}
+    g_log.Print(3, "ReceiveFax: connecting to File server %s:%d\n", pRecvFaxInfo->strIP, pRecvFaxInfo->nPort);
 
-	ntype = 0;
-	while(1)
-	{
-		byResult = 1;
-		if(GetPacket(sRecvSock,&header,ntype, byPacket, nPointer,m_byLastChar, pRecvFaxInfo)==-1)
-			break;
-		
-		/*TCPOutPacket p;
-		p << (uint8)GW_FAX_REQUESTRECV;
-		p << pRecvFaxInfo->strTID;
-		SendPacket(sRecvSock,&p);*/
+    if (::connect(sRecvSock, (struct sockaddr*)&destAddr, sizeof(destAddr)) < 0)
+    {
+        g_log.Print(3, "ReceiveFax: connect failed, errno=%d\n", errno);
+        closesocket(sRecvSock);
+        delete pRecvFaxInfo;
+        return;
+    }
 
-	}
+    g_log.Print(3, "ReceiveFax: connected successfully, TID=%s\n", pRecvFaxInfo->strTID);
 
-	closesocket(sRecvSock);
+    // 发送 GW_FAX_REQUESTRECV 命令
+    {
+        TCPOutPacket p;
+        p << (uint8)GW_FAX_REQUESTRECV;
+        p << pRecvFaxInfo->strTID;
+        SendRSAPacket(sRecvSock, &p);
+        g_log.Print(3, "ReceiveFax: sent GW_FAX_REQUESTRECV, TID=%s\n", pRecvFaxInfo->strTID);
+    }
 
+    // 创建临时文件 (.ted)
+    lstrcpyn(szFileName1, g_sysParam.strPath, MAX_PATH);
+    lstrcat(szFileName1, pRecvFaxInfo->strTID);
+    lstrcat(szFileName1, ".ted");
+    
+    hRecvFile = CreateFile(szFileName1, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
+    if (hRecvFile == INVALID_HANDLE_VALUE)
+    {
+        g_log.Print(3, "ReceiveFax: failed to create file %s, errno=%d\n", szFileName1, errno);
+        closesocket(sRecvSock);
+        delete pRecvFaxInfo;
+        return;
+    }
+
+    ntype = 0;
+    nPointer = 0;
+    m_byLastChar = 0;
+    
+    g_log.Print(3, "ReceiveFax: entering receive loop, waiting for data...\n");
+    
+    int loopCount = 0;
+   while (1)
+    {
+        int ret = GetPacket(sRecvSock, &header, ntype, byPacket, nPointer, m_byLastChar, pRecvFaxInfo);
+        
+        if (ret == -1)
+        {
+            g_log.Print(3, "ReceiveFax: GetPacket failed\n");
+            break;
+        }
+        else if (ret == 0)
+        {
+            // TCP_FAX_STOPSEND，接收完成
+            g_log.Print(3, "ReceiveFax: received stop, completing\n");
+            break;
+        }
+        // ret == 2 表示 TCP_FAX_SEND，继续接收
+    }
+
+
+if (hRecvFile != INVALID_HANDLE_VALUE && hRecvFile != NULL)
+    {
+        CloseHandle(hRecvFile);
+    }
+    closesocket(sRecvSock);
 }
-

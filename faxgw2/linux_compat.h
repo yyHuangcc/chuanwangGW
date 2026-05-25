@@ -119,7 +119,7 @@ typedef int SOCKET;
 
 #define ERROR_NO_MORE_FILES 18
 #define NO_ERROR            0
-
+#define ERROR_INVALID_HANDLE 6
 // ============================================================
 // Console constants
 // ============================================================

@@ -36,8 +36,8 @@ int main(int argc, char* argv[])
 	g_log.SetLevel(5);
 	g_log.SetMode(Log::ToConsole | Log::ToDebug);
 	g_log.SetFile((char*)"faxgw.log");
-	g_log.Print(3, "sizeof(PAG_HEADER)=%d (should be 12)\n", (int)sizeof(PAG_HEADER));
-    g_log.Print(3, "sizeof(GW_HEADER)=%d (should be 7)\n", (int)sizeof(GW_HEADER));
+	//g_log.Print(3, "sizeof(PAG_HEADER)=%d (should be 12)\n", (int)sizeof(PAG_HEADER));
+    //g_log.Print(3, "sizeof(GW_HEADER)=%d (should be 7)\n", (int)sizeof(GW_HEADER));
 	// On Linux, no WSAStartup needed - sockets work natively
 	
 	InitializeCriticalSection(&g_csRecvList);
@@ -73,79 +73,152 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+// bool CheckPacket(PBYTE pbyPacket)
+// {
+// 	int					nLoopTime;
+// 	int					datalen;
+// 	PAG_HEADER*			ppagHeader;
+// 	unsigned char *		pchar1;
+// 	unsigned char*		pchar2;
+// 	BYTE				data[2048];
+// 	CRC32				crcCheck;
+
+
+// 		ppagHeader = (PAG_HEADER*)pbyPacket;
+// 		if(ppagHeader->byHeader1 == 0x3E &&
+// 		ppagHeader->byHeader2 == 0xE3 &&
+// 		ppagHeader->nVer == 100)
+// 		{
+// 			nLoopTime = ppagHeader->nLength/8;
+// 			datalen = *((int*)(pbyPacket + sizeof(PAG_HEADER)));
+// 			CopyMemory(data,pbyPacket,sizeof(PAG_HEADER));
+
+// 			//{���ܽ�����Ϣ
+// 			deskey(fixedkey, DE1);
+// 			pchar1 = (unsigned char*)pbyPacket + sizeof(PAG_HEADER) + sizeof(int);
+// 			pchar2 = (unsigned char*)data;
+// 			for(int i=0;i<nLoopTime;i++)
+// 			{
+// 				des(pchar1, pchar2);
+// 				pchar1+=8;
+// 				pchar2+=8;
+// 			}
+// 		}
+// 		else 
+// 		{
+// 			datalen = 0;
+// 			return false;
+// 		}
+		
+// 	if (datalen < 2) {
+// 		g_log.Print(5,"packet size is too small.\r\n");
+// 		return false;
+// 	}
+
+// 	if(IsBadReadPtr(data,datalen))
+// 	{
+// 		g_log.Print(5,"bad memory address.\r\n");
+// 		return false;
+// 	}
+// 	//CRC32���
+// 	// int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
+// 	// int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
+// 	// if(nCRC1 != nCRC2)
+// 	// {
+// 	// 	g_log.Print(5,"packet CRC-32 check error.\r\n");
+//     //     return false;
+// 	// }
+// 		//CRC32���
+
+
+// 	// int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
+// 	// int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
+	
+// 	// // 添加日志
+// 	// //g_log.Print(3, "CheckPacket: nCRC1=0x%08X, nCRC2=0x%08X, datalen=%d\n", nCRC1, nCRC2, datalen);
+	
+// 	// if(nCRC1 != nCRC2)
+// 	// {
+// 	// 	g_log.Print(3, "CheckPacket: CRC MISMATCH!\n");
+// 	// 	g_log.Print(5,"packet CRC-32 check error.\r\n");
+//     //     return false;
+// 	// }
+
+// 	CopyMemory(pbyPacket + sizeof(PAG_HEADER),data,datalen-sizeof(int));
+// 	ppagHeader->nLength = datalen-sizeof(int);
+		
+// 	return true;
+// }
 bool CheckPacket(PBYTE pbyPacket)
 {
-	int					nLoopTime;
-	int					datalen;
-	PAG_HEADER*			ppagHeader;
-	unsigned char *		pchar1;
-	unsigned char*		pchar2;
-	BYTE				data[2048];
-	CRC32				crcCheck;
+    int nLoopTime;
+    int datalen;
+    PAG_HEADER* ppagHeader;
+    unsigned char* pchar1;
+    unsigned char* pchar2;
+    BYTE data[2048];
+    CRC32 crcCheck;
 
+    ppagHeader = (PAG_HEADER*)pbyPacket;
+    
+    // g_log.Print(3, "CheckPacket: header1=0x%02X, header2=0x%02X, nVer=%d, nLength=%d\n",
+    //             ppagHeader->byHeader1, ppagHeader->byHeader2, ppagHeader->nVer, ppagHeader->nLength);
+    
+    if (ppagHeader->byHeader1 == 0x3E &&
+        ppagHeader->byHeader2 == 0xE3 &&
+        ppagHeader->nVer == 100)
+    {
+        nLoopTime = ppagHeader->nLength / 8;
+        datalen = *((int*)(pbyPacket + sizeof(PAG_HEADER)));
+        
+        //g_log.Print(3, "CheckPacket: nLoopTime=%d, datalen=%d\n", nLoopTime, datalen);
+        
+        CopyMemory(data, pbyPacket, sizeof(PAG_HEADER));
 
-		ppagHeader = (PAG_HEADER*)pbyPacket;
-		if(ppagHeader->byHeader1 == 0x3E &&
-		ppagHeader->byHeader2 == 0xE3 &&
-		ppagHeader->nVer == 100)
-		{
-			nLoopTime = ppagHeader->nLength/8;
-			datalen = *((int*)(pbyPacket + sizeof(PAG_HEADER)));
-			CopyMemory(data,pbyPacket,sizeof(PAG_HEADER));
-
-			//{���ܽ�����Ϣ
-			deskey(fixedkey, DE1);
-			pchar1 = (unsigned char*)pbyPacket + sizeof(PAG_HEADER) + sizeof(int);
-			pchar2 = (unsigned char*)data;
-			for(int i=0;i<nLoopTime;i++)
-			{
-				des(pchar1, pchar2);
-				pchar1+=8;
-				pchar2+=8;
-			}
-		}
-		else 
-		{
-			datalen = 0;
-			return false;
-		}
-		
-	if (datalen < 2) {
-		g_log.Print(5,"packet size is too small.\r\n");
-		return false;
-	}
-
-	if(IsBadReadPtr(data,datalen))
-	{
-		g_log.Print(5,"bad memory address.\r\n");
-		return false;
-	}
-	//CRC32���
-	// int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
-	// int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
-	// if(nCRC1 != nCRC2)
-	// {
-	// 	g_log.Print(5,"packet CRC-32 check error.\r\n");
-    //     return false;
-	// }
-		//CRC32���
-	int nCRC1 = *((int *)&data[datalen-sizeof(int)]);
-	int nCRC2 = crcCheck.Get_CRC((char *)data,datalen-sizeof(int));
-	
-	// 添加日志
-	g_log.Print(3, "CheckPacket: nCRC1=0x%08X, nCRC2=0x%08X, datalen=%d\n", nCRC1, nCRC2, datalen);
-	
-	if(nCRC1 != nCRC2)
-	{
-		g_log.Print(3, "CheckPacket: CRC MISMATCH!\n");
-		g_log.Print(5,"packet CRC-32 check error.\r\n");
+        // 解密接收信息
+        deskey(fixedkey, DE1);
+        pchar1 = (unsigned char*)pbyPacket + sizeof(PAG_HEADER) + sizeof(int);
+        pchar2 = (unsigned char*)data;
+        for (int i = 0; i < nLoopTime; i++)
+        {
+            des(pchar1, pchar2);
+            pchar1 += 8;
+            pchar2 += 8;
+        }
+        
+        // g_log.Print(3, "CheckPacket: decrypted first 16 bytes: ");
+        // for (int i = 0; i < 16 && i < datalen; i++) {
+        //     g_log.Print(3, "%02X ", data[i]);
+        // }
+        // g_log.Print(3, "\n");
+    }
+    else
+    {
+        g_log.Print(3, "CheckPacket: invalid header\n");
         return false;
-	}
+    }
 
-	CopyMemory(pbyPacket + sizeof(PAG_HEADER),data,datalen-sizeof(int));
-	ppagHeader->nLength = datalen-sizeof(int);
-		
-	return true;
+    if (datalen < 2) {
+        g_log.Print(3, "CheckPacket: packet size too small (%d)\n", datalen);
+        return false;
+    }
+
+    // CRC32检查
+    int nCRC1 = *((int*)&data[datalen - sizeof(int)]);
+    int nCRC2 = crcCheck.Get_CRC((char*)data, datalen - sizeof(int));
+    
+    //g_log.Print(3, "CheckPacket: nCRC1=0x%08X, nCRC2=0x%08X\n", nCRC1, nCRC2);
+    
+    if (nCRC1 != nCRC2)
+    {
+        g_log.Print(3, "CheckPacket: CRC MISMATCH!\n");
+        return false;
+    }
+
+    CopyMemory(pbyPacket + sizeof(PAG_HEADER), data, datalen - sizeof(int));
+    ppagHeader->nLength = datalen - sizeof(int);
+
+    return true;
 }
 
 ///thread for receive the msg

@@ -399,7 +399,10 @@ HANDLE FindFirstFile(const char* lpFileName, WIN32_FIND_DATA* lpFindFileData)
 
 BOOL FindNextFile(HANDLE hFindFile, WIN32_FIND_DATA* lpFindFileData)
 {
-    if (hFindFile == INVALID_HANDLE_VALUE || hFindFile == NULL) return FALSE;
+    if (hFindFile == INVALID_HANDLE_VALUE || hFindFile == NULL) {
+        errno = ERROR_INVALID_HANDLE;
+        return FALSE;
+    }
     _LinuxFindFile* lff = (_LinuxFindFile*)hFindFile;
 
     while ((lff->entry = readdir(lff->dir)) != NULL) {
@@ -410,9 +413,11 @@ BOOL FindNextFile(HANDLE hFindFile, WIN32_FIND_DATA* lpFindFileData)
             return TRUE;
         }
     }
+    
+    // 没有更多文件时，设置正确的错误码
+    errno = ERROR_NO_MORE_FILES;
     return FALSE;
 }
-
 BOOL FindClose(HANDLE hFindFile)
 {
     if (hFindFile == INVALID_HANDLE_VALUE || hFindFile == NULL) return FALSE;

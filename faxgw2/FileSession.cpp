@@ -86,122 +86,292 @@ FileSession::~FileSession()
 	if(m_hExitEvent)CloseHandle(m_hExitEvent);
 }
 
+// int CleanFile()
+// {
+// 	WIN32_FIND_DATA FileData; 
+// 	HANDLE hSearch; 
+// 	int				nRet;
+ 
+// 	BOOL fFinished = FALSE; 
+// 	nRet = 0;
+
+// 	hSearch = FindFirstFile((char*)"*.ted", &FileData); 
+// 	if (hSearch != INVALID_HANDLE_VALUE) 
+// 	{ 
+// 		while (!fFinished) 
+// 		{
+// 			DeleteFile(FileData.cFileName);
+
+// 			if (!FindNextFile(hSearch, &FileData)) 
+// 			{ 
+// 				if (GetLastError() == ERROR_NO_MORE_FILES) 
+// 				{ 
+// 					fFinished = TRUE; 
+// 				} 
+// 				else 
+// 				{ 
+// 					OutputDebugString("Couldn't find next file.\n");
+// 				} 
+// 			}
+// 		} 
+// 		FindClose(hSearch);
+// 	} 
+ 
+// 	fFinished = FALSE; 
+// 	hSearch = FindFirstFile((char*)"*.ini", &FileData); 
+// 	if (hSearch != INVALID_HANDLE_VALUE) 
+// 	{ 
+// 		while (!fFinished) 
+// 		{
+// 			DeleteFile(FileData.cFileName);
+
+// 			if (!FindNextFile(hSearch, &FileData)) 
+// 			{ 
+// 				if (GetLastError() == ERROR_NO_MORE_FILES) 
+// 				{ 
+// 					fFinished = TRUE; 
+// 				} 
+// 				else 
+// 				{ 
+// 					OutputDebugString("Couldn't find next file.\n");
+// 				} 
+// 			}
+// 		} 
+// 		FindClose(hSearch);
+// 	}
+
+// 	return nRet;
+// }
+
+// int SearchFile()
+// {
+// 	WIN32_FIND_DATA FileData; 
+// 	HANDLE hSearch; 
+// 	char szHome[MAX_PATH]; 
+// 	FAX_RECVLIST*	pFaxRecvlist;
+// 	int				nRet;
+ 
+// 	BOOL fFinished = FALSE; 
+// 	nRet = 0;
+
+// 	CreateDirectory(g_sysParam.strPath,NULL);
+// 	SetCurrentDirectory(g_sysParam.strPath);
+
+// 	hSearch = FindFirstFile((char*)"*.tif", &FileData);
+// 	if (hSearch == INVALID_HANDLE_VALUE) 
+// 	{ 
+// 		OutputDebugString("No .tif files found.\n"); 
+// 		CleanFile();
+// 		return 0;
+// 	} 
+ 
+// 	while (!fFinished) 
+// 	{
+// 		//FileData.cFileName = 
+// 		pFaxRecvlist = new FAX_RECVLIST;
+// 		ZeroMemory(pFaxRecvlist,sizeof(FAX_RECVLIST));
+// 		Crwini		rwinTemp;
+// 		lstrcpyn(pFaxRecvlist->strTID,FileData.cFileName,40);
+// 		(strrchr(pFaxRecvlist->strTID,'.'))[0] = 0; 
+
+// 		lstrcpyn(szHome,g_sysParam.strPath,MAX_PATH);
+// 		lstrcpyn(&szHome[lstrlen(szHome)],FileData.cFileName,MAX_PATH);
+// 		lstrcpy(&szHome[lstrlen(szHome)-3],"ini");
+		
+// 		rwinTemp.GetSetting(szHome,pFaxRecvlist);
+// 		lstrcpyn(pFaxRecvlist->strFileName,g_sysParam.strPath,MAX_PATH);
+// 		lstrcpyn(&pFaxRecvlist->strFileName[lstrlen(pFaxRecvlist->strFileName)],FileData.cFileName,MAX_PATH);
+// 		nRet++;
+// 		EnterCriticalSection(&g_csRecvList);
+// 		g_lsRecvFax.push_back(pFaxRecvlist);
+// 		LeaveCriticalSection(&g_csRecvList);
+
+// 		if (!FindNextFile(hSearch, &FileData)) 
+// 		{
+// 			if (GetLastError() == ERROR_NO_MORE_FILES) 
+// 			{ 
+// 				fFinished = TRUE; 
+// 			} 
+// 			else 
+// 			{ 
+// 				OutputDebugString("Couldn't find next file.\n");
+// 			} 
+// 		}
+// 	} 
+ 
+// 	FindClose(hSearch);
+
+// 	return nRet;
+// }
 int CleanFile()
 {
-	WIN32_FIND_DATA FileData; 
-	HANDLE hSearch; 
-	int				nRet;
+    WIN32_FIND_DATA FileData; 
+    HANDLE hSearch; 
+    int nRet;
+    BOOL fFinished = FALSE; 
+    nRet = 0;
+
+    g_log.Print(3, "CleanFile: cleaning .ted files\n");
+    
+    hSearch = FindFirstFile((char*)"*.ted", &FileData); 
+    if (hSearch != INVALID_HANDLE_VALUE) 
+    { 
+        while (!fFinished) 
+        {
+            g_log.Print(3, "CleanFile: deleting .ted file: %s\n", FileData.cFileName);
+            DeleteFile(FileData.cFileName);
+
+            if (!FindNextFile(hSearch, &FileData)) 
+            { 
+                if (GetLastError() == ERROR_NO_MORE_FILES) 
+                { 
+                    fFinished = TRUE; 
+                } 
+                else 
+                { 
+                    g_log.Print(3, "CleanFile: FindNextFile failed for .ted\n");
+                } 
+            }
+        } 
+        FindClose(hSearch);
+    } 
+    else
+    {
+        g_log.Print(3, "CleanFile: no .ted files found\n");
+    }
  
-	BOOL fFinished = FALSE; 
-	nRet = 0;
+    fFinished = FALSE; 
+    g_log.Print(3, "CleanFile: cleaning .ini files\n");
+    
+    hSearch = FindFirstFile((char*)"*.ini", &FileData); 
+    if (hSearch != INVALID_HANDLE_VALUE) 
+    { 
+        while (!fFinished) 
+        {
+            g_log.Print(3, "CleanFile: deleting .ini file: %s\n", FileData.cFileName);
+            DeleteFile(FileData.cFileName);
 
-	hSearch = FindFirstFile((char*)"*.ted", &FileData); 
-	if (hSearch != INVALID_HANDLE_VALUE) 
-	{ 
-		while (!fFinished) 
-		{
-			DeleteFile(FileData.cFileName);
+            if (!FindNextFile(hSearch, &FileData)) 
+            { 
+                if (GetLastError() == ERROR_NO_MORE_FILES) 
+                { 
+                    fFinished = TRUE; 
+                } 
+                else 
+                { 
+                    g_log.Print(3, "CleanFile: FindNextFile failed for .ini\n");
+                } 
+            }
+        } 
+        FindClose(hSearch);
+    }
+    else
+    {
+        g_log.Print(3, "CleanFile: no .ini files found\n");
+    }
 
-			if (!FindNextFile(hSearch, &FileData)) 
-			{ 
-				if (GetLastError() == ERROR_NO_MORE_FILES) 
-				{ 
-					fFinished = TRUE; 
-				} 
-				else 
-				{ 
-					OutputDebugString("Couldn't find next file.\n");
-				} 
-			}
-		} 
-		FindClose(hSearch);
-	} 
- 
-	fFinished = FALSE; 
-	hSearch = FindFirstFile((char*)"*.ini", &FileData); 
-	if (hSearch != INVALID_HANDLE_VALUE) 
-	{ 
-		while (!fFinished) 
-		{
-			DeleteFile(FileData.cFileName);
-
-			if (!FindNextFile(hSearch, &FileData)) 
-			{ 
-				if (GetLastError() == ERROR_NO_MORE_FILES) 
-				{ 
-					fFinished = TRUE; 
-				} 
-				else 
-				{ 
-					OutputDebugString("Couldn't find next file.\n");
-				} 
-			}
-		} 
-		FindClose(hSearch);
-	}
-
-	return nRet;
+    return nRet;
 }
 
 int SearchFile()
 {
-	WIN32_FIND_DATA FileData; 
-	HANDLE hSearch; 
-	char szHome[MAX_PATH]; 
-	FAX_RECVLIST*	pFaxRecvlist;
-	int				nRet;
+    WIN32_FIND_DATA FileData; 
+    HANDLE hSearch; 
+    char szHome[MAX_PATH]; 
+    FAX_RECVLIST* pFaxRecvlist;
+    int nRet;
+    BOOL fFinished = FALSE; 
+    nRet = 0;
+
+    g_log.Print(3, "SearchFile: start, path=%s\n", g_sysParam.strPath);
+
+    CreateDirectory(g_sysParam.strPath, NULL);
+    SetCurrentDirectory(g_sysParam.strPath);
+
+    hSearch = FindFirstFile((char*)"*.tif", &FileData);
+    if (hSearch == INVALID_HANDLE_VALUE) 
+    { 
+        g_log.Print(3, "SearchFile: no .tif files found\n");
+        CleanFile();
+        return 0;
+    } 
  
-	BOOL fFinished = FALSE; 
-	nRet = 0;
+    g_log.Print(3, "SearchFile: found .tif files, starting loop\n");
+    
+    while (!fFinished) 
+    {
+        g_log.Print(3, "SearchFile: processing file: %s\n", FileData.cFileName);
+        
+        pFaxRecvlist = new FAX_RECVLIST;
+        if (!pFaxRecvlist)
+        {
+            g_log.Print(3, "SearchFile: new FAX_RECVLIST failed\n");
+            break;
+        }
+        ZeroMemory(pFaxRecvlist, sizeof(FAX_RECVLIST));
+        
+        g_log.Print(3, "SearchFile: allocated FAX_RECVLIST at %p\n", pFaxRecvlist);
+        
+        Crwini rwinTemp;
+        
+        // 提取 TID（去掉 .tif 扩展名）
+        lstrcpyn(pFaxRecvlist->strTID, FileData.cFileName, 40);
+        g_log.Print(3, "SearchFile: TID=%s\n", pFaxRecvlist->strTID);
+        
+        char* dot = strrchr(pFaxRecvlist->strTID, '.');
+        if (dot) *dot = 0;
+        g_log.Print(3, "SearchFile: TID after removing extension=%s\n", pFaxRecvlist->strTID);
 
-	CreateDirectory(g_sysParam.strPath,NULL);
-	SetCurrentDirectory(g_sysParam.strPath);
+        // 构建 ini 文件路径
+        lstrcpyn(szHome, g_sysParam.strPath, MAX_PATH);
+        lstrcpyn(&szHome[lstrlen(szHome)], FileData.cFileName, MAX_PATH - lstrlen(szHome));
+        int len = lstrlen(szHome);
+        if (len >= 3)
+        {
+            lstrcpy(&szHome[len-3], "ini");
+        }
+        g_log.Print(3, "SearchFile: ini path=%s\n", szHome);
+        
+        // 读取 ini 文件
+        g_log.Print(3, "SearchFile: calling GetSetting for %s\n", szHome);
+        rwinTemp.GetSetting(szHome, pFaxRecvlist);
+        g_log.Print(3, "SearchFile: GetSetting completed\n");
+        
+        // 构建完整文件路径
+        lstrcpyn(pFaxRecvlist->strFileName, g_sysParam.strPath, MAX_PATH);
+        int currentLen = lstrlen(pFaxRecvlist->strFileName);
+        int remaining = MAX_PATH - currentLen - 1;
+        if (remaining > 0)
+        {
+            lstrcpyn(&pFaxRecvlist->strFileName[currentLen], FileData.cFileName, remaining);
+        }
+        g_log.Print(3, "SearchFile: strFileName=%s\n", pFaxRecvlist->strFileName);
+        
+        nRet++;
+        
+        EnterCriticalSection(&g_csRecvList);
+        g_lsRecvFax.push_back(pFaxRecvlist);
+        LeaveCriticalSection(&g_csRecvList);
+        g_log.Print(3, "SearchFile: added to queue, total=%d\n", nRet);
 
-	hSearch = FindFirstFile((char*)"*.tif", &FileData);
-	if (hSearch == INVALID_HANDLE_VALUE) 
-	{ 
-		OutputDebugString("No .tif files found.\n"); 
-		CleanFile();
-		return 0;
-	} 
+        if (!FindNextFile(hSearch, &FileData)) 
+        {
+            if (GetLastError() == ERROR_NO_MORE_FILES) 
+            { 
+                fFinished = TRUE; 
+                g_log.Print(3, "SearchFile: no more files\n");
+            } 
+            else 
+            { 
+                g_log.Print(3, "SearchFile: FindNextFile error\n");
+            } 
+        }
+    } 
  
-	while (!fFinished) 
-	{
-		//FileData.cFileName = 
-		pFaxRecvlist = new FAX_RECVLIST;
-		ZeroMemory(pFaxRecvlist,sizeof(FAX_RECVLIST));
-		Crwini		rwinTemp;
-		lstrcpyn(pFaxRecvlist->strTID,FileData.cFileName,40);
-		(strrchr(pFaxRecvlist->strTID,'.'))[0] = 0; 
+    FindClose(hSearch);
+    g_log.Print(3, "SearchFile: completed, found %d files\n", nRet);
 
-		lstrcpyn(szHome,g_sysParam.strPath,MAX_PATH);
-		lstrcpyn(&szHome[lstrlen(szHome)],FileData.cFileName,MAX_PATH);
-		lstrcpy(&szHome[lstrlen(szHome)-3],"ini");
-		
-		rwinTemp.GetSetting(szHome,pFaxRecvlist);
-		lstrcpyn(pFaxRecvlist->strFileName,g_sysParam.strPath,MAX_PATH);
-		lstrcpyn(&pFaxRecvlist->strFileName[lstrlen(pFaxRecvlist->strFileName)],FileData.cFileName,MAX_PATH);
-		nRet++;
-		EnterCriticalSection(&g_csRecvList);
-		g_lsRecvFax.push_back(pFaxRecvlist);
-		LeaveCriticalSection(&g_csRecvList);
-
-		if (!FindNextFile(hSearch, &FileData)) 
-		{
-			if (GetLastError() == ERROR_NO_MORE_FILES) 
-			{ 
-				fFinished = TRUE; 
-			} 
-			else 
-			{ 
-				OutputDebugString("Couldn't find next file.\n");
-			} 
-		}
-	} 
- 
-	FindClose(hSearch);
-
-	return nRet;
+    return nRet;
 }
 
 //����������������������������������������������������������������������
@@ -698,6 +868,55 @@ int GetRSAPacket(SOCKET tcpSock,SOCKET ClientSock,PAG_HEADER* pheader,int& ntype
 	return 0;
 }
 
+// int ConnectFileSrv(SOCKET sClientSock)
+// {
+//     struct hostent    *host = NULL;
+// 	sockaddr_in m_destAddr;
+// 	BYTE			m_byLastChar;
+// 	int				ntype;
+// 	int				nPointer;
+// 	PAG_HEADER		header;
+// 	int				nSize;
+// 	BYTE			byResult;
+
+// 	memset(&m_destAddr, 0, sizeof(m_destAddr));
+// 	m_destAddr.sin_family = AF_INET;
+// 	if ((m_destAddr.sin_addr.s_addr = inet_addr(g_strIP)) == INADDR_NONE)
+// 	{
+// 		host = gethostbyname(g_strIP);
+// 		if(host != NULL)
+// 		{
+// 			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0],
+// 			    host->h_length);
+// 		}
+// 		//need check function success?
+// 	}
+// 	m_destAddr.sin_port = htons((uint16)g_nPort);
+
+//     g_sSend = socket(AF_INET, SOCK_STREAM, 0);
+//     if (g_sSend >= 0)
+// 	{
+// 		if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, 
+// 			sizeof(m_destAddr)) < 0)
+// 		{
+// 			return -1;
+// 		}
+// 	}
+
+// 	g_log.Print(5,"connect to File server %s.\r\n",g_strIP);
+// 	{
+// 		TCPOutPacket p;
+// 		p << (uint8)TCP_FAX_REQUESTSEND;
+// 		p << g_strUUID;
+// 		if(SendRSAPacket(g_sSend,&p)==-1)
+// 			return -1;
+
+// 		g_log.Print(5,"send TCP_FAX_REQUESTSEND.\r\n");
+// 		//GetRSAPacket(g_sSend,sClientSock,&header,ntype, nPointer,m_byLastChar);
+// 	}
+// 	return 0;
+// }
+
 int ConnectFileSrv(SOCKET sClientSock)
 {
     struct hostent    *host = NULL;
@@ -709,44 +928,122 @@ int ConnectFileSrv(SOCKET sClientSock)
 	int				nSize;
 	BYTE			byResult;
 
+	g_log.Print(3, "ConnectFileSrv: START, g_strIP=%s, g_nPort=%d, g_strUUID=%s\n", 
+	            g_strIP, g_nPort, g_strUUID);
+
 	memset(&m_destAddr, 0, sizeof(m_destAddr));
 	m_destAddr.sin_family = AF_INET;
+	
+	g_log.Print(3, "ConnectFileSrv: resolving IP address for %s\n", g_strIP);
+	
 	if ((m_destAddr.sin_addr.s_addr = inet_addr(g_strIP)) == INADDR_NONE)
 	{
+		g_log.Print(3, "ConnectFileSrv: %s is not an IP address, trying gethostbyname\n", g_strIP);
 		host = gethostbyname(g_strIP);
 		if(host != NULL)
 		{
-			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0],
-			    host->h_length);
+			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0], host->h_length);
+			char *resolvedIp = inet_ntoa(m_destAddr.sin_addr);
+			g_log.Print(3, "ConnectFileSrv: resolved %s to IP: %s\n", g_strIP, resolvedIp);
 		}
-		//need check function success?
+		else
+		{
+			g_log.Print(3, "ConnectFileSrv: gethostbyname failed for %s, errno=%d\n", g_strIP, errno);
+		}
 	}
+	else
+	{
+		g_log.Print(3, "ConnectFileSrv: %s is already an IP address\n", g_strIP);
+	}
+	
 	m_destAddr.sin_port = htons((uint16)g_nPort);
+	g_log.Print(3, "ConnectFileSrv: target address %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
 
     g_sSend = socket(AF_INET, SOCK_STREAM, 0);
-    if (g_sSend >= 0)
+    if (g_sSend < 0)
 	{
-		if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, 
-			sizeof(m_destAddr)) < 0)
-		{
-			return -1;
-		}
+		g_log.Print(3, "ConnectFileSrv: socket creation failed, errno=%d\n", errno);
+		return -1;
+	}
+	g_log.Print(3, "ConnectFileSrv: socket created successfully, fd=%d\n", g_sSend);
+
+	g_log.Print(3, "ConnectFileSrv: attempting to connect to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+	
+	if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
+	{
+		g_log.Print(3, "ConnectFileSrv: connection failed, errno=%d\n", errno);
+		closesocket(g_sSend);
+		g_sSend = 0;
+		return -1;
 	}
 
+	g_log.Print(3, "ConnectFileSrv: connected successfully to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
 	g_log.Print(5,"connect to File server %s.\r\n",g_strIP);
+	
 	{
+		g_log.Print(3, "ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=%s\n", g_strUUID);
+		
 		TCPOutPacket p;
 		p << (uint8)TCP_FAX_REQUESTSEND;
 		p << g_strUUID;
-		if(SendRSAPacket(g_sSend,&p)==-1)
+		
+		g_log.Print(3, "ConnectFileSrv: packet built, length=%d, calling SendRSAPacket\n", p.getLength());
+		
+		int sendResult = SendRSAPacket(g_sSend, &p);
+		if(sendResult == -1)
+		{
+			g_log.Print(3, "ConnectFileSrv: SendRSAPacket failed, return -1\n");
 			return -1;
+		}
 
+		g_log.Print(3, "ConnectFileSrv: SendRSAPacket succeeded\n");
 		g_log.Print(5,"send TCP_FAX_REQUESTSEND.\r\n");
-		//GetRSAPacket(g_sSend,sClientSock,&header,ntype, nPointer,m_byLastChar);
+		
+		// 添加：尝试读取响应（非阻塞，仅用于调试）
+		fd_set readSet;
+		struct timeval tv;
+		FD_ZERO(&readSet);
+		FD_SET(g_sSend, &readSet);
+		tv.tv_sec = 3;
+		tv.tv_usec = 0;
+		
+		int selectResult = select(g_sSend + 1, &readSet, NULL, NULL, &tv);
+		if (selectResult > 0 && FD_ISSET(g_sSend, &readSet))
+		{
+			char recvBuf[1024];
+			int recvLen = recv(g_sSend, recvBuf, sizeof(recvBuf), MSG_DONTWAIT);
+			if (recvLen > 0)
+			{
+				g_log.Print(3, "ConnectFileSrv: received %d bytes of response immediately\n", recvLen);
+				// 打印前16字节的十六进制
+				char hexBuf[64] = {0};
+				for(int i = 0; i < (recvLen > 16 ? 16 : recvLen); i++) {
+					sprintf(hexBuf + i*3, "%02X ", (unsigned char)recvBuf[i]);
+				}
+				g_log.Print(3, "ConnectFileSrv: response hex: %s\n", hexBuf);
+			}
+			else if (recvLen == 0)
+			{
+				g_log.Print(3, "ConnectFileSrv: connection closed by peer\n");
+			}
+			else
+			{
+				g_log.Print(3, "ConnectFileSrv: recv error, errno=%d\n", errno);
+			}
+		}
+		else if (selectResult == 0)
+		{
+			g_log.Print(3, "ConnectFileSrv: no immediate response (timeout after 3 seconds)\n");
+		}
+		else
+		{
+			g_log.Print(3, "ConnectFileSrv: select error, errno=%d\n", errno);
+		}
 	}
+	
+	g_log.Print(3, "ConnectFileSrv: END, returning 0\n");
 	return 0;
 }
-
 int SendFaxData(SOCKET tcpSock,const char* buff,int nSize)
 {
 	BYTE			byLastChar;
@@ -988,9 +1285,50 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
             delete[] strExtCode;
             delete[] strCSID;
 
-			faxSess.nType = 0;
             break;
         }
+		case GW_FAX_SEND:
+        {
+			g_log.Print(3, "GW_FAX_SEND received, nType=%d, bodyLen=%d\n", faxSess.nType, bodyLen);
+			
+			if(faxSess.nType != 1)
+			{
+				g_log.Print(3, "GW_FAX_SEND: invalid session state (expected 1, got %d)\n", faxSess.nType);
+				return -1;
+			}
+			
+			if(bodyLen <= 0)
+			{
+				g_log.Print(3, "GW_FAX_SEND: no data\n");
+				return -1;
+			}
+			
+			// 数据从 body[0] 开始（没有额外的命令码，因为 cmd 已经单独传过来了）
+			// 所以整个 body 就是文件数据
+			g_log.Print(3, "GW_FAX_SEND: sending %d bytes to File Server\n", bodyLen);
+			
+			if(SendFaxData(tcpSock, (const char*)body, bodyLen) == -1)
+				return -1;
+			
+			break;
+		}
+
+		case GW_FAX_STOPSEND:
+		{
+			g_log.Print(3, "GW_FAX_STOPSEND received, nType=%d\n", faxSess.nType);
+			
+			if(faxSess.nType != 1)
+			{
+				g_log.Print(3, "GW_FAX_STOPSEND: invalid session state (expected 1, got %d)\n", faxSess.nType);
+				return -1;
+			}
+			
+			if(SendFaxEnd(tcpSock) == -1)
+				return -1;
+			faxSess.nType = 0;
+			g_log.Print(3, "GW_FAX_STOPSEND: completed\n");
+			return 0;
+		}
         // ============================================================
         // 接收传真处理 - 文件服务器发送数据给网关
         // ============================================================
@@ -1120,7 +1458,6 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
             
             // 关闭 socket 连接
             closesocket(tcpSock);
-            faxSess.nType = 0;
             break;
         }
    case GW_FAX_REQUESTRECV:
@@ -1170,10 +1507,19 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
                 out << pFax->strTID;
                 out << pFax->strCSID;
                 
-                if(SendPacket(tcpSock, out, faxSess) == -1)
+                // if(SendPacket(tcpSock, out, faxSess) == -1)
+                // {
+                //     LeaveCriticalSection(&g_csRecvList);
+                //     return -1;
+                // }
+				if(SendPacket(tcpSock, out, faxSess) != -1)
                 {
-                    LeaveCriticalSection(&g_csRecvList);
-                    return -1;
+                    // ✅ 发送成功后，从队列中删除
+                    g_lsRecvFax.erase(iter);
+                    g_nReceive--;
+                    g_log.Print(3, "GW_FAX_REQUESTRECV: sent and removed, TID=%s, remaining=%d\n", 
+                               pFax->strTID, g_nReceive);
+                    delete pFax;  // 释放内存
                 }
             }
             LeaveCriticalSection(&g_csRecvList);
@@ -1525,14 +1871,14 @@ void* FileSession::TCPSThreadProc(void* lpParam)
 			g_log.Print(3, "TCPSThreadProc: received %d bytes\n", nSize);
             // 打印前16字节
             char hexbuf[64] = {0};
-            for(int i = 0; i < (nSize > 16 ? 16 : nSize); i++) {
-                sprintf(hexbuf + i*3, "%02X ", byBuff[i]);
-            }
-            g_log.Print(3, "TCPSThreadProc: data: %s\n", hexbuf);
+            // for(int i = 0; i < (nSize > 16 ? 16 : nSize); i++) {
+            //     sprintf(hexbuf + i*3, "%02X ", byBuff[i]);
+            // }
+            //g_log.Print(3, "TCPSThreadProc: data: %s\n", hexbuf);
             for(int i = 0; i < nSize; i++)
             {
-				  g_log.Print(3, "TCPSThreadProc: byte[%d]=0x%02X, lastChar=0x%02X, ntype=%d\n", 
-                i, byBuff[i], m_byLastChar, ntype);
+				//   g_log.Print(3, "TCPSThreadProc: byte[%d]=0x%02X, lastChar=0x%02X, ntype=%d\n", 
+                // i, byBuff[i], m_byLastChar, ntype);
     
                 if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype == 0)
                 {
@@ -1551,12 +1897,12 @@ void* FileSession::TCPSThreadProc(void* lpParam)
                     {
                         *((PBYTE)&header + nPointer) = (BYTE)byBuff[i];
                         nPointer++;
-						            g_log.Print(3, "TCPSThreadProc: header pos %d, value 0x%02X\n", nPointer-1, (BYTE)byBuff[i]);
+						            //g_log.Print(3, "TCPSThreadProc: header pos %d, value 0x%02X\n", nPointer-1, (BYTE)byBuff[i]);
                         if(nPointer >= sizeof(GW_HEADER))
                         {
 							    header.nLength = ntohl(header.nLength);
 
-							                g_log.Print(3, "TCPSThreadProc: header complete, nLength=%d\n", header.nLength);
+							               // g_log.Print(3, "TCPSThreadProc: header complete, nLength=%d\n", header.nLength);
 
                             ntype = 2;
                             nPointer = 0;
