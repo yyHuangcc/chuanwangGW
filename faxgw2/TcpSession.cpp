@@ -234,7 +234,7 @@ void TcpSession::connect(uint32 ip, uint16 port)
 int TcpSession::ReadData(char* lpBuff, int nSize)
 {
     int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
-    g_log.Print(3, "ReadData: recv returned %d, errno=%d\n", nRet, errno);
+    //g_log.Print(3, "ReadData: recv returned %d, errno=%d\n", nRet, errno);
     
     if(nRet <= 0)
     {
@@ -658,7 +658,7 @@ bool TcpSession::onReceive(TCPInPacket &in)
 {
 
 	uint8 cmd = in.header.cmd;
-	g_log.Print(3, "onReceive: received cmd=%d\n", cmd);
+	//g_log.Print(3, "onReceive: received cmd=%d\n", cmd);
 	string		strVersion;	
 
 	switch (cmd) {
@@ -858,7 +858,7 @@ int TcpSession::onKeepAlive()
 {
 	static int last_login_state = -1;
     if(last_login_state != m_bIsLogin) {
-        g_log.Print(3, "onKeepAlive: m_bIsLogin changed from %d to %d\n", last_login_state, m_bIsLogin);
+        //g_log.Print(3, "onKeepAlive: m_bIsLogin changed from %d to %d\n", last_login_state, m_bIsLogin);
         last_login_state = m_bIsLogin;
     }
 
@@ -867,7 +867,7 @@ int TcpSession::onKeepAlive()
 	if(m_bIsLogin && m_nWaitAlive <6)
 	{
 		m_nWaitAlive++;
-		        g_log.Print(3, "onKeepAlive: sending heartbeat, attempt %d/6\n", m_nWaitAlive);
+		       // g_log.Print(3, "onKeepAlive: sending heartbeat, attempt %d/6\n", m_nWaitAlive);
 
 		TCPOutPacket *out =createPacket(TCP_KEEPALIVE);
 		sendDirect(out);
@@ -879,7 +879,7 @@ int TcpSession::onKeepAlive()
 	{
 		if(m_nPort!=0)
 		{
-			            g_log.Print(3,"onKeepAlive: timeout, reconect the fax center.\n");
+			            //g_log.Print(3,"onKeepAlive: timeout, reconect the fax center.\n");
 
 			g_log.Print(3,"reconect the fax center.\r\n");
 			Close();

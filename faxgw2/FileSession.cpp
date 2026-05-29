@@ -638,6 +638,8 @@ int SendPacket(SOCKET tcpSock,TCPOutPacket &out,FAX_SESSION &faxSess)
 	if(send(tcpSock, (char *)sendbuf, nCryptSize , 0) < 0)
 	{
 		int nErr = errno;
+		        g_log.Print(3, "SendPacket: send failed, errno=%d, socket=%d\n", nErr, tcpSock);
+
 		return -1;
 	}
 	return 0;
@@ -1095,7 +1097,7 @@ int SendLCROper(const char* strUUID,BYTE byLCRcmd,BYTE byLCRcode,BYTE byLCRResul
 }
 int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSION &faxSess)
 {
-    g_log.Print(3, "ReceivePacketEx: cmd=%d, bodyLen=%d\n", cmd, bodyLen);
+    //g_log.Print(3, "ReceivePacketEx: cmd=%d, bodyLen=%d\n", cmd, bodyLen);
     
     switch(cmd)
     {
@@ -1271,6 +1273,8 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
             
             if(SendPacket(tcpSock, out, faxSess) == -1)
             {
+				                g_log.Print(3, "GW_FAX_REQUESTSEND: SendPacket failed, socket=%d\n", tcpSock);
+
                 delete[] strCountryCode;
                 delete[] strAreaCode;
                 delete[] strFaxCode;
@@ -1284,7 +1288,12 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
             delete[] strFaxCode;
             delete[] strExtCode;
             delete[] strCSID;
-
+			if(g_bySendCode == 0)
+            {
+                faxSess.nType = 0;
+                g_log.Print(3, "GW_FAX_REQUESTSEND: send not allowed, reset session state\n");
+            }
+            g_log.Print(3, "GW_FAX_REQUESTSEND completed, g_bySendCode=%d, connection still alive\n", g_bySendCode);
             break;
         }
 		case GW_FAX_SEND:
@@ -1538,6 +1547,25 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
     }
     break;
 }
+		case GW_QUERY_STATUS:
+		{
+			g_log.Print(3, "GW_QUERY_STATUS received\n");
+			
+			TCPOutPacket out;
+			out << (uint8)GW_STATUS_RESPONSE;
+			// 返回状态：0=未登录/断开, 1=已登录/连接
+			out << (uint8)(g_tcpSession.m_bIsLogin ? 1 : 0);
+			// 可选：返回更多状态信息
+			out << (uint8)g_bySystem;           // 系统状态
+			out << (uint16)g_nReceive;           // 待接收传真数
+			
+			if(SendPacket(tcpSock, out, faxSess) == -1)
+				return -1;
+			
+			g_log.Print(3, "GW_QUERY_STATUS response sent: loginStatus=%d\n", 
+						g_tcpSession.m_bIsLogin ? 1 : 0);
+			break;
+		}
 				
         default:
             g_log.Print(3, "ReceivePacketEx: unknown cmd=%d\n", cmd);
@@ -1846,10 +1874,10 @@ void* FileSession::TCPSThreadProc(void* lpParam)
     SOCKET          tcpSock;
 
     tcpSock = (SOCKET)(long)lpParam;
-    g_log.Print(3, "TCPSThreadProc: entered, socket=%d\n", tcpSock);
+    //g_log.Print(3, "TCPSThreadProc: entered, socket=%d\n", tcpSock);
 
 	if (tcpSock < 0) {
-	g_log.Print(3, "TCPSThreadProc: invalid socket\n");
+	//g_log.Print(3, "TCPSThreadProc: invalid socket\n");
 	return (void*)-1;
     }
     
@@ -1860,10 +1888,10 @@ void* FileSession::TCPSThreadProc(void* lpParam)
     while(true)
     {
         nSize = 512;
-		        g_log.Print(3, "TCPSThreadProc: calling recv on socket %d\n", tcpSock);
+		        //g_log.Print(3, "TCPSThreadProc: calling recv on socket %d\n", tcpSock);
 
         nSize = recv(tcpSock, (char *)byBuff, nSize, 0);
-		        g_log.Print(3, "TCPSThreadProc: recv returned %d, errno=%d\n", nSize, errno);
+		        //g_log.Print(3, "TCPSThreadProc: recv returned %d, errno=%d\n", nSize, errno);
 
         if(nSize > 0)
         {
@@ -1882,7 +1910,7 @@ void* FileSession::TCPSThreadProc(void* lpParam)
     
                 if((BYTE)byBuff[i] == 0xE3 && m_byLastChar == 0x3E && ntype == 0)
                 {
-					        g_log.Print(3, "TCPSThreadProc: found packet start\n");
+					        //g_log.Print(3, "TCPSThreadProc: found packet start\n");
 
                     ntype = 1;
                     nPointer = 0;
@@ -1947,6 +1975,8 @@ void* FileSession::TCPSThreadProc(void* lpParam)
 								
 								if(ReceivePacketEx(tcpSock, cmd, body, bodyLen, faxSess) == -1)
 								{
+									    g_log.Print(3, "TCPSThreadProc: ReceivePacketEx returned -1, closing socket %d\n", tcpSock);
+
 									closesocket(tcpSock);
 									ReleaseSemaphore(FileSession::m_hSemaphore, 1, NULL);
 									return (void*)-1;
@@ -1960,12 +1990,15 @@ void* FileSession::TCPSThreadProc(void* lpParam)
         }
 		else if(nSize == 0)
         {
-            g_log.Print(3, "TCPSThreadProc: connection closed by peer\n");
+            //g_log.Print(3, "TCPSThreadProc: connection closed by peer\n");
+			g_log.Print(3, "TCPSThreadProc: connection closed by peer (recv returned 0), socket=%d\n", tcpSock);
             closesocket(tcpSock);
             break;
         }
         else
         {
+            //g_log.Print(3, "TCPSThreadProc: recv error, errno=%d, socket=%d\n", errno, tcpSock);
+
             closesocket(tcpSock);
             break;
         }

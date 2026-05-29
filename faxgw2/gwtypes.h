@@ -53,6 +53,8 @@ enum {
 	GW_LCR_REPORT,
 	GW_FAX_EXT,
 	GW_SEND_MSG,
+	GW_QUERY_STATUS = 100,   // 新增：查询网关状态
+    GW_STATUS_RESPONSE = 101  // 新增：状态响应
 };
 
 
