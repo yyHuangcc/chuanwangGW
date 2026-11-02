@@ -764,6 +764,7 @@ int ReceiveFileSrvPacket(SOCKET ClientSock,TCPInPacket &in)
 				out << (uint8)GW_FAX_STOPSEND;
 				out << (uint8)byCode;
 				SendPacket(ClientSock,out,faxSess);
+    			g_log.Print(3, "GW_FAX_STOPSEND: completed, result=%d, response sent to Java client\n", byCode);
 			}
 			return 0;
 			break;
@@ -842,6 +843,8 @@ int GetRSAPacket(SOCKET tcpSock,SOCKET ClientSock,PAG_HEADER* pheader,int& ntype
 								CopyMemory(pbyPacket+sizeof(PAG_HEADER),byPacket,pheader->nLength);
 								if(CheckPacket(pbyPacket))
 								{
+									g_log.Print(3, "GetRSAPacket: received response from file server, cmd=%d, bodyLen=%d\n", 
+                                                byPacket[0], pheader->nLength - 1);
 									TCPInPacket in(pbyPacket+sizeof(PAG_HEADER), pheader->nLength,1);
 									if(ReceiveFileSrvPacket(ClientSock,in)==-1)
 									{
@@ -919,132 +922,280 @@ int GetRSAPacket(SOCKET tcpSock,SOCKET ClientSock,PAG_HEADER* pheader,int& ntype
 // 	return 0;
 // }
 
+
+// int ConnectFileSrv(SOCKET sClientSock)
+// {
+//     struct hostent    *host = NULL;
+// 	sockaddr_in m_destAddr;
+// 	BYTE			m_byLastChar;
+// 	int				ntype;
+// 	int				nPointer;
+// 	PAG_HEADER		header;
+// 	int				nSize;
+// 	BYTE			byResult;
+
+// 	g_log.Print(3, "ConnectFileSrv: START, g_strIP=%s, g_nPort=%d, g_strUUID=%s\n", 
+// 	            g_strIP, g_nPort, g_strUUID);
+
+// 	memset(&m_destAddr, 0, sizeof(m_destAddr));
+// 	m_destAddr.sin_family = AF_INET;
+	
+// 	g_log.Print(3, "ConnectFileSrv: resolving IP address for %s\n", g_strIP);
+	
+// 	if ((m_destAddr.sin_addr.s_addr = inet_addr(g_strIP)) == INADDR_NONE)
+// 	{
+// 		g_log.Print(3, "ConnectFileSrv: %s is not an IP address, trying gethostbyname\n", g_strIP);
+// 		host = gethostbyname(g_strIP);
+// 		if(host != NULL)
+// 		{
+// 			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0], host->h_length);
+// 			char *resolvedIp = inet_ntoa(m_destAddr.sin_addr);
+// 			g_log.Print(3, "ConnectFileSrv: resolved %s to IP: %s\n", g_strIP, resolvedIp);
+// 		}
+// 		else
+// 		{
+// 			g_log.Print(3, "ConnectFileSrv: gethostbyname failed for %s, errno=%d\n", g_strIP, errno);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		g_log.Print(3, "ConnectFileSrv: %s is already an IP address\n", g_strIP);
+// 	}
+	
+// 	m_destAddr.sin_port = htons((uint16)g_nPort);
+// 	g_log.Print(3, "ConnectFileSrv: target address %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+
+//     g_sSend = socket(AF_INET, SOCK_STREAM, 0);
+//     if (g_sSend < 0)
+// 	{
+// 		g_log.Print(3, "ConnectFileSrv: socket creation failed, errno=%d\n", errno);
+// 		return -1;
+// 	}
+// 	g_log.Print(3, "ConnectFileSrv: socket created successfully, fd=%d\n", g_sSend);
+
+// 	g_log.Print(3, "ConnectFileSrv: attempting to connect to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+	
+// 	if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
+// 	{
+// 		g_log.Print(3, "ConnectFileSrv: connection failed, errno=%d\n", errno);
+// 		closesocket(g_sSend);
+// 		g_sSend = 0;
+// 		return -1;
+// 	}
+
+// 	g_log.Print(3, "ConnectFileSrv: connected successfully to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+// 	g_log.Print(5,"connect to File server %s.\r\n",g_strIP);
+	
+// 	{
+// 		g_log.Print(3, "ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=%s\n", g_strUUID);
+		
+// 		TCPOutPacket p;
+// 		p << (uint8)TCP_FAX_REQUESTSEND;
+// 		p << g_strUUID;
+		
+// 		g_log.Print(3, "ConnectFileSrv: packet built, length=%d, calling SendRSAPacket\n", p.getLength());
+		
+// 		int sendResult = SendRSAPacket(g_sSend, &p);
+// 		if(sendResult == -1)
+// 		{
+// 			g_log.Print(3, "ConnectFileSrv: SendRSAPacket failed, return -1\n");
+// 			return -1;
+// 		}
+
+// 		g_log.Print(3, "ConnectFileSrv: SendRSAPacket succeeded\n");
+// 		g_log.Print(5,"send TCP_FAX_REQUESTSEND.\r\n");
+		
+// 		// 添加：尝试读取响应（非阻塞，仅用于调试）
+// 		fd_set readSet;
+// 		struct timeval tv;
+// 		FD_ZERO(&readSet);
+// 		FD_SET(g_sSend, &readSet);
+// 		tv.tv_sec = 3;
+// 		tv.tv_usec = 0;
+		
+// 		int selectResult = select(g_sSend + 1, &readSet, NULL, NULL, &tv);
+// 		if (selectResult > 0 && FD_ISSET(g_sSend, &readSet))
+// 		{
+// 			char recvBuf[1024];
+// 			int recvLen = recv(g_sSend, recvBuf, sizeof(recvBuf), MSG_DONTWAIT);
+// 			if (recvLen > 0)
+// 			{
+// 				g_log.Print(3, "ConnectFileSrv: received %d bytes of response immediately\n", recvLen);
+// 				// 打印前16字节的十六进制
+// 				char hexBuf[64] = {0};
+// 				for(int i = 0; i < (recvLen > 16 ? 16 : recvLen); i++) {
+// 					sprintf(hexBuf + i*3, "%02X ", (unsigned char)recvBuf[i]);
+// 				}
+// 				g_log.Print(3, "ConnectFileSrv: response hex: %s\n", hexBuf);
+// 			}
+// 			else if (recvLen == 0)
+// 			{
+// 				g_log.Print(3, "ConnectFileSrv: connection closed by peer\n");
+// 			}
+// 			else
+// 			{
+// 				g_log.Print(3, "ConnectFileSrv: recv error, errno=%d\n", errno);
+// 			}
+// 		}
+// 		else if (selectResult == 0)
+// 		{
+// 			g_log.Print(3, "ConnectFileSrv: no immediate response (timeout after 3 seconds)\n");
+// 		}
+// 		else
+// 		{
+// 			g_log.Print(3, "ConnectFileSrv: select error, errno=%d\n", errno);
+// 		}
+// 	}
+	
+// 	g_log.Print(3, "ConnectFileSrv: END, returning 0\n");
+// 	return 0;
+// }
+
 int ConnectFileSrv(SOCKET sClientSock)
 {
     struct hostent    *host = NULL;
-	sockaddr_in m_destAddr;
-	BYTE			m_byLastChar;
-	int				ntype;
-	int				nPointer;
-	PAG_HEADER		header;
-	int				nSize;
-	BYTE			byResult;
+    sockaddr_in m_destAddr;
+    BYTE            m_byLastChar;
+    int                ntype;
+    int                nPointer;
+    PAG_HEADER        header;
+    int                nSize;
+    BYTE            byResult;
 
-	g_log.Print(3, "ConnectFileSrv: START, g_strIP=%s, g_nPort=%d, g_strUUID=%s\n", 
-	            g_strIP, g_nPort, g_strUUID);
+    g_log.Print(3, "ConnectFileSrv: START, g_strIP=%s, g_nPort=%d, g_strUUID=%s\n", 
+                g_strIP, g_nPort, g_strUUID);
 
-	memset(&m_destAddr, 0, sizeof(m_destAddr));
-	m_destAddr.sin_family = AF_INET;
-	
-	g_log.Print(3, "ConnectFileSrv: resolving IP address for %s\n", g_strIP);
-	
-	if ((m_destAddr.sin_addr.s_addr = inet_addr(g_strIP)) == INADDR_NONE)
-	{
-		g_log.Print(3, "ConnectFileSrv: %s is not an IP address, trying gethostbyname\n", g_strIP);
-		host = gethostbyname(g_strIP);
-		if(host != NULL)
-		{
-			memcpy(&m_destAddr.sin_addr, host->h_addr_list[0], host->h_length);
-			char *resolvedIp = inet_ntoa(m_destAddr.sin_addr);
-			g_log.Print(3, "ConnectFileSrv: resolved %s to IP: %s\n", g_strIP, resolvedIp);
-		}
-		else
-		{
-			g_log.Print(3, "ConnectFileSrv: gethostbyname failed for %s, errno=%d\n", g_strIP, errno);
-		}
-	}
-	else
-	{
-		g_log.Print(3, "ConnectFileSrv: %s is already an IP address\n", g_strIP);
-	}
-	
-	m_destAddr.sin_port = htons((uint16)g_nPort);
-	g_log.Print(3, "ConnectFileSrv: target address %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+    memset(&m_destAddr, 0, sizeof(m_destAddr));
+    m_destAddr.sin_family = AF_INET;
+    
+    g_log.Print(3, "ConnectFileSrv: resolving IP address for %s\n", g_strIP);
+    
+    if ((m_destAddr.sin_addr.s_addr = inet_addr(g_strIP)) == INADDR_NONE)
+    {
+        g_log.Print(3, "ConnectFileSrv: %s is not an IP address, trying gethostbyname\n", g_strIP);
+        host = gethostbyname(g_strIP);
+        if(host != NULL)
+        {
+            memcpy(&m_destAddr.sin_addr, host->h_addr_list[0], host->h_length);
+            char *resolvedIp = inet_ntoa(m_destAddr.sin_addr);
+            g_log.Print(3, "ConnectFileSrv: resolved %s to IP: %s\n", g_strIP, resolvedIp);
+        }
+        else
+        {
+            g_log.Print(3, "ConnectFileSrv: gethostbyname failed for %s, errno=%d\n", g_strIP, errno);
+            return -1;  // ★ DNS 解析失败
+        }
+    }
+    else
+    {
+        g_log.Print(3, "ConnectFileSrv: %s is already an IP address\n", g_strIP);
+    }
+    
+    m_destAddr.sin_port = htons((uint16)g_nPort);
+    g_log.Print(3, "ConnectFileSrv: target address %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
 
     g_sSend = socket(AF_INET, SOCK_STREAM, 0);
     if (g_sSend < 0)
-	{
-		g_log.Print(3, "ConnectFileSrv: socket creation failed, errno=%d\n", errno);
-		return -1;
-	}
-	g_log.Print(3, "ConnectFileSrv: socket created successfully, fd=%d\n", g_sSend);
+    {
+        g_log.Print(3, "ConnectFileSrv: socket creation failed, errno=%d\n", errno);
+        return -1;
+    }
+    g_log.Print(3, "ConnectFileSrv: socket created successfully, fd=%d\n", g_sSend);
 
-	g_log.Print(3, "ConnectFileSrv: attempting to connect to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
-	
-	if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
-	{
-		g_log.Print(3, "ConnectFileSrv: connection failed, errno=%d\n", errno);
-		closesocket(g_sSend);
-		g_sSend = 0;
-		return -1;
-	}
+    g_log.Print(3, "ConnectFileSrv: attempting to connect to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+    
+    if (::connect(g_sSend, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
+    {
+        g_log.Print(3, "ConnectFileSrv: connection failed, errno=%d\n", errno);
+        closesocket(g_sSend);
+        g_sSend = 0;
+        return -1;  // ★ TCP 连接失败
+    }
 
-	g_log.Print(3, "ConnectFileSrv: connected successfully to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
-	g_log.Print(5,"connect to File server %s.\r\n",g_strIP);
-	
-	{
-		g_log.Print(3, "ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=%s\n", g_strUUID);
-		
-		TCPOutPacket p;
-		p << (uint8)TCP_FAX_REQUESTSEND;
-		p << g_strUUID;
-		
-		g_log.Print(3, "ConnectFileSrv: packet built, length=%d, calling SendRSAPacket\n", p.getLength());
-		
-		int sendResult = SendRSAPacket(g_sSend, &p);
-		if(sendResult == -1)
-		{
-			g_log.Print(3, "ConnectFileSrv: SendRSAPacket failed, return -1\n");
-			return -1;
-		}
+    g_log.Print(3, "ConnectFileSrv: connected successfully to %s:%d\n", inet_ntoa(m_destAddr.sin_addr), g_nPort);
+    g_log.Print(5,"connect to File server %s.\r\n",g_strIP);
+    
+    {
+        g_log.Print(3, "ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=%s\n", g_strUUID);
+        
+        TCPOutPacket p;
+        p << (uint8)TCP_FAX_REQUESTSEND;
+        p << g_strUUID;
+        
+        g_log.Print(3, "ConnectFileSrv: packet built, length=%d, calling SendRSAPacket\n", p.getLength());
+        
+        int sendResult = SendRSAPacket(g_sSend, &p);
+        if(sendResult == -1)
+        {
+            g_log.Print(3, "ConnectFileSrv: SendRSAPacket failed, return -1\n");
+            closesocket(g_sSend);
+            g_sSend = 0;
+            return -1;  // ★ 发送请求失败
+        }
 
-		g_log.Print(3, "ConnectFileSrv: SendRSAPacket succeeded\n");
-		g_log.Print(5,"send TCP_FAX_REQUESTSEND.\r\n");
-		
-		// 添加：尝试读取响应（非阻塞，仅用于调试）
-		fd_set readSet;
-		struct timeval tv;
-		FD_ZERO(&readSet);
-		FD_SET(g_sSend, &readSet);
-		tv.tv_sec = 3;
-		tv.tv_usec = 0;
-		
-		int selectResult = select(g_sSend + 1, &readSet, NULL, NULL, &tv);
-		if (selectResult > 0 && FD_ISSET(g_sSend, &readSet))
-		{
-			char recvBuf[1024];
-			int recvLen = recv(g_sSend, recvBuf, sizeof(recvBuf), MSG_DONTWAIT);
-			if (recvLen > 0)
-			{
-				g_log.Print(3, "ConnectFileSrv: received %d bytes of response immediately\n", recvLen);
-				// 打印前16字节的十六进制
-				char hexBuf[64] = {0};
-				for(int i = 0; i < (recvLen > 16 ? 16 : recvLen); i++) {
-					sprintf(hexBuf + i*3, "%02X ", (unsigned char)recvBuf[i]);
-				}
-				g_log.Print(3, "ConnectFileSrv: response hex: %s\n", hexBuf);
-			}
-			else if (recvLen == 0)
-			{
-				g_log.Print(3, "ConnectFileSrv: connection closed by peer\n");
-			}
-			else
-			{
-				g_log.Print(3, "ConnectFileSrv: recv error, errno=%d\n", errno);
-			}
-		}
-		else if (selectResult == 0)
-		{
-			g_log.Print(3, "ConnectFileSrv: no immediate response (timeout after 3 seconds)\n");
-		}
-		else
-		{
-			g_log.Print(3, "ConnectFileSrv: select error, errno=%d\n", errno);
-		}
-	}
-	
-	g_log.Print(3, "ConnectFileSrv: END, returning 0\n");
-	return 0;
+        g_log.Print(3, "ConnectFileSrv: SendRSAPacket succeeded\n");
+        g_log.Print(5,"send TCP_FAX_REQUESTSEND.\r\n");
+        
+        // 等待文件服务器响应
+        fd_set readSet;
+        struct timeval tv;
+        FD_ZERO(&readSet);
+        FD_SET(g_sSend, &readSet);
+        tv.tv_sec = 3;
+        tv.tv_usec = 0;
+        
+        int selectResult = select(g_sSend + 1, &readSet, NULL, NULL, &tv);
+        if (selectResult > 0 && FD_ISSET(g_sSend, &readSet))
+        {
+            char recvBuf[1024];
+            int recvLen = recv(g_sSend, recvBuf, sizeof(recvBuf), MSG_DONTWAIT);
+            if (recvLen > 0)
+            {
+                g_log.Print(3, "ConnectFileSrv: received %d bytes of response immediately\n", recvLen);
+                char hexBuf[64] = {0};
+                for(int i = 0; i < (recvLen > 16 ? 16 : recvLen); i++) {
+                    sprintf(hexBuf + i*3, "%02X ", (unsigned char)recvBuf[i]);
+                }
+                g_log.Print(3, "ConnectFileSrv: response hex: %s\n", hexBuf);
+                // ★ 收到响应，说明文件服务器正常 ★
+                g_log.Print(3, "ConnectFileSrv: END, returning 0 (success)\n");
+                return 0;  // 成功！
+            }
+            else if (recvLen == 0)
+            {
+                g_log.Print(3, "ConnectFileSrv: connection closed by peer\n");
+                closesocket(g_sSend);
+                g_sSend = 0;
+                return -1;  // ★ 连接被关闭
+            }
+            else
+            {
+                g_log.Print(3, "ConnectFileSrv: recv error, errno=%d\n", errno);
+                closesocket(g_sSend);
+                g_sSend = 0;
+                return -1;  // ★ 接收错误
+            }
+        }
+        else if (selectResult == 0)
+        {
+            // ★★★ 关键修改：超时 = 成功 ★★★
+            g_log.Print(3, "ConnectFileSrv: no response from file server (timeout after 3 seconds)\n");
+            // closesocket(g_sSend);
+            // g_sSend = 0;
+            // return -1;  // ← 返回 -1 表示失败！
+        }
+        else
+        {
+            g_log.Print(3, "ConnectFileSrv: select error, errno=%d\n", errno);
+            closesocket(g_sSend);
+            g_sSend = 0;
+            return -1;  // ★ select 错误
+        }
+    }
+    
+    // 正常情况下不会走到这里（上面已经 return 了）
+    g_log.Print(3, "ConnectFileSrv: END, returning 0\n");
+    return 0;
 }
 int SendFaxData(SOCKET tcpSock,const char* buff,int nSize)
 {
@@ -1273,7 +1424,7 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
             
             if(SendPacket(tcpSock, out, faxSess) == -1)
             {
-				                g_log.Print(3, "GW_FAX_REQUESTSEND: SendPacket failed, socket=%d\n", tcpSock);
+				g_log.Print(3, "GW_FAX_REQUESTSEND: SendPacket failed, socket=%d\n", tcpSock);
 
                 delete[] strCountryCode;
                 delete[] strAreaCode;
@@ -1338,6 +1489,35 @@ int ReceivePacketEx(SOCKET tcpSock, BYTE cmd, BYTE* body, int bodyLen, FAX_SESSI
 			g_log.Print(3, "GW_FAX_STOPSEND: completed\n");
 			return 0;
 		}
+		// case GW_FAX_STOPSEND:
+		// 	{
+		// 		g_log.Print(3, "GW_FAX_STOPSEND received, nType=%d\n", faxSess.nType);
+				
+		// 		if(faxSess.nType != 1)
+		// 		{
+		// 			g_log.Print(3, "GW_FAX_STOPSEND: invalid session state (expected 1, got %d)\n", faxSess.nType);
+		// 			return -1;
+		// 		}
+				
+		// 		// 转发给文件服务器，获取结果
+		// 		int nResult = SendFaxEnd(tcpSock);
+				
+		// 		faxSess.nType = 0;
+				
+		// 		// ★★★ 新增：向 Java 客户端发送响应 ★★★
+		// 		TCPOutPacket response;
+		// 		response << (uint8)GW_FAX_STOPSEND;
+		// 		response << (uint8)(nResult == 0 ? 0 : 1);  // 0=成功, 1=失败
+				
+		// 		if(SendPacket(tcpSock, response, faxSess) == -1)
+		// 		{
+		// 			g_log.Print(3, "GW_FAX_STOPSEND: SendPacket to Java client failed\n");
+		// 			return -1;
+		// 		}
+				
+		// 		g_log.Print(3, "GW_FAX_STOPSEND: completed, result=%d, response sent to Java client\n", nResult);
+		// 		return 0;
+		// 	}
         // ============================================================
         // 接收传真处理 - 文件服务器发送数据给网关
         // ============================================================

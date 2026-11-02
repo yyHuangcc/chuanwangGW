@@ -113,8 +113,16 @@ TcpSession::~TcpSession()
 
 void TcpSession::Close()
 {
-    //shutdown(m_tcpSock,0);
-	closesocket(m_tcpSock);
+    if (m_tcpSock >= 0)
+    {
+        // shutdown() wakes up a thread that is blocked in recv() on this
+        // socket. Without it, the reader thread (MsgReceiver) stays blocked on
+        // the dead connection forever and can never read the login reply of a
+        // newly reconnected socket, so the gateway never logs in again.
+        shutdown(m_tcpSock, SHUT_RDWR);
+        closesocket(m_tcpSock);
+        m_tcpSock = -1;
+    }
 }
 
 // void TcpSession::connect(const char* strSrvAdd, int nPort)
@@ -179,6 +187,7 @@ void TcpSession::connect(LPCTSTR strSrvAdd, int nPort)
 
     memset(&m_destAddr, 0, sizeof(m_destAddr));
     m_destAddr.sin_family = AF_INET;
+    m_destAddr.sin_port = htons((uint16)nPort);
     if ((m_destAddr.sin_addr.s_addr = inet_addr(strSrvAdd)) == INADDR_NONE)
     {
         host = gethostbyname(strSrvAdd);
@@ -188,15 +197,24 @@ void TcpSession::connect(LPCTSTR strSrvAdd, int nPort)
         }
         else
         {
+            // Do NOT fall through with address 0.0.0.0, otherwise connect()
+            // always fails with ENETUNREACH while DNS is temporarily down.
             g_log.Print(3, "connect: gethostbyname failed for %s\n", strSrvAdd);
+            g_bySystem = 0;
+            return;
         }
     }
-    m_destAddr.sin_port = htons((uint16)nPort);
+
+    // Release any previous socket before opening a new one (avoids fd leak and
+    // the old connection interfering with the new one).
+    if (m_tcpSock >= 0)
+        Close();
 
     m_tcpSock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
     if (m_tcpSock < 0)
     {
         g_log.Print(3, "connect: socket creation failed, errno=%d\n", errno);
+        g_bySystem = 0;
         return;
     }
 
@@ -205,6 +223,7 @@ void TcpSession::connect(LPCTSTR strSrvAdd, int nPort)
     if (::connect(m_tcpSock, (struct sockaddr *)&m_destAddr, sizeof(m_destAddr)) < 0)
     {
         g_log.Print(3, "connect: connection failed, errno=%d\n", errno);
+        Close();
         g_bySystem = 0;
         return;
     }
@@ -233,6 +252,16 @@ void TcpSession::connect(uint32 ip, uint16 port)
 // }
 int TcpSession::ReadData(char* lpBuff, int nSize)
 {
+    if (m_tcpSock < 0)
+    {
+        // No valid connection (e.g. during reconnect). Report failure so the
+        // caller waits for the next connect event instead of calling recv() on
+        // an invalid/closed descriptor.
+        m_bIsLogin = FALSE;
+        ResetEvent(g_hConnectEvent);
+        return -1;
+    }
+
     int nRet = recv(m_tcpSock, lpBuff, nSize, 0);
     //g_log.Print(3, "ReadData: recv returned %d, errno=%d\n", nRet, errno);
     
@@ -467,7 +496,7 @@ void TcpSession::onLoginReply(TCPInPacket &in)
         g_log.Print(3, "%d login in success.\r\n", m_ServerID);
         SetEvent(g_hConnectEvent);
         in >> g_bySystem;
-		        onKeepAlive();
+		        // onKeepAlive();
 
         g_log.Print(3, "g_bySystem=%d\n", g_bySystem);
     }
@@ -533,7 +562,9 @@ void TcpSession::onRecvRequestReply(TCPInPacket &in)
 	_beginthread( ReceiveFax, 0 , (void*)pRecvFaxInfo );
 
 }
-	
+
+
+
 void TcpSession::onSendRequestReply(TCPInPacket &in)
 {
 	const char* strTemp;
@@ -573,6 +604,7 @@ void TcpSession::onLCRQueryReply(TCPInPacket &in)
 	SendLCROper(strQueryUUID,GW_LCR_QUERY,byLCRCode,byResult);
 	//SetEvent(g_hLCRQuery);
 }
+
 
 void TcpSession::onLCRCancelReply(TCPInPacket &in)
 {

@@ -1,0 +1,3133 @@
+16 [10:15:35] connect: trying to connect to tegest.imwork.net:8079
+16 [10:15:35] SearchFile: start, path=/home/ois/Project/faxgw2/faxtemp/FAXDATA/
+16 [10:15:35] SearchFile: no .tif files found
+16 [10:15:35] CleanFile: cleaning .ted files
+16 [10:15:35] CleanFile: no .ted files found
+16 [10:15:35] CleanFile: cleaning .ini files
+16 [10:15:35] CleanFile: no .ini files found
+16 [10:15:35] connect: socket created, connecting...
+16 [10:15:35] connect: connected successfully to tegest.imwork.net:8079
+16 [10:15:35] onLogin: preparing login...
+16 [10:15:35] Username: 120.cctbx.cn, Password: 888888
+16 [10:15:35] sendDirect: sending cmd=1, length=32
+16 [10:15:35] onLogin: login packet sent
+16 [10:15:35] The fax gateway has started.
+16 [10:15:35] onLoginReply: error=0, ServerID=10338
+16 [10:15:35] 10338 login in success.
+16 [10:15:35] g_bySystem=1
+16 [10:15:36] MainThreadProc: accepted client, socket=6
+16 [10:15:36] TCPSThreadProc: received 24 bytes
+16 [10:15:36] TCPSThreadProc: calling ReceivePacketEx, cmd=1, bodyLen=16
+16 [10:15:36] GW_LOGIN: gatewayKey from client=TIEUFKS4EFS!$&, expected=TIEUFKS4EFS!$&
+16 [10:15:36] GW_LOGIN success.
+16 [10:15:36] TCPSThreadProc: received 8 bytes
+16 [10:15:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:15:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:15:39] MainThreadProc: accepted client, socket=7
+16 [10:15:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:15:39] TCPSThreadProc: received 8 bytes
+16 [10:15:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:15:39] GW_QUERY_STATUS received
+16 [10:15:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:15:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:15:40] sendDirect: sending cmd=1, length=8
+16 [10:15:40] onKeepAlive: heartbeat sent
+16 [10:15:40] TCP_KEEPALIVE response received!
+16 [10:15:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:15:41] MainThreadProc: accepted client, socket=8
+16 [10:15:41] TCPSThreadProc: received 8 bytes
+16 [10:15:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:15:41] GW_QUERY_STATUS received
+16 [10:15:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:15:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:15:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:15:45] sendDirect: sending cmd=1, length=8
+16 [10:15:45] onKeepAlive: heartbeat sent
+16 [10:15:45] TCP_KEEPALIVE response received!
+16 [10:15:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:15:46] TCPSThreadProc: received 8 bytes
+16 [10:15:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:15:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:15:49] MainThreadProc: accepted client, socket=7
+16 [10:15:49] TCPSThreadProc: received 8 bytes
+16 [10:15:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:15:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:15:49] GW_QUERY_STATUS received
+16 [10:15:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:15:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:15:50] sendDirect: sending cmd=1, length=8
+16 [10:15:50] onKeepAlive: heartbeat sent
+16 [10:15:50] TCP_KEEPALIVE response received!
+16 [10:15:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:15:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:15:55] sendDirect: sending cmd=1, length=8
+16 [10:15:55] onKeepAlive: heartbeat sent
+16 [10:15:55] TCP_KEEPALIVE response received!
+16 [10:15:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:15:55] MainThreadProc: accepted client, socket=8
+16 [10:15:55] TCPSThreadProc: received 8 bytes
+16 [10:15:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:15:55] GW_QUERY_STATUS received
+16 [10:15:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:15:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:15:56] TCPSThreadProc: received 8 bytes
+16 [10:15:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:15:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:15:59] MainThreadProc: accepted client, socket=7
+16 [10:15:59] TCPSThreadProc: received 8 bytes
+16 [10:15:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:15:59] GW_QUERY_STATUS received
+16 [10:15:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:15:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:00] sendDirect: sending cmd=1, length=8
+16 [10:16:00] onKeepAlive: heartbeat sent
+16 [10:16:00] TCP_KEEPALIVE response received!
+16 [10:16:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:05] sendDirect: sending cmd=1, length=8
+16 [10:16:05] onKeepAlive: heartbeat sent
+16 [10:16:05] TCP_KEEPALIVE response received!
+16 [10:16:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:05] MainThreadProc: accepted client, socket=8
+16 [10:16:05] TCPSThreadProc: received 8 bytes
+16 [10:16:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:05] GW_QUERY_STATUS received
+16 [10:16:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:06] TCPSThreadProc: received 8 bytes
+16 [10:16:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:16:06] GW_KEEPALIVE received
+16 [10:16:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:16:06] TCPSThreadProc: received 8 bytes
+16 [10:16:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:09] MainThreadProc: accepted client, socket=7
+16 [10:16:09] TCPSThreadProc: received 8 bytes
+16 [10:16:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:09] GW_QUERY_STATUS received
+16 [10:16:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:10] sendDirect: sending cmd=1, length=8
+16 [10:16:10] onKeepAlive: heartbeat sent
+16 [10:16:10] TCP_KEEPALIVE response received!
+16 [10:16:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:15] sendDirect: sending cmd=1, length=8
+16 [10:16:15] onKeepAlive: heartbeat sent
+16 [10:16:15] TCP_KEEPALIVE response received!
+16 [10:16:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:15] MainThreadProc: accepted client, socket=8
+16 [10:16:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:15] TCPSThreadProc: received 8 bytes
+16 [10:16:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:15] GW_QUERY_STATUS received
+16 [10:16:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:16] TCPSThreadProc: received 8 bytes
+16 [10:16:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:19] MainThreadProc: accepted client, socket=7
+16 [10:16:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:19] TCPSThreadProc: received 8 bytes
+16 [10:16:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:19] GW_QUERY_STATUS received
+16 [10:16:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:20] sendDirect: sending cmd=1, length=8
+16 [10:16:20] onKeepAlive: heartbeat sent
+16 [10:16:20] TCP_KEEPALIVE response received!
+16 [10:16:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:25] sendDirect: sending cmd=1, length=8
+16 [10:16:25] onKeepAlive: heartbeat sent
+16 [10:16:25] TCP_KEEPALIVE response received!
+16 [10:16:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:25] MainThreadProc: accepted client, socket=8
+16 [10:16:25] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:25] TCPSThreadProc: received 8 bytes
+16 [10:16:25] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:25] GW_QUERY_STATUS received
+16 [10:16:25] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:26] TCPSThreadProc: received 8 bytes
+16 [10:16:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:29] MainThreadProc: accepted client, socket=7
+16 [10:16:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:29] TCPSThreadProc: received 8 bytes
+16 [10:16:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:29] GW_QUERY_STATUS received
+16 [10:16:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:30] sendDirect: sending cmd=1, length=8
+16 [10:16:30] onKeepAlive: heartbeat sent
+16 [10:16:30] TCP_KEEPALIVE response received!
+16 [10:16:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:35] sendDirect: sending cmd=1, length=8
+16 [10:16:35] onKeepAlive: heartbeat sent
+16 [10:16:35] TCP_KEEPALIVE response received!
+16 [10:16:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:35] MainThreadProc: accepted client, socket=8
+16 [10:16:35] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:35] TCPSThreadProc: received 8 bytes
+16 [10:16:35] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:35] GW_QUERY_STATUS received
+16 [10:16:35] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:36] TCPSThreadProc: received 8 bytes
+16 [10:16:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:16:36] GW_KEEPALIVE received
+16 [10:16:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:16:36] TCPSThreadProc: received 8 bytes
+16 [10:16:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:39] MainThreadProc: accepted client, socket=7
+16 [10:16:39] TCPSThreadProc: received 8 bytes
+16 [10:16:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:39] GW_QUERY_STATUS received
+16 [10:16:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:40] sendDirect: sending cmd=1, length=8
+16 [10:16:40] onKeepAlive: heartbeat sent
+16 [10:16:40] TCP_KEEPALIVE response received!
+16 [10:16:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:41] MainThreadProc: accepted client, socket=8
+16 [10:16:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:41] TCPSThreadProc: received 8 bytes
+16 [10:16:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:41] GW_QUERY_STATUS received
+16 [10:16:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:45] sendDirect: sending cmd=1, length=8
+16 [10:16:45] onKeepAlive: heartbeat sent
+16 [10:16:45] TCP_KEEPALIVE response received!
+16 [10:16:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:45] MainThreadProc: accepted client, socket=7
+16 [10:16:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:45] TCPSThreadProc: received 8 bytes
+16 [10:16:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:45] GW_QUERY_STATUS received
+16 [10:16:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:46] TCPSThreadProc: received 8 bytes
+16 [10:16:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:49] MainThreadProc: accepted client, socket=8
+16 [10:16:49] TCPSThreadProc: received 8 bytes
+16 [10:16:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:49] GW_QUERY_STATUS received
+16 [10:16:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:50] sendDirect: sending cmd=1, length=8
+16 [10:16:50] onKeepAlive: heartbeat sent
+16 [10:16:50] TCP_KEEPALIVE response received!
+16 [10:16:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:16:55] sendDirect: sending cmd=1, length=8
+16 [10:16:55] onKeepAlive: heartbeat sent
+16 [10:16:55] TCP_KEEPALIVE response received!
+16 [10:16:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:16:55] MainThreadProc: accepted client, socket=7
+16 [10:16:55] TCPSThreadProc: received 8 bytes
+16 [10:16:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:16:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:55] GW_QUERY_STATUS received
+16 [10:16:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:16:56] TCPSThreadProc: received 8 bytes
+16 [10:16:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:16:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:16:59] MainThreadProc: accepted client, socket=8
+16 [10:16:59] TCPSThreadProc: received 8 bytes
+16 [10:16:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:16:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:16:59] GW_QUERY_STATUS received
+16 [10:16:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:00] sendDirect: sending cmd=1, length=8
+16 [10:17:00] onKeepAlive: heartbeat sent
+16 [10:17:00] TCP_KEEPALIVE response received!
+16 [10:17:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:05] sendDirect: sending cmd=1, length=8
+16 [10:17:05] onKeepAlive: heartbeat sent
+16 [10:17:05] TCP_KEEPALIVE response received!
+16 [10:17:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:05] MainThreadProc: accepted client, socket=7
+16 [10:17:05] TCPSThreadProc: received 8 bytes
+16 [10:17:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:05] GW_QUERY_STATUS received
+16 [10:17:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:06] TCPSThreadProc: received 8 bytes
+16 [10:17:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:17:06] GW_KEEPALIVE received
+16 [10:17:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:17:06] TCPSThreadProc: received 8 bytes
+16 [10:17:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:09] MainThreadProc: accepted client, socket=8
+16 [10:17:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:09] TCPSThreadProc: received 8 bytes
+16 [10:17:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:09] GW_QUERY_STATUS received
+16 [10:17:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:10] sendDirect: sending cmd=1, length=8
+16 [10:17:10] onKeepAlive: heartbeat sent
+16 [10:17:10] TCP_KEEPALIVE response received!
+16 [10:17:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:15] sendDirect: sending cmd=1, length=8
+16 [10:17:15] onKeepAlive: heartbeat sent
+16 [10:17:15] TCP_KEEPALIVE response received!
+16 [10:17:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:15] MainThreadProc: accepted client, socket=7
+16 [10:17:15] TCPSThreadProc: received 8 bytes
+16 [10:17:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:15] GW_QUERY_STATUS received
+16 [10:17:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:16] TCPSThreadProc: received 8 bytes
+16 [10:17:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:19] MainThreadProc: accepted client, socket=8
+16 [10:17:19] TCPSThreadProc: received 8 bytes
+16 [10:17:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:19] GW_QUERY_STATUS received
+16 [10:17:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:20] sendDirect: sending cmd=1, length=8
+16 [10:17:20] onKeepAlive: heartbeat sent
+16 [10:17:20] TCP_KEEPALIVE response received!
+16 [10:17:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:25] sendDirect: sending cmd=1, length=8
+16 [10:17:25] onKeepAlive: heartbeat sent
+16 [10:17:25] TCP_KEEPALIVE response received!
+16 [10:17:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:25] MainThreadProc: accepted client, socket=7
+16 [10:17:25] TCPSThreadProc: received 8 bytes
+16 [10:17:25] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:25] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:25] GW_QUERY_STATUS received
+16 [10:17:25] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:26] TCPSThreadProc: received 8 bytes
+16 [10:17:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:29] MainThreadProc: accepted client, socket=8
+16 [10:17:29] TCPSThreadProc: received 8 bytes
+16 [10:17:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:29] GW_QUERY_STATUS received
+16 [10:17:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:30] sendDirect: sending cmd=1, length=8
+16 [10:17:30] onKeepAlive: heartbeat sent
+16 [10:17:30] TCP_KEEPALIVE response received!
+16 [10:17:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:35] sendDirect: sending cmd=1, length=8
+16 [10:17:35] onKeepAlive: heartbeat sent
+16 [10:17:35] TCP_KEEPALIVE response received!
+16 [10:17:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:35] MainThreadProc: accepted client, socket=7
+16 [10:17:35] TCPSThreadProc: received 8 bytes
+16 [10:17:35] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:35] GW_QUERY_STATUS received
+16 [10:17:35] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:35] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:36] TCPSThreadProc: received 8 bytes
+16 [10:17:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:17:36] GW_KEEPALIVE received
+16 [10:17:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:17:36] TCPSThreadProc: received 8 bytes
+16 [10:17:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:39] MainThreadProc: accepted client, socket=8
+16 [10:17:39] TCPSThreadProc: received 8 bytes
+16 [10:17:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:39] GW_QUERY_STATUS received
+16 [10:17:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:40] sendDirect: sending cmd=1, length=8
+16 [10:17:40] onKeepAlive: heartbeat sent
+16 [10:17:40] TCP_KEEPALIVE response received!
+16 [10:17:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:41] MainThreadProc: accepted client, socket=7
+16 [10:17:41] TCPSThreadProc: received 8 bytes
+16 [10:17:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:41] GW_QUERY_STATUS received
+16 [10:17:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:45] sendDirect: sending cmd=1, length=8
+16 [10:17:45] onKeepAlive: heartbeat sent
+16 [10:17:45] TCP_KEEPALIVE response received!
+16 [10:17:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:45] MainThreadProc: accepted client, socket=8
+16 [10:17:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:45] TCPSThreadProc: received 8 bytes
+16 [10:17:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:45] GW_QUERY_STATUS received
+16 [10:17:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:46] TCPSThreadProc: received 8 bytes
+16 [10:17:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:49] MainThreadProc: accepted client, socket=7
+16 [10:17:49] TCPSThreadProc: received 8 bytes
+16 [10:17:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:49] GW_QUERY_STATUS received
+16 [10:17:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:50] sendDirect: sending cmd=1, length=8
+16 [10:17:50] onKeepAlive: heartbeat sent
+16 [10:17:50] TCP_KEEPALIVE response received!
+16 [10:17:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:17:55] sendDirect: sending cmd=1, length=8
+16 [10:17:55] onKeepAlive: heartbeat sent
+16 [10:17:55] TCP_KEEPALIVE response received!
+16 [10:17:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:17:55] MainThreadProc: accepted client, socket=8
+16 [10:17:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:17:55] TCPSThreadProc: received 8 bytes
+16 [10:17:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:55] GW_QUERY_STATUS received
+16 [10:17:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:17:56] TCPSThreadProc: received 8 bytes
+16 [10:17:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:17:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:17:59] MainThreadProc: accepted client, socket=7
+16 [10:17:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:17:59] TCPSThreadProc: received 8 bytes
+16 [10:17:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:17:59] GW_QUERY_STATUS received
+16 [10:17:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:00] sendDirect: sending cmd=1, length=8
+16 [10:18:00] onKeepAlive: heartbeat sent
+16 [10:18:00] TCP_KEEPALIVE response received!
+16 [10:18:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:05] sendDirect: sending cmd=1, length=8
+16 [10:18:05] onKeepAlive: heartbeat sent
+16 [10:18:05] TCP_KEEPALIVE response received!
+16 [10:18:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:05] MainThreadProc: accepted client, socket=8
+16 [10:18:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:05] TCPSThreadProc: received 8 bytes
+16 [10:18:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:05] GW_QUERY_STATUS received
+16 [10:18:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:06] TCPSThreadProc: received 8 bytes
+16 [10:18:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:18:06] GW_KEEPALIVE received
+16 [10:18:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:18:06] TCPSThreadProc: received 8 bytes
+16 [10:18:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:09] MainThreadProc: accepted client, socket=7
+16 [10:18:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:09] TCPSThreadProc: received 8 bytes
+16 [10:18:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:09] GW_QUERY_STATUS received
+16 [10:18:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:10] sendDirect: sending cmd=1, length=8
+16 [10:18:10] onKeepAlive: heartbeat sent
+16 [10:18:10] TCP_KEEPALIVE response received!
+16 [10:18:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:15] sendDirect: sending cmd=1, length=8
+16 [10:18:15] onKeepAlive: heartbeat sent
+16 [10:18:15] TCP_KEEPALIVE response received!
+16 [10:18:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:15] MainThreadProc: accepted client, socket=8
+16 [10:18:15] TCPSThreadProc: received 8 bytes
+16 [10:18:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:15] GW_QUERY_STATUS received
+16 [10:18:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:16] TCPSThreadProc: received 8 bytes
+16 [10:18:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:19] MainThreadProc: accepted client, socket=7
+16 [10:18:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:19] TCPSThreadProc: received 8 bytes
+16 [10:18:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:19] GW_QUERY_STATUS received
+16 [10:18:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:20] sendDirect: sending cmd=1, length=8
+16 [10:18:20] onKeepAlive: heartbeat sent
+16 [10:18:20] TCP_KEEPALIVE response received!
+16 [10:18:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:25] sendDirect: sending cmd=1, length=8
+16 [10:18:25] onKeepAlive: heartbeat sent
+16 [10:18:25] TCP_KEEPALIVE response received!
+16 [10:18:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:25] MainThreadProc: accepted client, socket=8
+16 [10:18:25] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:25] TCPSThreadProc: received 8 bytes
+16 [10:18:25] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:25] GW_QUERY_STATUS received
+16 [10:18:25] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:26] TCPSThreadProc: received 8 bytes
+16 [10:18:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:29] MainThreadProc: accepted client, socket=7
+16 [10:18:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:29] TCPSThreadProc: received 8 bytes
+16 [10:18:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:29] GW_QUERY_STATUS received
+16 [10:18:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:30] sendDirect: sending cmd=1, length=8
+16 [10:18:30] onKeepAlive: heartbeat sent
+16 [10:18:30] TCP_KEEPALIVE response received!
+16 [10:18:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:35] sendDirect: sending cmd=1, length=8
+16 [10:18:35] onKeepAlive: heartbeat sent
+16 [10:18:35] TCP_KEEPALIVE response received!
+16 [10:18:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:35] MainThreadProc: accepted client, socket=8
+16 [10:18:35] TCPSThreadProc: received 8 bytes
+16 [10:18:35] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:35] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:35] GW_QUERY_STATUS received
+16 [10:18:35] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:36] TCPSThreadProc: received 8 bytes
+16 [10:18:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:18:36] GW_KEEPALIVE received
+16 [10:18:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:18:36] TCPSThreadProc: received 8 bytes
+16 [10:18:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:39] MainThreadProc: accepted client, socket=7
+16 [10:18:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:39] TCPSThreadProc: received 8 bytes
+16 [10:18:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:39] GW_QUERY_STATUS received
+16 [10:18:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:40] sendDirect: sending cmd=1, length=8
+16 [10:18:40] onKeepAlive: heartbeat sent
+16 [10:18:40] TCP_KEEPALIVE response received!
+16 [10:18:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:41] MainThreadProc: accepted client, socket=8
+16 [10:18:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:41] TCPSThreadProc: received 8 bytes
+16 [10:18:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:41] GW_QUERY_STATUS received
+16 [10:18:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:45] sendDirect: sending cmd=1, length=8
+16 [10:18:45] onKeepAlive: heartbeat sent
+16 [10:18:45] TCP_KEEPALIVE response received!
+16 [10:18:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:45] MainThreadProc: accepted client, socket=7
+16 [10:18:45] TCPSThreadProc: received 8 bytes
+16 [10:18:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:45] GW_QUERY_STATUS received
+16 [10:18:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:46] TCPSThreadProc: received 8 bytes
+16 [10:18:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:49] TCPSThreadProc: received 8 bytes
+16 [10:18:49] MainThreadProc: accepted client, socket=8
+16 [10:18:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:49] GW_QUERY_STATUS received
+16 [10:18:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:50] sendDirect: sending cmd=1, length=8
+16 [10:18:50] onKeepAlive: heartbeat sent
+16 [10:18:50] TCP_KEEPALIVE response received!
+16 [10:18:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:18:55] sendDirect: sending cmd=1, length=8
+16 [10:18:55] onKeepAlive: heartbeat sent
+16 [10:18:55] TCP_KEEPALIVE response received!
+16 [10:18:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:18:55] MainThreadProc: accepted client, socket=7
+16 [10:18:55] TCPSThreadProc: received 8 bytes
+16 [10:18:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:55] GW_QUERY_STATUS received
+16 [10:18:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:18:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:18:56] TCPSThreadProc: received 8 bytes
+16 [10:18:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:18:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:18:59] MainThreadProc: accepted client, socket=8
+16 [10:18:59] TCPSThreadProc: received 8 bytes
+16 [10:18:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:18:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:18:59] GW_QUERY_STATUS received
+16 [10:18:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:00] sendDirect: sending cmd=1, length=8
+16 [10:19:00] onKeepAlive: heartbeat sent
+16 [10:19:00] TCP_KEEPALIVE response received!
+16 [10:19:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:05] sendDirect: sending cmd=1, length=8
+16 [10:19:05] onKeepAlive: heartbeat sent
+16 [10:19:05] TCP_KEEPALIVE response received!
+16 [10:19:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:05] MainThreadProc: accepted client, socket=7
+16 [10:19:05] TCPSThreadProc: received 8 bytes
+16 [10:19:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:05] GW_QUERY_STATUS received
+16 [10:19:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:06] TCPSThreadProc: received 8 bytes
+16 [10:19:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:19:06] GW_KEEPALIVE received
+16 [10:19:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:19:06] TCPSThreadProc: received 8 bytes
+16 [10:19:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:09] MainThreadProc: accepted client, socket=8
+16 [10:19:09] TCPSThreadProc: received 8 bytes
+16 [10:19:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:09] GW_QUERY_STATUS received
+16 [10:19:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:10] sendDirect: sending cmd=1, length=8
+16 [10:19:10] onKeepAlive: heartbeat sent
+16 [10:19:10] TCP_KEEPALIVE response received!
+16 [10:19:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:15] sendDirect: sending cmd=1, length=8
+16 [10:19:15] onKeepAlive: heartbeat sent
+16 [10:19:15] TCP_KEEPALIVE response received!
+16 [10:19:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:15] MainThreadProc: accepted client, socket=7
+16 [10:19:15] TCPSThreadProc: received 8 bytes
+16 [10:19:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:15] GW_QUERY_STATUS received
+16 [10:19:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:16] TCPSThreadProc: received 8 bytes
+16 [10:19:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:19] MainThreadProc: accepted client, socket=8
+16 [10:19:19] TCPSThreadProc: received 8 bytes
+16 [10:19:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:19] GW_QUERY_STATUS received
+16 [10:19:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:20] sendDirect: sending cmd=1, length=8
+16 [10:19:20] onKeepAlive: heartbeat sent
+16 [10:19:20] TCP_KEEPALIVE response received!
+16 [10:19:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:25] sendDirect: sending cmd=1, length=8
+16 [10:19:25] onKeepAlive: heartbeat sent
+16 [10:19:25] TCP_KEEPALIVE response received!
+16 [10:19:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:25] MainThreadProc: accepted client, socket=7
+16 [10:19:25] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:25] TCPSThreadProc: received 8 bytes
+16 [10:19:25] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:25] GW_QUERY_STATUS received
+16 [10:19:25] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:26] TCPSThreadProc: received 8 bytes
+16 [10:19:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:29] MainThreadProc: accepted client, socket=8
+16 [10:19:29] TCPSThreadProc: received 8 bytes
+16 [10:19:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:29] GW_QUERY_STATUS received
+16 [10:19:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:30] sendDirect: sending cmd=1, length=8
+16 [10:19:30] onKeepAlive: heartbeat sent
+16 [10:19:30] TCP_KEEPALIVE response received!
+16 [10:19:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:35] sendDirect: sending cmd=1, length=8
+16 [10:19:35] onKeepAlive: heartbeat sent
+16 [10:19:35] TCP_KEEPALIVE response received!
+16 [10:19:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:35] MainThreadProc: accepted client, socket=7
+16 [10:19:35] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:35] TCPSThreadProc: received 8 bytes
+16 [10:19:35] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:35] GW_QUERY_STATUS received
+16 [10:19:35] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:36] TCPSThreadProc: received 8 bytes
+16 [10:19:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:19:36] GW_KEEPALIVE received
+16 [10:19:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:19:36] TCPSThreadProc: received 8 bytes
+16 [10:19:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:39] MainThreadProc: accepted client, socket=8
+16 [10:19:39] TCPSThreadProc: received 8 bytes
+16 [10:19:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:39] GW_QUERY_STATUS received
+16 [10:19:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:40] sendDirect: sending cmd=1, length=8
+16 [10:19:40] onKeepAlive: heartbeat sent
+16 [10:19:40] TCP_KEEPALIVE response received!
+16 [10:19:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:41] MainThreadProc: accepted client, socket=7
+16 [10:19:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:41] TCPSThreadProc: received 8 bytes
+16 [10:19:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:41] GW_QUERY_STATUS received
+16 [10:19:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:45] sendDirect: sending cmd=1, length=8
+16 [10:19:45] onKeepAlive: heartbeat sent
+16 [10:19:45] TCP_KEEPALIVE response received!
+16 [10:19:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:45] MainThreadProc: accepted client, socket=8
+16 [10:19:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:45] TCPSThreadProc: received 8 bytes
+16 [10:19:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:45] GW_QUERY_STATUS received
+16 [10:19:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:46] TCPSThreadProc: received 8 bytes
+16 [10:19:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:49] MainThreadProc: accepted client, socket=7
+16 [10:19:49] TCPSThreadProc: received 8 bytes
+16 [10:19:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:49] GW_QUERY_STATUS received
+16 [10:19:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:50] sendDirect: sending cmd=1, length=8
+16 [10:19:50] onKeepAlive: heartbeat sent
+16 [10:19:50] TCP_KEEPALIVE response received!
+16 [10:19:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:19:55] sendDirect: sending cmd=1, length=8
+16 [10:19:55] onKeepAlive: heartbeat sent
+16 [10:19:55] TCP_KEEPALIVE response received!
+16 [10:19:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:19:55] MainThreadProc: accepted client, socket=8
+16 [10:19:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:19:55] TCPSThreadProc: received 8 bytes
+16 [10:19:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:55] GW_QUERY_STATUS received
+16 [10:19:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:19:56] TCPSThreadProc: received 8 bytes
+16 [10:19:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:19:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:19:59] MainThreadProc: accepted client, socket=7
+16 [10:19:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:19:59] TCPSThreadProc: received 8 bytes
+16 [10:19:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:19:59] GW_QUERY_STATUS received
+16 [10:19:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:00] sendDirect: sending cmd=1, length=8
+16 [10:20:00] onKeepAlive: heartbeat sent
+16 [10:20:00] TCP_KEEPALIVE response received!
+16 [10:20:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:05] sendDirect: sending cmd=1, length=8
+16 [10:20:05] onKeepAlive: heartbeat sent
+16 [10:20:05] TCP_KEEPALIVE response received!
+16 [10:20:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:05] MainThreadProc: accepted client, socket=8
+16 [10:20:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:05] TCPSThreadProc: received 8 bytes
+16 [10:20:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:05] GW_QUERY_STATUS received
+16 [10:20:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:06] TCPSThreadProc: received 8 bytes
+16 [10:20:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:20:06] GW_KEEPALIVE received
+16 [10:20:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:20:06] TCPSThreadProc: received 8 bytes
+16 [10:20:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:09] MainThreadProc: accepted client, socket=7
+16 [10:20:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:09] TCPSThreadProc: received 8 bytes
+16 [10:20:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:09] GW_QUERY_STATUS received
+16 [10:20:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:10] sendDirect: sending cmd=1, length=8
+16 [10:20:10] onKeepAlive: heartbeat sent
+16 [10:20:10] TCP_KEEPALIVE response received!
+16 [10:20:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:15] sendDirect: sending cmd=1, length=8
+16 [10:20:15] onKeepAlive: heartbeat sent
+16 [10:20:15] TCP_KEEPALIVE response received!
+16 [10:20:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:15] MainThreadProc: accepted client, socket=8
+16 [10:20:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:15] TCPSThreadProc: received 8 bytes
+16 [10:20:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:15] GW_QUERY_STATUS received
+16 [10:20:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:16] TCPSThreadProc: received 8 bytes
+16 [10:20:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:19] MainThreadProc: accepted client, socket=7
+16 [10:20:19] TCPSThreadProc: received 8 bytes
+16 [10:20:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:19] GW_QUERY_STATUS received
+16 [10:20:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:20] sendDirect: sending cmd=1, length=8
+16 [10:20:20] onKeepAlive: heartbeat sent
+16 [10:20:20] TCP_KEEPALIVE response received!
+16 [10:20:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:25] sendDirect: sending cmd=1, length=8
+16 [10:20:25] onKeepAlive: heartbeat sent
+16 [10:20:25] TCP_KEEPALIVE response received!
+16 [10:20:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:25] MainThreadProc: accepted client, socket=8
+16 [10:20:25] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:25] TCPSThreadProc: received 8 bytes
+16 [10:20:25] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:25] GW_QUERY_STATUS received
+16 [10:20:25] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:26] TCPSThreadProc: received 8 bytes
+16 [10:20:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:29] MainThreadProc: accepted client, socket=7
+16 [10:20:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:29] TCPSThreadProc: received 8 bytes
+16 [10:20:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:29] GW_QUERY_STATUS received
+16 [10:20:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:30] sendDirect: sending cmd=1, length=8
+16 [10:20:30] onKeepAlive: heartbeat sent
+16 [10:20:30] TCP_KEEPALIVE response received!
+16 [10:20:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:35] sendDirect: sending cmd=1, length=8
+16 [10:20:35] onKeepAlive: heartbeat sent
+16 [10:20:35] TCP_KEEPALIVE response received!
+16 [10:20:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:35] MainThreadProc: accepted client, socket=8
+16 [10:20:35] TCPSThreadProc: received 8 bytes
+16 [10:20:35] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:35] GW_QUERY_STATUS received
+16 [10:20:35] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:35] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:36] TCPSThreadProc: received 8 bytes
+16 [10:20:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:20:36] GW_KEEPALIVE received
+16 [10:20:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:20:36] TCPSThreadProc: received 8 bytes
+16 [10:20:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:39] MainThreadProc: accepted client, socket=7
+16 [10:20:39] TCPSThreadProc: received 8 bytes
+16 [10:20:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:39] GW_QUERY_STATUS received
+16 [10:20:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:40] sendDirect: sending cmd=1, length=8
+16 [10:20:40] onKeepAlive: heartbeat sent
+16 [10:20:40] TCP_KEEPALIVE response received!
+16 [10:20:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:41] MainThreadProc: accepted client, socket=8
+16 [10:20:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:41] TCPSThreadProc: received 8 bytes
+16 [10:20:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:41] GW_QUERY_STATUS received
+16 [10:20:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:45] sendDirect: sending cmd=1, length=8
+16 [10:20:45] onKeepAlive: heartbeat sent
+16 [10:20:45] TCP_KEEPALIVE response received!
+16 [10:20:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:45] MainThreadProc: accepted client, socket=7
+16 [10:20:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:45] TCPSThreadProc: received 8 bytes
+16 [10:20:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:45] GW_QUERY_STATUS received
+16 [10:20:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:46] TCPSThreadProc: received 8 bytes
+16 [10:20:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:49] MainThreadProc: accepted client, socket=8
+16 [10:20:49] TCPSThreadProc: received 8 bytes
+16 [10:20:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:49] GW_QUERY_STATUS received
+16 [10:20:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:50] sendDirect: sending cmd=1, length=8
+16 [10:20:50] onKeepAlive: heartbeat sent
+16 [10:20:50] TCP_KEEPALIVE response received!
+16 [10:20:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:20:55] sendDirect: sending cmd=1, length=8
+16 [10:20:55] onKeepAlive: heartbeat sent
+16 [10:20:55] TCP_KEEPALIVE response received!
+16 [10:20:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:20:55] MainThreadProc: accepted client, socket=7
+16 [10:20:55] TCPSThreadProc: received 8 bytes
+16 [10:20:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:55] GW_QUERY_STATUS received
+16 [10:20:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:20:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:20:56] TCPSThreadProc: received 8 bytes
+16 [10:20:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:20:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:20:59] MainThreadProc: accepted client, socket=8
+16 [10:20:59] TCPSThreadProc: received 8 bytes
+16 [10:20:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:20:59] GW_QUERY_STATUS received
+16 [10:20:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:20:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:00] sendDirect: sending cmd=1, length=8
+16 [10:21:00] onKeepAlive: heartbeat sent
+16 [10:21:00] TCP_KEEPALIVE response received!
+16 [10:21:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:05] sendDirect: sending cmd=1, length=8
+16 [10:21:05] onKeepAlive: heartbeat sent
+16 [10:21:05] TCP_KEEPALIVE response received!
+16 [10:21:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:06] TCPSThreadProc: received 8 bytes
+16 [10:21:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:21:06] GW_KEEPALIVE received
+16 [10:21:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:21:06] TCPSThreadProc: received 8 bytes
+16 [10:21:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:09] MainThreadProc: accepted client, socket=7
+16 [10:21:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:21:09] TCPSThreadProc: received 8 bytes
+16 [10:21:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:09] GW_QUERY_STATUS received
+16 [10:21:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:10] sendDirect: sending cmd=1, length=8
+16 [10:21:10] onKeepAlive: heartbeat sent
+16 [10:21:10] TCP_KEEPALIVE response received!
+16 [10:21:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:15] sendDirect: sending cmd=1, length=8
+16 [10:21:15] onKeepAlive: heartbeat sent
+16 [10:21:15] TCP_KEEPALIVE response received!
+16 [10:21:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:16] TCPSThreadProc: received 8 bytes
+16 [10:21:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:19] MainThreadProc: accepted client, socket=8
+16 [10:21:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:21:19] TCPSThreadProc: received 8 bytes
+16 [10:21:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:19] GW_QUERY_STATUS received
+16 [10:21:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:20] sendDirect: sending cmd=1, length=8
+16 [10:21:20] onKeepAlive: heartbeat sent
+16 [10:21:20] TCP_KEEPALIVE response received!
+16 [10:21:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:25] sendDirect: sending cmd=1, length=8
+16 [10:21:25] onKeepAlive: heartbeat sent
+16 [10:21:25] TCP_KEEPALIVE response received!
+16 [10:21:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:26] TCPSThreadProc: received 8 bytes
+16 [10:21:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:29] MainThreadProc: accepted client, socket=7
+16 [10:21:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:21:29] TCPSThreadProc: received 8 bytes
+16 [10:21:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:29] GW_QUERY_STATUS received
+16 [10:21:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:30] sendDirect: sending cmd=1, length=8
+16 [10:21:30] onKeepAlive: heartbeat sent
+16 [10:21:30] TCP_KEEPALIVE response received!
+16 [10:21:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:35] sendDirect: sending cmd=1, length=8
+16 [10:21:35] onKeepAlive: heartbeat sent
+16 [10:21:35] TCP_KEEPALIVE response received!
+16 [10:21:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:36] TCPSThreadProc: received 8 bytes
+16 [10:21:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:21:36] GW_KEEPALIVE received
+16 [10:21:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:21:36] TCPSThreadProc: received 8 bytes
+16 [10:21:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:39] MainThreadProc: accepted client, socket=8
+16 [10:21:39] TCPSThreadProc: received 8 bytes
+16 [10:21:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:21:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:39] GW_QUERY_STATUS received
+16 [10:21:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:40] sendDirect: sending cmd=1, length=8
+16 [10:21:40] onKeepAlive: heartbeat sent
+16 [10:21:40] TCP_KEEPALIVE response received!
+16 [10:21:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:41] MainThreadProc: accepted client, socket=7
+16 [10:21:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:21:41] TCPSThreadProc: received 8 bytes
+16 [10:21:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:41] GW_QUERY_STATUS received
+16 [10:21:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:45] sendDirect: sending cmd=1, length=8
+16 [10:21:45] onKeepAlive: heartbeat sent
+16 [10:21:45] TCP_KEEPALIVE response received!
+16 [10:21:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:46] TCPSThreadProc: received 8 bytes
+16 [10:21:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:49] MainThreadProc: accepted client, socket=8
+16 [10:21:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:21:49] TCPSThreadProc: received 8 bytes
+16 [10:21:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:49] GW_QUERY_STATUS received
+16 [10:21:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:50] sendDirect: sending cmd=1, length=8
+16 [10:21:50] onKeepAlive: heartbeat sent
+16 [10:21:50] TCP_KEEPALIVE response received!
+16 [10:21:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:51] MainThreadProc: accepted client, socket=7
+16 [10:21:51] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:21:51] TCPSThreadProc: received 8 bytes
+16 [10:21:51] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:51] GW_QUERY_STATUS received
+16 [10:21:51] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:21:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:21:55] sendDirect: sending cmd=1, length=8
+16 [10:21:55] onKeepAlive: heartbeat sent
+16 [10:21:55] TCP_KEEPALIVE response received!
+16 [10:21:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:21:56] TCPSThreadProc: received 8 bytes
+16 [10:21:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:21:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:21:59] MainThreadProc: accepted client, socket=8
+16 [10:21:59] TCPSThreadProc: received 8 bytes
+16 [10:21:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:21:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:21:59] GW_QUERY_STATUS received
+16 [10:21:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:00] sendDirect: sending cmd=1, length=8
+16 [10:22:00] onKeepAlive: heartbeat sent
+16 [10:22:00] TCP_KEEPALIVE response received!
+16 [10:22:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:05] sendDirect: sending cmd=1, length=8
+16 [10:22:05] onKeepAlive: heartbeat sent
+16 [10:22:05] TCP_KEEPALIVE response received!
+16 [10:22:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:06] TCPSThreadProc: received 8 bytes
+16 [10:22:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:22:06] GW_KEEPALIVE received
+16 [10:22:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:22:06] TCPSThreadProc: received 8 bytes
+16 [10:22:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:09] MainThreadProc: accepted client, socket=7
+16 [10:22:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:22:09] TCPSThreadProc: received 8 bytes
+16 [10:22:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:09] GW_QUERY_STATUS received
+16 [10:22:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:10] sendDirect: sending cmd=1, length=8
+16 [10:22:10] onKeepAlive: heartbeat sent
+16 [10:22:10] TCP_KEEPALIVE response received!
+16 [10:22:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:15] sendDirect: sending cmd=1, length=8
+16 [10:22:15] onKeepAlive: heartbeat sent
+16 [10:22:15] TCP_KEEPALIVE response received!
+16 [10:22:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:16] TCPSThreadProc: received 8 bytes
+16 [10:22:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:19] MainThreadProc: accepted client, socket=8
+16 [10:22:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:22:19] TCPSThreadProc: received 8 bytes
+16 [10:22:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:19] GW_QUERY_STATUS received
+16 [10:22:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:20] sendDirect: sending cmd=1, length=8
+16 [10:22:20] onKeepAlive: heartbeat sent
+16 [10:22:20] TCP_KEEPALIVE response received!
+16 [10:22:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:25] sendDirect: sending cmd=1, length=8
+16 [10:22:25] onKeepAlive: heartbeat sent
+16 [10:22:25] TCP_KEEPALIVE response received!
+16 [10:22:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:26] TCPSThreadProc: received 8 bytes
+16 [10:22:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:29] MainThreadProc: accepted client, socket=7
+16 [10:22:29] TCPSThreadProc: received 8 bytes
+16 [10:22:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:22:29] GW_QUERY_STATUS received
+16 [10:22:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:30] sendDirect: sending cmd=1, length=8
+16 [10:22:30] onKeepAlive: heartbeat sent
+16 [10:22:30] TCP_KEEPALIVE response received!
+16 [10:22:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:35] sendDirect: sending cmd=1, length=8
+16 [10:22:35] onKeepAlive: heartbeat sent
+16 [10:22:35] TCP_KEEPALIVE response received!
+16 [10:22:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:36] TCPSThreadProc: received 8 bytes
+16 [10:22:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:22:36] GW_KEEPALIVE received
+16 [10:22:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:22:36] TCPSThreadProc: received 8 bytes
+16 [10:22:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:39] MainThreadProc: accepted client, socket=8
+16 [10:22:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:22:39] TCPSThreadProc: received 8 bytes
+16 [10:22:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:39] GW_QUERY_STATUS received
+16 [10:22:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:40] sendDirect: sending cmd=1, length=8
+16 [10:22:40] onKeepAlive: heartbeat sent
+16 [10:22:40] TCP_KEEPALIVE response received!
+16 [10:22:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:41] MainThreadProc: accepted client, socket=7
+16 [10:22:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:22:41] TCPSThreadProc: received 8 bytes
+16 [10:22:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:41] GW_QUERY_STATUS received
+16 [10:22:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:41] MainThreadProc: accepted client, socket=8
+16 [10:22:41] TCPSThreadProc: received 8 bytes
+16 [10:22:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:22:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:41] GW_QUERY_STATUS received
+16 [10:22:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:45] sendDirect: sending cmd=1, length=8
+16 [10:22:45] onKeepAlive: heartbeat sent
+16 [10:22:45] TCP_KEEPALIVE response received!
+16 [10:22:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:45] MainThreadProc: accepted client, socket=7
+16 [10:22:45] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:22:45] TCPSThreadProc: received 8 bytes
+16 [10:22:45] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:45] GW_QUERY_STATUS received
+16 [10:22:45] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:46] TCPSThreadProc: received 8 bytes
+16 [10:22:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:49] MainThreadProc: accepted client, socket=8
+16 [10:22:49] TCPSThreadProc: received 8 bytes
+16 [10:22:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:49] GW_QUERY_STATUS received
+16 [10:22:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:22:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:50] sendDirect: sending cmd=1, length=8
+16 [10:22:50] onKeepAlive: heartbeat sent
+16 [10:22:50] TCP_KEEPALIVE response received!
+16 [10:22:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:22:55] sendDirect: sending cmd=1, length=8
+16 [10:22:55] onKeepAlive: heartbeat sent
+16 [10:22:55] TCP_KEEPALIVE response received!
+16 [10:22:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:22:55] MainThreadProc: accepted client, socket=7
+16 [10:22:55] TCPSThreadProc: received 8 bytes
+16 [10:22:55] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:55] GW_QUERY_STATUS received
+16 [10:22:55] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:22:55] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:22:56] TCPSThreadProc: received 8 bytes
+16 [10:22:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:22:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:22:59] MainThreadProc: accepted client, socket=8
+16 [10:22:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:22:59] TCPSThreadProc: received 8 bytes
+16 [10:22:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:22:59] GW_QUERY_STATUS received
+16 [10:22:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:00] sendDirect: sending cmd=1, length=8
+16 [10:23:00] onKeepAlive: heartbeat sent
+16 [10:23:00] TCP_KEEPALIVE response received!
+16 [10:23:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:05] sendDirect: sending cmd=1, length=8
+16 [10:23:05] onKeepAlive: heartbeat sent
+16 [10:23:05] TCP_KEEPALIVE response received!
+16 [10:23:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:05] MainThreadProc: accepted client, socket=7
+16 [10:23:05] TCPSThreadProc: received 8 bytes
+16 [10:23:05] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:05] GW_QUERY_STATUS received
+16 [10:23:05] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:23:05] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:06] TCPSThreadProc: received 8 bytes
+16 [10:23:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:23:06] GW_KEEPALIVE received
+16 [10:23:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:23:06] TCPSThreadProc: received 8 bytes
+16 [10:23:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:09] MainThreadProc: accepted client, socket=8
+16 [10:23:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:23:09] TCPSThreadProc: received 8 bytes
+16 [10:23:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:09] GW_QUERY_STATUS received
+16 [10:23:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:10] sendDirect: sending cmd=1, length=8
+16 [10:23:10] onKeepAlive: heartbeat sent
+16 [10:23:10] TCP_KEEPALIVE response received!
+16 [10:23:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:15] sendDirect: sending cmd=1, length=8
+16 [10:23:15] onKeepAlive: heartbeat sent
+16 [10:23:15] TCP_KEEPALIVE response received!
+16 [10:23:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:15] MainThreadProc: accepted client, socket=7
+16 [10:23:15] TCPSThreadProc: received 8 bytes
+16 [10:23:15] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:15] GW_QUERY_STATUS received
+16 [10:23:15] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:23:15] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:16] TCPSThreadProc: received 8 bytes
+16 [10:23:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:19] MainThreadProc: accepted client, socket=8
+16 [10:23:19] TCPSThreadProc: received 8 bytes
+16 [10:23:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:19] GW_QUERY_STATUS received
+16 [10:23:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:23:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:20] sendDirect: sending cmd=1, length=8
+16 [10:23:20] onKeepAlive: heartbeat sent
+16 [10:23:20] TCP_KEEPALIVE response received!
+16 [10:23:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:25] sendDirect: sending cmd=1, length=8
+16 [10:23:25] onKeepAlive: heartbeat sent
+16 [10:23:25] TCP_KEEPALIVE response received!
+16 [10:23:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:26] TCPSThreadProc: received 8 bytes
+16 [10:23:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:29] MainThreadProc: accepted client, socket=7
+16 [10:23:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:23:29] TCPSThreadProc: received 8 bytes
+16 [10:23:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:29] GW_QUERY_STATUS received
+16 [10:23:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:30] sendDirect: sending cmd=1, length=8
+16 [10:23:30] onKeepAlive: heartbeat sent
+16 [10:23:30] TCP_KEEPALIVE response received!
+16 [10:23:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:35] sendDirect: sending cmd=1, length=8
+16 [10:23:35] onKeepAlive: heartbeat sent
+16 [10:23:35] TCP_KEEPALIVE response received!
+16 [10:23:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:36] TCPSThreadProc: received 8 bytes
+16 [10:23:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:23:36] GW_KEEPALIVE received
+16 [10:23:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:23:36] TCPSThreadProc: received 8 bytes
+16 [10:23:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:39] MainThreadProc: accepted client, socket=8
+16 [10:23:39] TCPSThreadProc: received 8 bytes
+16 [10:23:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:23:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:39] GW_QUERY_STATUS received
+16 [10:23:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:40] sendDirect: sending cmd=1, length=8
+16 [10:23:40] onKeepAlive: heartbeat sent
+16 [10:23:40] TCP_KEEPALIVE response received!
+16 [10:23:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:41] MainThreadProc: accepted client, socket=7
+16 [10:23:41] TCPSThreadProc: received 8 bytes
+16 [10:23:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:23:41] GW_QUERY_STATUS received
+16 [10:23:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:45] sendDirect: sending cmd=1, length=8
+16 [10:23:45] onKeepAlive: heartbeat sent
+16 [10:23:45] TCP_KEEPALIVE response received!
+16 [10:23:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:46] TCPSThreadProc: received 8 bytes
+16 [10:23:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:49] MainThreadProc: accepted client, socket=8
+16 [10:23:49] TCPSThreadProc: received 8 bytes
+16 [10:23:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:23:49] GW_QUERY_STATUS received
+16 [10:23:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:23:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:50] sendDirect: sending cmd=1, length=8
+16 [10:23:50] onKeepAlive: heartbeat sent
+16 [10:23:50] TCP_KEEPALIVE response received!
+16 [10:23:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:23:55] sendDirect: sending cmd=1, length=8
+16 [10:23:55] onKeepAlive: heartbeat sent
+16 [10:23:55] TCP_KEEPALIVE response received!
+16 [10:23:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:23:56] TCPSThreadProc: received 8 bytes
+16 [10:23:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:23:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:23:59] MainThreadProc: accepted client, socket=7
+16 [10:23:59] TCPSThreadProc: received 8 bytes
+16 [10:23:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:23:59] GW_QUERY_STATUS received
+16 [10:23:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:23:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:00] sendDirect: sending cmd=1, length=8
+16 [10:24:00] onKeepAlive: heartbeat sent
+16 [10:24:00] TCP_KEEPALIVE response received!
+16 [10:24:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:05] sendDirect: sending cmd=1, length=8
+16 [10:24:05] onKeepAlive: heartbeat sent
+16 [10:24:05] TCP_KEEPALIVE response received!
+16 [10:24:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:06] TCPSThreadProc: received 8 bytes
+16 [10:24:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:24:06] GW_KEEPALIVE received
+16 [10:24:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:24:06] TCPSThreadProc: received 8 bytes
+16 [10:24:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:09] MainThreadProc: accepted client, socket=8
+16 [10:24:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:24:09] TCPSThreadProc: received 8 bytes
+16 [10:24:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:09] GW_QUERY_STATUS received
+16 [10:24:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:10] sendDirect: sending cmd=1, length=8
+16 [10:24:10] onKeepAlive: heartbeat sent
+16 [10:24:10] TCP_KEEPALIVE response received!
+16 [10:24:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:15] sendDirect: sending cmd=1, length=8
+16 [10:24:15] onKeepAlive: heartbeat sent
+16 [10:24:15] TCP_KEEPALIVE response received!
+16 [10:24:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:16] TCPSThreadProc: received 8 bytes
+16 [10:24:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:18] TCPSThreadProc: received 8 bytes
+16 [10:24:18] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:18] GW_QUERY_STATUS received
+16 [10:24:18] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:19] MainThreadProc: accepted client, socket=7
+16 [10:24:19] TCPSThreadProc: received 8 bytes
+16 [10:24:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:19] GW_QUERY_STATUS received
+16 [10:24:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=7
+16 [10:24:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:20] sendDirect: sending cmd=1, length=8
+16 [10:24:20] onKeepAlive: heartbeat sent
+16 [10:24:20] TCP_KEEPALIVE response received!
+16 [10:24:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:21] TCPSThreadProc: received 50 bytes
+16 [10:24:21] TCPSThreadProc: calling ReceivePacketEx, cmd=3, bodyLen=42
+16 [10:24:21] GW_FAX_REQUESTSEND received, bodyLen=42
+16 [10:24:21] send FAX request 00860757-28663229-, CSID=Faxking_OIS2, fileSize=22992
+16 [10:24:21] sendDirect: sending cmd=1, length=55
+16 [10:24:21] onSendRequestReply: g_bySendCode=1, g_strIP=tegest.imwork.net, g_nPort=8087, g_strUUID=5d4dd7c4-cad5-416f-9d1b-d29c53275934, g_nFileSize=-1269422257
+16 [10:24:21] ConnectFileSrv: START, g_strIP=tegest.imwork.net, g_nPort=8087, g_strUUID=5d4dd7c4-cad5-416f-9d1b-d29c53275934
+16 [10:24:21] ConnectFileSrv: resolving IP address for tegest.imwork.net
+16 [10:24:21] ConnectFileSrv: tegest.imwork.net is not an IP address, trying gethostbyname
+16 [10:24:21] ConnectFileSrv: resolved tegest.imwork.net to IP: 14.223.95.189
+16 [10:24:21] ConnectFileSrv: target address 14.223.95.189:8087
+16 [10:24:21] ConnectFileSrv: socket created successfully, fd=7
+16 [10:24:21] ConnectFileSrv: attempting to connect to 14.223.95.189:8087
+16 [10:24:21] ConnectFileSrv: connected successfully to 14.223.95.189:8087
+16 [10:24:21] connect to File server tegest.imwork.net.
+16 [10:24:21] ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=5d4dd7c4-cad5-416f-9d1b-d29c53275934
+16 [10:24:21] ConnectFileSrv: packet built, length=40, calling SendRSAPacket
+16 [10:24:21] ConnectFileSrv: SendRSAPacket succeeded
+16 [10:24:21] send TCP_FAX_REQUESTSEND.
+16 [10:24:24] ConnectFileSrv: no response from file server (timeout after 3 seconds)
+16 [10:24:24] ConnectFileSrv: END, returning 0
+16 [10:24:24] return send FAX request: 1, IP:tegest.imwork.net Port:8087, UUID:5d4dd7c4-cad5-416f-9d1b-d29c53275934
+16 [10:24:24] GW_FAX_REQUESTSEND completed, g_bySendCode=1, connection still alive
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 512 bytes
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:24:24] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 472 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=464
+16 [10:24:24] GW_FAX_SEND received, nType=1, bodyLen=464
+16 [10:24:24] GW_FAX_SEND: sending 464 bytes to File Server
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] TCPSThreadProc: received 8 bytes
+16 [10:24:24] TCPSThreadProc: calling ReceivePacketEx, cmd=5, bodyLen=0
+16 [10:24:24] GW_FAX_STOPSEND received, nType=1
+16 [10:24:24] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:24:24] GW_FAX_STOPSEND: completed, result=0, response sent to Java client
+16 [10:24:24] GW_FAX_STOPSEND: completed
+16 [10:24:24] 5d4dd7c4-cad5-416f-9d1b-d29c53275934 LCR Report Request:2
+16 [10:24:25] 5d4dd7c4-cad5-416f-9d1b-d29c53275934 LCR Report Request:0
+16 [10:24:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:25] sendDirect: sending cmd=1, length=8
+16 [10:24:25] onKeepAlive: heartbeat sent
+16 [10:24:25] TCP_KEEPALIVE response received!
+16 [10:24:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:26] TCPSThreadProc: received 8 bytes
+16 [10:24:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:29] MainThreadProc: accepted client, socket=8
+16 [10:24:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:24:29] TCPSThreadProc: received 8 bytes
+16 [10:24:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:29] GW_QUERY_STATUS received
+16 [10:24:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:30] sendDirect: sending cmd=1, length=8
+16 [10:24:30] onKeepAlive: heartbeat sent
+16 [10:24:30] TCP_KEEPALIVE response received!
+16 [10:24:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:35] 5d4dd7c4-cad5-416f-9d1b-d29c53275934 LCR Report Request:0
+16 [10:24:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:35] sendDirect: sending cmd=1, length=8
+16 [10:24:35] onKeepAlive: heartbeat sent
+16 [10:24:35] TCP_KEEPALIVE response received!
+16 [10:24:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:36] TCPSThreadProc: received 8 bytes
+16 [10:24:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:24:36] GW_KEEPALIVE received
+16 [10:24:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:24:36] TCPSThreadProc: received 8 bytes
+16 [10:24:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:39] MainThreadProc: accepted client, socket=9
+16 [10:24:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:24:39] TCPSThreadProc: received 8 bytes
+16 [10:24:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:39] GW_QUERY_STATUS received
+16 [10:24:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:40] sendDirect: sending cmd=1, length=8
+16 [10:24:40] onKeepAlive: heartbeat sent
+16 [10:24:40] TCP_KEEPALIVE response received!
+16 [10:24:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:41] MainThreadProc: accepted client, socket=8
+16 [10:24:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:24:41] TCPSThreadProc: received 8 bytes
+16 [10:24:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:41] GW_QUERY_STATUS received
+16 [10:24:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:45] 5d4dd7c4-cad5-416f-9d1b-d29c53275934 LCR Report Request:0
+16 [10:24:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:45] sendDirect: sending cmd=1, length=8
+16 [10:24:45] onKeepAlive: heartbeat sent
+16 [10:24:45] TCP_KEEPALIVE response received!
+16 [10:24:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:46] TCPSThreadProc: received 8 bytes
+16 [10:24:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:49] MainThreadProc: accepted client, socket=9
+16 [10:24:49] TCPSThreadProc: received 8 bytes
+16 [10:24:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:24:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:49] GW_QUERY_STATUS received
+16 [10:24:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:24:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:50] sendDirect: sending cmd=1, length=8
+16 [10:24:50] onKeepAlive: heartbeat sent
+16 [10:24:50] TCP_KEEPALIVE response received!
+16 [10:24:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:55] 5d4dd7c4-cad5-416f-9d1b-d29c53275934 LCR Report Request:0
+16 [10:24:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:24:55] sendDirect: sending cmd=1, length=8
+16 [10:24:55] onKeepAlive: heartbeat sent
+16 [10:24:55] TCP_KEEPALIVE response received!
+16 [10:24:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:24:56] TCPSThreadProc: received 8 bytes
+16 [10:24:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:24:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:24:59] MainThreadProc: accepted client, socket=8
+16 [10:24:59] TCPSThreadProc: received 8 bytes
+16 [10:24:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:24:59] GW_QUERY_STATUS received
+16 [10:24:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:24:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:00] sendDirect: sending cmd=1, length=8
+16 [10:25:00] onKeepAlive: heartbeat sent
+16 [10:25:00] TCP_KEEPALIVE response received!
+16 [10:25:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:05] sendDirect: sending cmd=1, length=8
+16 [10:25:05] onKeepAlive: heartbeat sent
+16 [10:25:05] TCP_KEEPALIVE response received!
+16 [10:25:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:06] TCPSThreadProc: received 8 bytes
+16 [10:25:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:25:06] GW_KEEPALIVE received
+16 [10:25:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:25:06] TCPSThreadProc: received 8 bytes
+16 [10:25:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:09] MainThreadProc: accepted client, socket=9
+16 [10:25:09] TCPSThreadProc: received 8 bytes
+16 [10:25:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:09] GW_QUERY_STATUS received
+16 [10:25:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:25:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:10] sendDirect: sending cmd=1, length=8
+16 [10:25:10] onKeepAlive: heartbeat sent
+16 [10:25:10] TCP_KEEPALIVE response received!
+16 [10:25:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:15] sendDirect: sending cmd=1, length=8
+16 [10:25:15] onKeepAlive: heartbeat sent
+16 [10:25:15] TCP_KEEPALIVE response received!
+16 [10:25:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:16] TCPSThreadProc: received 8 bytes
+16 [10:25:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:19] MainThreadProc: accepted client, socket=8
+16 [10:25:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:25:19] TCPSThreadProc: received 8 bytes
+16 [10:25:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:19] GW_QUERY_STATUS received
+16 [10:25:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:20] sendDirect: sending cmd=1, length=8
+16 [10:25:20] onKeepAlive: heartbeat sent
+16 [10:25:20] TCP_KEEPALIVE response received!
+16 [10:25:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:25] sendDirect: sending cmd=1, length=8
+16 [10:25:25] onKeepAlive: heartbeat sent
+16 [10:25:25] TCP_KEEPALIVE response received!
+16 [10:25:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:26] TCPSThreadProc: received 8 bytes
+16 [10:25:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:29] MainThreadProc: accepted client, socket=9
+16 [10:25:29] TCPSThreadProc: received 8 bytes
+16 [10:25:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:25:29] GW_QUERY_STATUS received
+16 [10:25:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:30] sendDirect: sending cmd=1, length=8
+16 [10:25:30] onKeepAlive: heartbeat sent
+16 [10:25:30] TCP_KEEPALIVE response received!
+16 [10:25:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:35] sendDirect: sending cmd=1, length=8
+16 [10:25:35] onKeepAlive: heartbeat sent
+16 [10:25:35] TCP_KEEPALIVE response received!
+16 [10:25:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:36] TCPSThreadProc: received 8 bytes
+16 [10:25:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:25:36] GW_KEEPALIVE received
+16 [10:25:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:25:36] TCPSThreadProc: received 8 bytes
+16 [10:25:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:39] MainThreadProc: accepted client, socket=8
+16 [10:25:39] TCPSThreadProc: received 8 bytes
+16 [10:25:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:25:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:39] GW_QUERY_STATUS received
+16 [10:25:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:40] sendDirect: sending cmd=1, length=8
+16 [10:25:40] onKeepAlive: heartbeat sent
+16 [10:25:40] TCP_KEEPALIVE response received!
+16 [10:25:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:41] MainThreadProc: accepted client, socket=9
+16 [10:25:41] TCPSThreadProc: received 8 bytes
+16 [10:25:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:41] GW_QUERY_STATUS received
+16 [10:25:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:25:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:45] sendDirect: sending cmd=1, length=8
+16 [10:25:45] onKeepAlive: heartbeat sent
+16 [10:25:45] TCP_KEEPALIVE response received!
+16 [10:25:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:46] TCPSThreadProc: received 8 bytes
+16 [10:25:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:49] MainThreadProc: accepted client, socket=8
+16 [10:25:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:25:49] TCPSThreadProc: received 8 bytes
+16 [10:25:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:49] GW_QUERY_STATUS received
+16 [10:25:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:25:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:50] sendDirect: sending cmd=1, length=8
+16 [10:25:50] onKeepAlive: heartbeat sent
+16 [10:25:50] TCP_KEEPALIVE response received!
+16 [10:25:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:25:55] sendDirect: sending cmd=1, length=8
+16 [10:25:55] onKeepAlive: heartbeat sent
+16 [10:25:55] TCP_KEEPALIVE response received!
+16 [10:25:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:25:56] TCPSThreadProc: received 8 bytes
+16 [10:25:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:25:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:25:59] MainThreadProc: accepted client, socket=9
+16 [10:25:59] TCPSThreadProc: received 8 bytes
+16 [10:25:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:25:59] GW_QUERY_STATUS received
+16 [10:25:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:25:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:00] sendDirect: sending cmd=1, length=8
+16 [10:26:00] onKeepAlive: heartbeat sent
+16 [10:26:00] TCP_KEEPALIVE response received!
+16 [10:26:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:05] sendDirect: sending cmd=1, length=8
+16 [10:26:05] onKeepAlive: heartbeat sent
+16 [10:26:05] TCP_KEEPALIVE response received!
+16 [10:26:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:06] TCPSThreadProc: received 8 bytes
+16 [10:26:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:26:06] GW_KEEPALIVE received
+16 [10:26:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:26:06] TCPSThreadProc: received 8 bytes
+16 [10:26:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:09] MainThreadProc: accepted client, socket=8
+16 [10:26:09] TCPSThreadProc: received 8 bytes
+16 [10:26:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:09] GW_QUERY_STATUS received
+16 [10:26:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:26:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:10] sendDirect: sending cmd=1, length=8
+16 [10:26:10] onKeepAlive: heartbeat sent
+16 [10:26:10] TCP_KEEPALIVE response received!
+16 [10:26:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:15] sendDirect: sending cmd=1, length=8
+16 [10:26:15] onKeepAlive: heartbeat sent
+16 [10:26:15] TCP_KEEPALIVE response received!
+16 [10:26:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:16] TCPSThreadProc: received 8 bytes
+16 [10:26:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:19] MainThreadProc: accepted client, socket=9
+16 [10:26:19] TCPSThreadProc: received 8 bytes
+16 [10:26:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:19] GW_QUERY_STATUS received
+16 [10:26:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:26:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:20] sendDirect: sending cmd=1, length=8
+16 [10:26:20] onKeepAlive: heartbeat sent
+16 [10:26:20] TCP_KEEPALIVE response received!
+16 [10:26:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:25] sendDirect: sending cmd=1, length=8
+16 [10:26:25] onKeepAlive: heartbeat sent
+16 [10:26:25] TCP_KEEPALIVE response received!
+16 [10:26:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:26] TCPSThreadProc: received 8 bytes
+16 [10:26:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:29] MainThreadProc: accepted client, socket=8
+16 [10:26:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:26:29] TCPSThreadProc: received 8 bytes
+16 [10:26:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:29] GW_QUERY_STATUS received
+16 [10:26:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:30] sendDirect: sending cmd=1, length=8
+16 [10:26:30] onKeepAlive: heartbeat sent
+16 [10:26:30] TCP_KEEPALIVE response received!
+16 [10:26:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:35] sendDirect: sending cmd=1, length=8
+16 [10:26:35] onKeepAlive: heartbeat sent
+16 [10:26:35] TCP_KEEPALIVE response received!
+16 [10:26:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:36] TCPSThreadProc: received 8 bytes
+16 [10:26:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:26:36] GW_KEEPALIVE received
+16 [10:26:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:26:36] TCPSThreadProc: received 8 bytes
+16 [10:26:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:39] MainThreadProc: accepted client, socket=9
+16 [10:26:39] TCPSThreadProc: received 8 bytes
+16 [10:26:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:26:39] GW_QUERY_STATUS received
+16 [10:26:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:40] sendDirect: sending cmd=1, length=8
+16 [10:26:40] onKeepAlive: heartbeat sent
+16 [10:26:40] TCP_KEEPALIVE response received!
+16 [10:26:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:41] MainThreadProc: accepted client, socket=8
+16 [10:26:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:26:41] TCPSThreadProc: received 8 bytes
+16 [10:26:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:41] GW_QUERY_STATUS received
+16 [10:26:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:45] sendDirect: sending cmd=1, length=8
+16 [10:26:45] onKeepAlive: heartbeat sent
+16 [10:26:45] TCP_KEEPALIVE response received!
+16 [10:26:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:46] TCPSThreadProc: received 8 bytes
+16 [10:26:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:49] MainThreadProc: accepted client, socket=9
+16 [10:26:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:26:49] TCPSThreadProc: received 8 bytes
+16 [10:26:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:49] GW_QUERY_STATUS received
+16 [10:26:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:26:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:50] sendDirect: sending cmd=1, length=8
+16 [10:26:50] onKeepAlive: heartbeat sent
+16 [10:26:50] TCP_KEEPALIVE response received!
+16 [10:26:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:26:55] sendDirect: sending cmd=1, length=8
+16 [10:26:55] onKeepAlive: heartbeat sent
+16 [10:26:55] TCP_KEEPALIVE response received!
+16 [10:26:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:26:56] TCPSThreadProc: received 8 bytes
+16 [10:26:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:26:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:26:59] MainThreadProc: accepted client, socket=8
+16 [10:26:59] TCPSThreadProc: received 8 bytes
+16 [10:26:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:26:59] GW_QUERY_STATUS received
+16 [10:26:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:26:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:00] sendDirect: sending cmd=1, length=8
+16 [10:27:00] onKeepAlive: heartbeat sent
+16 [10:27:00] TCP_KEEPALIVE response received!
+16 [10:27:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:05] sendDirect: sending cmd=1, length=8
+16 [10:27:05] onKeepAlive: heartbeat sent
+16 [10:27:05] TCP_KEEPALIVE response received!
+16 [10:27:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:06] TCPSThreadProc: received 8 bytes
+16 [10:27:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:27:06] GW_KEEPALIVE received
+16 [10:27:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:27:06] TCPSThreadProc: received 8 bytes
+16 [10:27:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:09] MainThreadProc: accepted client, socket=9
+16 [10:27:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:27:09] TCPSThreadProc: received 8 bytes
+16 [10:27:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:09] GW_QUERY_STATUS received
+16 [10:27:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:10] sendDirect: sending cmd=1, length=8
+16 [10:27:10] onKeepAlive: heartbeat sent
+16 [10:27:10] TCP_KEEPALIVE response received!
+16 [10:27:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:15] sendDirect: sending cmd=1, length=8
+16 [10:27:15] onKeepAlive: heartbeat sent
+16 [10:27:15] TCP_KEEPALIVE response received!
+16 [10:27:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:16] TCPSThreadProc: received 8 bytes
+16 [10:27:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:19] MainThreadProc: accepted client, socket=8
+16 [10:27:19] TCPSThreadProc: received 8 bytes
+16 [10:27:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:19] GW_QUERY_STATUS received
+16 [10:27:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:27:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:20] sendDirect: sending cmd=1, length=8
+16 [10:27:20] onKeepAlive: heartbeat sent
+16 [10:27:20] TCP_KEEPALIVE response received!
+16 [10:27:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:25] sendDirect: sending cmd=1, length=8
+16 [10:27:25] onKeepAlive: heartbeat sent
+16 [10:27:25] TCP_KEEPALIVE response received!
+16 [10:27:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:26] TCPSThreadProc: received 8 bytes
+16 [10:27:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:29] MainThreadProc: accepted client, socket=9
+16 [10:27:29] TCPSThreadProc: received 8 bytes
+16 [10:27:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:27:29] GW_QUERY_STATUS received
+16 [10:27:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:30] sendDirect: sending cmd=1, length=8
+16 [10:27:30] onKeepAlive: heartbeat sent
+16 [10:27:30] TCP_KEEPALIVE response received!
+16 [10:27:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:35] sendDirect: sending cmd=1, length=8
+16 [10:27:35] onKeepAlive: heartbeat sent
+16 [10:27:35] TCP_KEEPALIVE response received!
+16 [10:27:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:36] TCPSThreadProc: received 8 bytes
+16 [10:27:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:27:36] GW_KEEPALIVE received
+16 [10:27:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:27:36] TCPSThreadProc: received 8 bytes
+16 [10:27:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:39] MainThreadProc: accepted client, socket=8
+16 [10:27:39] TCPSThreadProc: received 8 bytes
+16 [10:27:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:39] GW_QUERY_STATUS received
+16 [10:27:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:27:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:40] sendDirect: sending cmd=1, length=8
+16 [10:27:40] onKeepAlive: heartbeat sent
+16 [10:27:40] TCP_KEEPALIVE response received!
+16 [10:27:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:41] MainThreadProc: accepted client, socket=9
+16 [10:27:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:27:41] TCPSThreadProc: received 8 bytes
+16 [10:27:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:41] GW_QUERY_STATUS received
+16 [10:27:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:45] sendDirect: sending cmd=1, length=8
+16 [10:27:45] onKeepAlive: heartbeat sent
+16 [10:27:45] TCP_KEEPALIVE response received!
+16 [10:27:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:46] TCPSThreadProc: received 8 bytes
+16 [10:27:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:49] MainThreadProc: accepted client, socket=8
+16 [10:27:49] TCPSThreadProc: received 8 bytes
+16 [10:27:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:49] GW_QUERY_STATUS received
+16 [10:27:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:27:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:27:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:50] sendDirect: sending cmd=1, length=8
+16 [10:27:50] onKeepAlive: heartbeat sent
+16 [10:27:50] TCP_KEEPALIVE response received!
+16 [10:27:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:27:55] sendDirect: sending cmd=1, length=8
+16 [10:27:55] onKeepAlive: heartbeat sent
+16 [10:27:55] TCP_KEEPALIVE response received!
+16 [10:27:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:27:56] TCPSThreadProc: received 8 bytes
+16 [10:27:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:27:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:27:59] MainThreadProc: accepted client, socket=9
+16 [10:27:59] TCPSThreadProc: received 8 bytes
+16 [10:27:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:27:59] GW_QUERY_STATUS received
+16 [10:27:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:27:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:28:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:28:00] sendDirect: sending cmd=1, length=8
+16 [10:28:00] onKeepAlive: heartbeat sent
+16 [10:28:00] TCP_KEEPALIVE response received!
+16 [10:28:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:28:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:28:05] sendDirect: sending cmd=1, length=8
+16 [10:28:05] onKeepAlive: heartbeat sent
+16 [10:28:05] TCP_KEEPALIVE response received!
+16 [10:28:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:28:06] TCPSThreadProc: received 8 bytes
+16 [10:28:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:28:06] GW_KEEPALIVE received
+16 [10:28:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:28:06] TCPSThreadProc: received 8 bytes
+16 [10:28:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:28:09] MainThreadProc: accepted client, socket=8
+16 [10:28:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:28:09] TCPSThreadProc: received 8 bytes
+16 [10:28:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:28:09] GW_QUERY_STATUS received
+16 [10:28:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:28:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:28:10] sendDirect: sending cmd=1, length=8
+16 [10:28:10] onKeepAlive: heartbeat sent
+16 [10:28:10] TCP_KEEPALIVE response received!
+16 [10:28:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:28:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:28:15] sendDirect: sending cmd=1, length=8
+16 [10:28:15] onKeepAlive: heartbeat sent
+16 [10:28:16] TCPSThreadProc: received 8 bytes
+16 [10:28:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:28:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=1
+16 [10:28:20] sendDirect: sending cmd=1, length=8
+16 [10:28:20] onKeepAlive: heartbeat sent
+16 [10:28:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=2
+16 [10:28:25] sendDirect: sending cmd=1, length=8
+16 [10:28:25] onKeepAlive: heartbeat sent
+16 [10:28:26] TCPSThreadProc: received 8 bytes
+16 [10:28:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:28:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=3
+16 [10:28:30] sendDirect: sending cmd=1, length=8
+16 [10:28:30] onKeepAlive: heartbeat sent
+16 [10:28:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=4
+16 [10:28:35] sendDirect: sending cmd=1, length=8
+16 [10:28:35] onKeepAlive: heartbeat sent
+16 [10:28:36] TCPSThreadProc: received 8 bytes
+16 [10:28:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:28:36] GW_KEEPALIVE received
+16 [10:28:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:28:36] TCPSThreadProc: received 8 bytes
+16 [10:28:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:28:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=5
+16 [10:28:40] sendDirect: sending cmd=1, length=8
+16 [10:28:40] onKeepAlive: heartbeat sent
+16 [10:28:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=6
+16 [10:28:45] reconect the fax center.
+16 [10:28:45] connect: trying to connect to tegest.imwork.net:8079
+16 [10:28:45] ReadData: setting m_bIsLogin=FALSE
+16 [10:28:45] connect: gethostbyname failed for tegest.imwork.net
+16 [10:28:45] onLogin: preparing login...
+16 [10:28:45] Username: 120.cctbx.cn, Password: 888888
+16 [10:28:45] sendDirect: sending cmd=1, length=32
+16 [10:28:45] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:28:45] onLogin: login packet sent
+16 [10:28:46] TCPSThreadProc: received 8 bytes
+16 [10:28:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:28:50] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:28:50] reconect the fax center.
+16 [10:28:50] connect: trying to connect to tegest.imwork.net:8079
+16 [10:28:50] connect: gethostbyname failed for tegest.imwork.net
+16 [10:28:50] onLogin: preparing login...
+16 [10:28:50] Username: 120.cctbx.cn, Password: 888888
+16 [10:28:50] sendDirect: sending cmd=1, length=32
+16 [10:28:50] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:28:50] onLogin: login packet sent
+16 [10:28:55] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:28:55] reconect the fax center.
+16 [10:28:55] connect: trying to connect to tegest.imwork.net:8079
+16 [10:28:55] connect: gethostbyname failed for tegest.imwork.net
+16 [10:28:55] onLogin: preparing login...
+16 [10:28:55] Username: 120.cctbx.cn, Password: 888888
+16 [10:28:55] sendDirect: sending cmd=1, length=32
+16 [10:28:55] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:28:55] onLogin: login packet sent
+16 [10:28:56] TCPSThreadProc: received 8 bytes
+16 [10:28:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:28:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:00] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:00] reconect the fax center.
+16 [10:29:00] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:00] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:00] onLogin: preparing login...
+16 [10:29:00] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:00] sendDirect: sending cmd=1, length=32
+16 [10:29:00] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:00] onLogin: login packet sent
+16 [10:29:05] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:05] reconect the fax center.
+16 [10:29:05] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:05] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:05] onLogin: preparing login...
+16 [10:29:05] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:05] sendDirect: sending cmd=1, length=32
+16 [10:29:05] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:05] onLogin: login packet sent
+16 [10:29:06] TCPSThreadProc: received 8 bytes
+16 [10:29:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:29:06] GW_KEEPALIVE received
+16 [10:29:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=0
+16 [10:29:06] TCPSThreadProc: received 8 bytes
+16 [10:29:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:10] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:10] reconect the fax center.
+16 [10:29:10] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:10] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:10] onLogin: preparing login...
+16 [10:29:10] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:10] sendDirect: sending cmd=1, length=32
+16 [10:29:10] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:10] onLogin: login packet sent
+16 [10:29:15] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:15] reconect the fax center.
+16 [10:29:15] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:15] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:15] onLogin: preparing login...
+16 [10:29:15] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:15] sendDirect: sending cmd=1, length=32
+16 [10:29:15] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:15] onLogin: login packet sent
+16 [10:29:16] TCPSThreadProc: received 8 bytes
+16 [10:29:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:20] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:20] reconect the fax center.
+16 [10:29:20] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:20] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:20] onLogin: preparing login...
+16 [10:29:20] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:20] sendDirect: sending cmd=1, length=32
+16 [10:29:20] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:20] onLogin: login packet sent
+16 [10:29:25] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:25] reconect the fax center.
+16 [10:29:25] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:25] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:25] onLogin: preparing login...
+16 [10:29:25] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:25] sendDirect: sending cmd=1, length=32
+16 [10:29:25] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:25] onLogin: login packet sent
+16 [10:29:26] TCPSThreadProc: received 8 bytes
+16 [10:29:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:30] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:30] reconect the fax center.
+16 [10:29:30] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:30] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:30] onLogin: preparing login...
+16 [10:29:30] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:30] sendDirect: sending cmd=1, length=32
+16 [10:29:30] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:30] onLogin: login packet sent
+16 [10:29:35] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:35] reconect the fax center.
+16 [10:29:35] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:35] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:35] onLogin: preparing login...
+16 [10:29:35] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:35] sendDirect: sending cmd=1, length=32
+16 [10:29:35] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:35] onLogin: login packet sent
+16 [10:29:36] TCPSThreadProc: received 8 bytes
+16 [10:29:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:29:36] GW_KEEPALIVE received
+16 [10:29:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=0
+16 [10:29:36] TCPSThreadProc: received 8 bytes
+16 [10:29:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:39] TCPSThreadProc: received 8 bytes
+16 [10:29:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:29:39] GW_QUERY_STATUS received
+16 [10:29:39] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:29:40] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:40] reconect the fax center.
+16 [10:29:40] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:40] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:40] onLogin: preparing login...
+16 [10:29:40] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:40] sendDirect: sending cmd=1, length=32
+16 [10:29:40] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:40] onLogin: login packet sent
+16 [10:29:45] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:45] reconect the fax center.
+16 [10:29:45] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:45] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:45] onLogin: preparing login...
+16 [10:29:45] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:45] sendDirect: sending cmd=1, length=32
+16 [10:29:45] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:45] onLogin: login packet sent
+16 [10:29:46] TCPSThreadProc: received 8 bytes
+16 [10:29:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:29:50] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:50] reconect the fax center.
+16 [10:29:50] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:50] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:50] onLogin: preparing login...
+16 [10:29:50] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:50] sendDirect: sending cmd=1, length=32
+16 [10:29:50] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:50] onLogin: login packet sent
+16 [10:29:55] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:29:55] reconect the fax center.
+16 [10:29:55] connect: trying to connect to tegest.imwork.net:8079
+16 [10:29:55] connect: gethostbyname failed for tegest.imwork.net
+16 [10:29:55] onLogin: preparing login...
+16 [10:29:55] Username: 120.cctbx.cn, Password: 888888
+16 [10:29:55] sendDirect: sending cmd=1, length=32
+16 [10:29:55] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:29:55] onLogin: login packet sent
+16 [10:29:56] TCPSThreadProc: received 8 bytes
+16 [10:29:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:29:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:00] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:30:00] reconect the fax center.
+16 [10:30:00] connect: trying to connect to tegest.imwork.net:8079
+16 [10:30:00] connect: gethostbyname failed for tegest.imwork.net
+16 [10:30:00] onLogin: preparing login...
+16 [10:30:00] Username: 120.cctbx.cn, Password: 888888
+16 [10:30:00] sendDirect: sending cmd=1, length=32
+16 [10:30:00] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:30:00] onLogin: login packet sent
+16 [10:30:05] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:30:05] reconect the fax center.
+16 [10:30:05] connect: trying to connect to tegest.imwork.net:8079
+16 [10:30:05] connect: gethostbyname failed for tegest.imwork.net
+16 [10:30:05] onLogin: preparing login...
+16 [10:30:05] Username: 120.cctbx.cn, Password: 888888
+16 [10:30:05] sendDirect: sending cmd=1, length=32
+16 [10:30:05] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:30:05] onLogin: login packet sent
+16 [10:30:06] TCPSThreadProc: received 8 bytes
+16 [10:30:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:30:06] GW_KEEPALIVE received
+16 [10:30:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=0
+16 [10:30:06] TCPSThreadProc: received 8 bytes
+16 [10:30:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:10] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:30:10] reconect the fax center.
+16 [10:30:10] connect: trying to connect to tegest.imwork.net:8079
+16 [10:30:10] connect: gethostbyname failed for tegest.imwork.net
+16 [10:30:10] onLogin: preparing login...
+16 [10:30:10] Username: 120.cctbx.cn, Password: 888888
+16 [10:30:10] sendDirect: sending cmd=1, length=32
+16 [10:30:10] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:30:10] onLogin: login packet sent
+16 [10:30:15] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:30:15] reconect the fax center.
+16 [10:30:15] connect: trying to connect to tegest.imwork.net:8079
+16 [10:30:15] connect: gethostbyname failed for tegest.imwork.net
+16 [10:30:15] onLogin: preparing login...
+16 [10:30:15] Username: 120.cctbx.cn, Password: 888888
+16 [10:30:15] sendDirect: sending cmd=1, length=32
+16 [10:30:15] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:30:15] onLogin: login packet sent
+16 [10:30:16] TCPSThreadProc: received 8 bytes
+16 [10:30:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:18] MainThreadProc: accepted client, socket=9
+16 [10:30:18] TCPSThreadProc: received 8 bytes
+16 [10:30:18] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:18] GW_QUERY_STATUS received
+16 [10:30:18] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:30:18] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:30:19] MainThreadProc: accepted client, socket=3
+16 [10:30:19] TCPSThreadProc: received 8 bytes
+16 [10:30:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:30:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:19] GW_QUERY_STATUS received
+16 [10:30:19] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:30:20] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:30:20] reconect the fax center.
+16 [10:30:20] connect: trying to connect to tegest.imwork.net:8079
+16 [10:30:20] connect: socket created, connecting...
+16 [10:30:20] connect: connected successfully to tegest.imwork.net:8079
+16 [10:30:20] onLogin: preparing login...
+16 [10:30:20] Username: 120.cctbx.cn, Password: 888888
+16 [10:30:20] sendDirect: sending cmd=1, length=32
+16 [10:30:20] onLogin: login packet sent
+16 [10:30:20] onLoginReply: error=0, ServerID=10338
+16 [10:30:20] 10338 login in success.
+16 [10:30:20] g_bySystem=1
+16 [10:30:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:25] sendDirect: sending cmd=1, length=8
+16 [10:30:25] onKeepAlive: heartbeat sent
+16 [10:30:25] TCP_KEEPALIVE response received!
+16 [10:30:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:26] TCPSThreadProc: received 8 bytes
+16 [10:30:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:29] MainThreadProc: accepted client, socket=8
+16 [10:30:29] TCPSThreadProc: received 8 bytes
+16 [10:30:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:29] GW_QUERY_STATUS received
+16 [10:30:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:30:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:30:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:30] sendDirect: sending cmd=1, length=8
+16 [10:30:30] onKeepAlive: heartbeat sent
+16 [10:30:30] TCP_KEEPALIVE response received!
+16 [10:30:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:35] sendDirect: sending cmd=1, length=8
+16 [10:30:35] onKeepAlive: heartbeat sent
+16 [10:30:35] TCP_KEEPALIVE response received!
+16 [10:30:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:36] TCPSThreadProc: received 8 bytes
+16 [10:30:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:30:36] GW_KEEPALIVE received
+16 [10:30:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:30:36] TCPSThreadProc: received 8 bytes
+16 [10:30:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:39] MainThreadProc: accepted client, socket=9
+16 [10:30:39] TCPSThreadProc: received 8 bytes
+16 [10:30:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:39] GW_QUERY_STATUS received
+16 [10:30:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:30:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:30:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:40] sendDirect: sending cmd=1, length=8
+16 [10:30:40] onKeepAlive: heartbeat sent
+16 [10:30:40] TCP_KEEPALIVE response received!
+16 [10:30:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:41] MainThreadProc: accepted client, socket=8
+16 [10:30:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:30:41] TCPSThreadProc: received 8 bytes
+16 [10:30:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:41] GW_QUERY_STATUS received
+16 [10:30:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:30:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:45] sendDirect: sending cmd=1, length=8
+16 [10:30:45] onKeepAlive: heartbeat sent
+16 [10:30:45] TCP_KEEPALIVE response received!
+16 [10:30:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:46] TCPSThreadProc: received 8 bytes
+16 [10:30:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:49] MainThreadProc: accepted client, socket=9
+16 [10:30:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=9
+16 [10:30:49] TCPSThreadProc: received 8 bytes
+16 [10:30:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:49] GW_QUERY_STATUS received
+16 [10:30:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:30:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:50] sendDirect: sending cmd=1, length=8
+16 [10:30:50] onKeepAlive: heartbeat sent
+16 [10:30:50] TCP_KEEPALIVE response received!
+16 [10:30:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:30:55] sendDirect: sending cmd=1, length=8
+16 [10:30:55] onKeepAlive: heartbeat sent
+16 [10:30:55] TCP_KEEPALIVE response received!
+16 [10:30:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:30:56] TCPSThreadProc: received 8 bytes
+16 [10:30:56] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:30:56] GW_QUERY_STATUS received
+16 [10:30:56] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:30:56] TCPSThreadProc: received 8 bytes
+16 [10:30:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:30:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:30:58] TCPSThreadProc: received 50 bytes
+16 [10:30:58] TCPSThreadProc: calling ReceivePacketEx, cmd=3, bodyLen=42
+16 [10:30:58] GW_FAX_REQUESTSEND received, bodyLen=42
+16 [10:30:58] send FAX request 00860757-28663229-, CSID=Faxking_OIS2, fileSize=23610
+16 [10:30:58] sendDirect: sending cmd=1, length=55
+16 [10:30:58] onSendRequestReply: g_bySendCode=1, g_strIP=tegest.imwork.net, g_nPort=8088, g_strUUID=b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7, g_nFileSize=1224752685
+16 [10:30:58] ConnectFileSrv: START, g_strIP=tegest.imwork.net, g_nPort=8088, g_strUUID=b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7
+16 [10:30:58] ConnectFileSrv: resolving IP address for tegest.imwork.net
+16 [10:30:58] ConnectFileSrv: tegest.imwork.net is not an IP address, trying gethostbyname
+16 [10:30:58] ConnectFileSrv: resolved tegest.imwork.net to IP: 14.223.95.189
+16 [10:30:58] ConnectFileSrv: target address 14.223.95.189:8088
+16 [10:30:58] ConnectFileSrv: socket created successfully, fd=9
+16 [10:30:58] ConnectFileSrv: attempting to connect to 14.223.95.189:8088
+16 [10:30:58] ConnectFileSrv: connected successfully to 14.223.95.189:8088
+16 [10:30:58] connect to File server tegest.imwork.net.
+16 [10:30:58] ConnectFileSrv: building TCP_FAX_REQUESTSEND packet, UUID=b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7
+16 [10:30:58] ConnectFileSrv: packet built, length=40, calling SendRSAPacket
+16 [10:30:58] ConnectFileSrv: SendRSAPacket succeeded
+16 [10:30:58] send TCP_FAX_REQUESTSEND.
+16 [10:30:59] MainThreadProc: accepted client, socket=8
+16 [10:30:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:31:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:00] sendDirect: sending cmd=1, length=8
+16 [10:31:00] onKeepAlive: heartbeat sent
+16 [10:31:00] TCP_KEEPALIVE response received!
+16 [10:31:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:01] ConnectFileSrv: no response from file server (timeout after 3 seconds)
+16 [10:31:01] ConnectFileSrv: END, returning 0
+16 [10:31:01] return send FAX request: 1, IP:tegest.imwork.net Port:8088, UUID:b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7
+16 [10:31:01] GW_FAX_REQUESTSEND completed, g_bySendCode=1, connection still alive
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:01] GW_QUERY_STATUS received
+16 [10:31:01] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 512 bytes
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=1024
+16 [10:31:01] GW_FAX_SEND: sending 1024 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 66 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=4, bodyLen=58
+16 [10:31:01] GW_FAX_SEND received, nType=1, bodyLen=58
+16 [10:31:01] GW_FAX_SEND: sending 58 bytes to File Server
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] TCPSThreadProc: received 8 bytes
+16 [10:31:01] TCPSThreadProc: calling ReceivePacketEx, cmd=5, bodyLen=0
+16 [10:31:01] GW_FAX_STOPSEND received, nType=1
+16 [10:31:01] GetRSAPacket: received response from file server, cmd=6, bodyLen=11
+16 [10:31:01] GW_FAX_STOPSEND: completed, result=0, response sent to Java client
+16 [10:31:01] GW_FAX_STOPSEND: completed
+16 [10:31:01] b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7 LCR Report Request:2
+16 [10:31:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:05] sendDirect: sending cmd=1, length=8
+16 [10:31:05] onKeepAlive: heartbeat sent
+16 [10:31:05] TCP_KEEPALIVE response received!
+16 [10:31:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:05] b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7 LCR Report Request:0
+16 [10:31:06] TCPSThreadProc: received 8 bytes
+16 [10:31:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:31:06] GW_KEEPALIVE received
+16 [10:31:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:31:06] TCPSThreadProc: received 8 bytes
+16 [10:31:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:31:09] MainThreadProc: accepted client, socket=10
+16 [10:31:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:31:09] TCPSThreadProc: received 8 bytes
+16 [10:31:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:09] GW_QUERY_STATUS received
+16 [10:31:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:10] sendDirect: sending cmd=1, length=8
+16 [10:31:10] onKeepAlive: heartbeat sent
+16 [10:31:10] TCP_KEEPALIVE response received!
+16 [10:31:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:15] sendDirect: sending cmd=1, length=8
+16 [10:31:15] onKeepAlive: heartbeat sent
+16 [10:31:15] TCP_KEEPALIVE response received!
+16 [10:31:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:15] b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7 LCR Report Request:0
+16 [10:31:16] TCPSThreadProc: received 8 bytes
+16 [10:31:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:31:19] MainThreadProc: accepted client, socket=8
+16 [10:31:19] TCPSThreadProc: received 8 bytes
+16 [10:31:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:19] GW_QUERY_STATUS received
+16 [10:31:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:31:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:20] sendDirect: sending cmd=1, length=8
+16 [10:31:20] onKeepAlive: heartbeat sent
+16 [10:31:20] TCP_KEEPALIVE response received!
+16 [10:31:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:25] sendDirect: sending cmd=1, length=8
+16 [10:31:25] onKeepAlive: heartbeat sent
+16 [10:31:25] TCP_KEEPALIVE response received!
+16 [10:31:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:25] b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7 LCR Report Request:0
+16 [10:31:26] TCPSThreadProc: received 8 bytes
+16 [10:31:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:31:29] MainThreadProc: accepted client, socket=10
+16 [10:31:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:31:29] TCPSThreadProc: received 8 bytes
+16 [10:31:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:29] GW_QUERY_STATUS received
+16 [10:31:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:30] sendDirect: sending cmd=1, length=8
+16 [10:31:30] onKeepAlive: heartbeat sent
+16 [10:31:30] TCP_KEEPALIVE response received!
+16 [10:31:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:35] sendDirect: sending cmd=1, length=8
+16 [10:31:35] onKeepAlive: heartbeat sent
+16 [10:31:35] TCP_KEEPALIVE response received!
+16 [10:31:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:35] b3b7106b-d5d5-4904-b4a2-06d9a76d4fe7 LCR Report Request:0
+16 [10:31:36] TCPSThreadProc: received 8 bytes
+16 [10:31:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:31:36] GW_KEEPALIVE received
+16 [10:31:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:31:36] TCPSThreadProc: received 8 bytes
+16 [10:31:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:31:39] MainThreadProc: accepted client, socket=8
+16 [10:31:39] TCPSThreadProc: received 8 bytes
+16 [10:31:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:39] GW_QUERY_STATUS received
+16 [10:31:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:31:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:40] sendDirect: sending cmd=1, length=8
+16 [10:31:40] onKeepAlive: heartbeat sent
+16 [10:31:40] TCP_KEEPALIVE response received!
+16 [10:31:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:41] MainThreadProc: accepted client, socket=10
+16 [10:31:41] TCPSThreadProc: received 8 bytes
+16 [10:31:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:31:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:41] GW_QUERY_STATUS received
+16 [10:31:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:43] MainThreadProc: accepted client, socket=8
+16 [10:31:43] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:31:43] TCPSThreadProc: received 8 bytes
+16 [10:31:43] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:43] GW_QUERY_STATUS received
+16 [10:31:43] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:45] sendDirect: sending cmd=1, length=8
+16 [10:31:45] onKeepAlive: heartbeat sent
+16 [10:31:45] TCP_KEEPALIVE response received!
+16 [10:31:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:31:46] TCPSThreadProc: received 8 bytes
+16 [10:31:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:31:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:31:50] sendDirect: sending cmd=1, length=8
+16 [10:31:50] onKeepAlive: heartbeat sent
+16 [10:31:53] MainThreadProc: accepted client, socket=10
+16 [10:31:53] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:31:53] TCPSThreadProc: received 8 bytes
+16 [10:31:53] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:31:53] GW_QUERY_STATUS received
+16 [10:31:53] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:31:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=1
+16 [10:31:55] sendDirect: sending cmd=1, length=8
+16 [10:31:55] onKeepAlive: heartbeat sent
+16 [10:31:56] TCPSThreadProc: received 8 bytes
+16 [10:31:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:31:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=2
+16 [10:32:00] sendDirect: sending cmd=1, length=8
+16 [10:32:00] onKeepAlive: heartbeat sent
+16 [10:32:03] MainThreadProc: accepted client, socket=8
+16 [10:32:03] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:32:03] TCPSThreadProc: received 8 bytes
+16 [10:32:03] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:03] GW_QUERY_STATUS received
+16 [10:32:03] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:32:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=3
+16 [10:32:05] sendDirect: sending cmd=1, length=8
+16 [10:32:05] onKeepAlive: heartbeat sent
+16 [10:32:06] TCPSThreadProc: received 8 bytes
+16 [10:32:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:32:06] GW_KEEPALIVE received
+16 [10:32:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:32:06] TCPSThreadProc: received 8 bytes
+16 [10:32:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=4
+16 [10:32:10] sendDirect: sending cmd=1, length=8
+16 [10:32:10] onKeepAlive: heartbeat sent
+16 [10:32:13] MainThreadProc: accepted client, socket=10
+16 [10:32:13] TCPSThreadProc: received 8 bytes
+16 [10:32:13] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:13] GW_QUERY_STATUS received
+16 [10:32:13] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:32:13] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:32:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=5
+16 [10:32:15] sendDirect: sending cmd=1, length=8
+16 [10:32:15] onKeepAlive: heartbeat sent
+16 [10:32:16] TCPSThreadProc: received 8 bytes
+16 [10:32:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=6
+16 [10:32:20] reconect the fax center.
+16 [10:32:20] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:20] ReadData: setting m_bIsLogin=FALSE
+16 [10:32:20] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:20] onLogin: preparing login...
+16 [10:32:20] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:20] sendDirect: sending cmd=1, length=32
+16 [10:32:20] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:20] onLogin: login packet sent
+16 [10:32:23] MainThreadProc: accepted client, socket=8
+16 [10:32:23] TCPSThreadProc: received 8 bytes
+16 [10:32:23] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:32:23] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:23] GW_QUERY_STATUS received
+16 [10:32:23] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:32:25] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:25] reconect the fax center.
+16 [10:32:25] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:25] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:25] onLogin: preparing login...
+16 [10:32:25] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:25] sendDirect: sending cmd=1, length=32
+16 [10:32:25] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:25] onLogin: login packet sent
+16 [10:32:26] TCPSThreadProc: received 8 bytes
+16 [10:32:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:30] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:30] reconect the fax center.
+16 [10:32:30] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:30] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:30] onLogin: preparing login...
+16 [10:32:30] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:30] sendDirect: sending cmd=1, length=32
+16 [10:32:30] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:30] onLogin: login packet sent
+16 [10:32:33] MainThreadProc: accepted client, socket=3
+16 [10:32:33] TCPSThreadProc: received 8 bytes
+16 [10:32:33] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:32:33] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:33] GW_QUERY_STATUS received
+16 [10:32:33] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:32:35] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:35] reconect the fax center.
+16 [10:32:35] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:35] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:35] onLogin: preparing login...
+16 [10:32:35] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:35] sendDirect: sending cmd=1, length=32
+16 [10:32:35] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:35] onLogin: login packet sent
+16 [10:32:36] TCPSThreadProc: received 8 bytes
+16 [10:32:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:32:36] GW_KEEPALIVE received
+16 [10:32:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=0
+16 [10:32:36] TCPSThreadProc: received 8 bytes
+16 [10:32:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:40] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:40] reconect the fax center.
+16 [10:32:40] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:40] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:40] onLogin: preparing login...
+16 [10:32:40] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:40] sendDirect: sending cmd=1, length=32
+16 [10:32:40] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:40] onLogin: login packet sent
+16 [10:32:43] MainThreadProc: accepted client, socket=8
+16 [10:32:43] TCPSThreadProc: received 8 bytes
+16 [10:32:43] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:43] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:32:43] GW_QUERY_STATUS received
+16 [10:32:43] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:32:45] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:45] reconect the fax center.
+16 [10:32:45] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:45] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:45] onLogin: preparing login...
+16 [10:32:45] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:45] sendDirect: sending cmd=1, length=32
+16 [10:32:45] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:45] onLogin: login packet sent
+16 [10:32:46] TCPSThreadProc: received 8 bytes
+16 [10:32:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:32:50] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:50] reconect the fax center.
+16 [10:32:50] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:50] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:50] onLogin: preparing login...
+16 [10:32:50] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:50] sendDirect: sending cmd=1, length=32
+16 [10:32:50] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:50] onLogin: login packet sent
+16 [10:32:53] MainThreadProc: accepted client, socket=3
+16 [10:32:53] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:32:53] TCPSThreadProc: received 8 bytes
+16 [10:32:53] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:32:53] GW_QUERY_STATUS received
+16 [10:32:53] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:32:55] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:32:55] reconect the fax center.
+16 [10:32:55] connect: trying to connect to tegest.imwork.net:8079
+16 [10:32:55] connect: gethostbyname failed for tegest.imwork.net
+16 [10:32:55] onLogin: preparing login...
+16 [10:32:55] Username: 120.cctbx.cn, Password: 888888
+16 [10:32:55] sendDirect: sending cmd=1, length=32
+16 [10:32:55] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:32:55] onLogin: login packet sent
+16 [10:32:56] TCPSThreadProc: received 8 bytes
+16 [10:32:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:32:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:00] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:33:00] reconect the fax center.
+16 [10:33:00] connect: trying to connect to tegest.imwork.net:8079
+16 [10:33:00] connect: gethostbyname failed for tegest.imwork.net
+16 [10:33:00] onLogin: preparing login...
+16 [10:33:00] Username: 120.cctbx.cn, Password: 888888
+16 [10:33:00] sendDirect: sending cmd=1, length=32
+16 [10:33:00] sendDirect: send failed, setting m_bIsLogin=FALSE
+16 [10:33:00] onLogin: login packet sent
+16 [10:33:02] MainThreadProc: accepted client, socket=8
+16 [10:33:02] TCPSThreadProc: received 8 bytes
+16 [10:33:02] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:02] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:33:02] GW_QUERY_STATUS received
+16 [10:33:02] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:33:02] MainThreadProc: accepted client, socket=3
+16 [10:33:02] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:02] TCPSThreadProc: received 8 bytes
+16 [10:33:02] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:02] GW_QUERY_STATUS received
+16 [10:33:02] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:33:03] MainThreadProc: accepted client, socket=8
+16 [10:33:03] TCPSThreadProc: received 8 bytes
+16 [10:33:03] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:03] GW_QUERY_STATUS received
+16 [10:33:03] GW_QUERY_STATUS response sent: loginStatus=0
+16 [10:33:03] TCPSThreadProc: connection closed by peer (recv returned 0), socket=8
+16 [10:33:05] onKeepAlive: m_bIsLogin=0, m_nWaitAlive=6
+16 [10:33:05] reconect the fax center.
+16 [10:33:05] connect: trying to connect to tegest.imwork.net:8079
+16 [10:33:05] connect: socket created, connecting...
+16 [10:33:05] connect: connected successfully to tegest.imwork.net:8079
+16 [10:33:05] onLogin: preparing login...
+16 [10:33:05] Username: 120.cctbx.cn, Password: 888888
+16 [10:33:05] sendDirect: sending cmd=1, length=32
+16 [10:33:05] onLogin: login packet sent
+16 [10:33:05] onLoginReply: error=0, ServerID=10338
+16 [10:33:05] 10338 login in success.
+16 [10:33:05] g_bySystem=1
+16 [10:33:06] TCPSThreadProc: received 8 bytes
+16 [10:33:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:33:06] GW_KEEPALIVE received
+16 [10:33:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:33:06] TCPSThreadProc: received 8 bytes
+16 [10:33:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:09] MainThreadProc: accepted client, socket=3
+16 [10:33:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:09] TCPSThreadProc: received 8 bytes
+16 [10:33:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:09] GW_QUERY_STATUS received
+16 [10:33:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:10] sendDirect: sending cmd=1, length=8
+16 [10:33:10] onKeepAlive: heartbeat sent
+16 [10:33:10] TCP_KEEPALIVE response received!
+16 [10:33:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:14] MainThreadProc: accepted client, socket=10
+16 [10:33:14] TCPSThreadProc: received 8 bytes
+16 [10:33:14] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:14] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:14] GW_QUERY_STATUS received
+16 [10:33:14] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:15] sendDirect: sending cmd=1, length=8
+16 [10:33:15] onKeepAlive: heartbeat sent
+16 [10:33:15] TCP_KEEPALIVE response received!
+16 [10:33:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:16] TCPSThreadProc: received 8 bytes
+16 [10:33:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:19] MainThreadProc: accepted client, socket=3
+16 [10:33:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:19] TCPSThreadProc: received 8 bytes
+16 [10:33:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:19] GW_QUERY_STATUS received
+16 [10:33:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:20] sendDirect: sending cmd=1, length=8
+16 [10:33:20] onKeepAlive: heartbeat sent
+16 [10:33:20] TCP_KEEPALIVE response received!
+16 [10:33:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:24] MainThreadProc: accepted client, socket=10
+16 [10:33:24] TCPSThreadProc: received 8 bytes
+16 [10:33:24] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:24] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:24] GW_QUERY_STATUS received
+16 [10:33:24] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:25] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:25] sendDirect: sending cmd=1, length=8
+16 [10:33:25] onKeepAlive: heartbeat sent
+16 [10:33:25] TCP_KEEPALIVE response received!
+16 [10:33:25] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:26] TCPSThreadProc: received 8 bytes
+16 [10:33:26] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:26] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:29] MainThreadProc: accepted client, socket=3
+16 [10:33:29] TCPSThreadProc: received 8 bytes
+16 [10:33:29] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:29] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:29] GW_QUERY_STATUS received
+16 [10:33:29] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:30] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:30] sendDirect: sending cmd=1, length=8
+16 [10:33:30] onKeepAlive: heartbeat sent
+16 [10:33:30] TCP_KEEPALIVE response received!
+16 [10:33:30] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:34] MainThreadProc: accepted client, socket=10
+16 [10:33:34] TCPSThreadProc: received 8 bytes
+16 [10:33:34] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:34] GW_QUERY_STATUS received
+16 [10:33:34] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:34] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:35] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:35] sendDirect: sending cmd=1, length=8
+16 [10:33:35] onKeepAlive: heartbeat sent
+16 [10:33:35] TCP_KEEPALIVE response received!
+16 [10:33:35] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:36] TCPSThreadProc: received 8 bytes
+16 [10:33:36] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:33:36] GW_KEEPALIVE received
+16 [10:33:36] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:33:36] TCPSThreadProc: received 8 bytes
+16 [10:33:36] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:36] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:39] MainThreadProc: accepted client, socket=3
+16 [10:33:39] TCPSThreadProc: received 8 bytes
+16 [10:33:39] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:39] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:39] GW_QUERY_STATUS received
+16 [10:33:39] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:40] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:40] sendDirect: sending cmd=1, length=8
+16 [10:33:40] onKeepAlive: heartbeat sent
+16 [10:33:40] TCP_KEEPALIVE response received!
+16 [10:33:40] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:41] MainThreadProc: accepted client, socket=10
+16 [10:33:41] TCPSThreadProc: received 8 bytes
+16 [10:33:41] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:41] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:41] GW_QUERY_STATUS received
+16 [10:33:41] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:44] MainThreadProc: accepted client, socket=3
+16 [10:33:44] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:44] TCPSThreadProc: received 8 bytes
+16 [10:33:44] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:44] GW_QUERY_STATUS received
+16 [10:33:44] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:45] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:45] sendDirect: sending cmd=1, length=8
+16 [10:33:45] onKeepAlive: heartbeat sent
+16 [10:33:45] TCP_KEEPALIVE response received!
+16 [10:33:45] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:46] TCPSThreadProc: received 8 bytes
+16 [10:33:46] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:46] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:49] MainThreadProc: accepted client, socket=10
+16 [10:33:49] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:49] TCPSThreadProc: received 8 bytes
+16 [10:33:49] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:49] GW_QUERY_STATUS received
+16 [10:33:49] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:50] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:50] sendDirect: sending cmd=1, length=8
+16 [10:33:50] onKeepAlive: heartbeat sent
+16 [10:33:50] TCP_KEEPALIVE response received!
+16 [10:33:50] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:54] MainThreadProc: accepted client, socket=3
+16 [10:33:54] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:33:54] TCPSThreadProc: received 8 bytes
+16 [10:33:54] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:54] GW_QUERY_STATUS received
+16 [10:33:54] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:33:55] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:33:55] sendDirect: sending cmd=1, length=8
+16 [10:33:55] onKeepAlive: heartbeat sent
+16 [10:33:55] TCP_KEEPALIVE response received!
+16 [10:33:55] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:33:56] TCPSThreadProc: received 8 bytes
+16 [10:33:56] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:33:56] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:33:59] MainThreadProc: accepted client, socket=10
+16 [10:33:59] TCPSThreadProc: received 8 bytes
+16 [10:33:59] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:33:59] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:33:59] GW_QUERY_STATUS received
+16 [10:33:59] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:34:00] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:34:00] sendDirect: sending cmd=1, length=8
+16 [10:34:00] onKeepAlive: heartbeat sent
+16 [10:34:00] TCP_KEEPALIVE response received!
+16 [10:34:00] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:34:04] MainThreadProc: accepted client, socket=3
+16 [10:34:04] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:34:04] TCPSThreadProc: received 8 bytes
+16 [10:34:04] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:34:04] GW_QUERY_STATUS received
+16 [10:34:04] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:34:05] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:34:05] sendDirect: sending cmd=1, length=8
+16 [10:34:05] onKeepAlive: heartbeat sent
+16 [10:34:05] TCP_KEEPALIVE response received!
+16 [10:34:05] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:34:06] TCPSThreadProc: received 8 bytes
+16 [10:34:06] TCPSThreadProc: calling ReceivePacketEx, cmd=6, bodyLen=0
+16 [10:34:06] GW_KEEPALIVE received
+16 [10:34:06] GW_KEEPALIVE response sent, g_nReceive=0, g_bySystem=1
+16 [10:34:06] TCPSThreadProc: received 8 bytes
+16 [10:34:06] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:34:06] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:34:09] MainThreadProc: accepted client, socket=10
+16 [10:34:09] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:34:09] TCPSThreadProc: received 8 bytes
+16 [10:34:09] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:34:09] GW_QUERY_STATUS received
+16 [10:34:09] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:34:10] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:34:10] sendDirect: sending cmd=1, length=8
+16 [10:34:10] onKeepAlive: heartbeat sent
+16 [10:34:10] TCP_KEEPALIVE response received!
+16 [10:34:10] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:34:14] MainThreadProc: accepted client, socket=3
+16 [10:34:14] TCPSThreadProc: received 8 bytes
+16 [10:34:14] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:34:14] TCPSThreadProc: connection closed by peer (recv returned 0), socket=3
+16 [10:34:14] GW_QUERY_STATUS received
+16 [10:34:14] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:34:15] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:34:15] sendDirect: sending cmd=1, length=8
+16 [10:34:15] onKeepAlive: heartbeat sent
+16 [10:34:15] TCP_KEEPALIVE response received!
+16 [10:34:15] Keepalive response: hasFaxToReceive=0, connectionStatus=0
+16 [10:34:16] TCPSThreadProc: received 8 bytes
+16 [10:34:16] TCPSThreadProc: calling ReceivePacketEx, cmd=7, bodyLen=0
+16 [10:34:16] GW_FAX_REQUESTRECV received, pending count=0
+16 [10:34:19] MainThreadProc: accepted client, socket=10
+16 [10:34:19] TCPSThreadProc: received 8 bytes
+16 [10:34:19] TCPSThreadProc: calling ReceivePacketEx, cmd=100, bodyLen=0
+16 [10:34:19] GW_QUERY_STATUS received
+16 [10:34:19] GW_QUERY_STATUS response sent: loginStatus=1
+16 [10:34:19] TCPSThreadProc: connection closed by peer (recv returned 0), socket=10
+16 [10:34:20] onKeepAlive: m_bIsLogin=1, m_nWaitAlive=0
+16 [10:34:20] sendDirect: sending cmd=1, length=8
+16 [10:34:20] onKeepAlive: heartbeat sent
+16 [10:34:20] TCP_KEEPALIVE response received!
+16 [10:34:20] Keepalive response: hasFaxToReceive=0, connectionStatus=0

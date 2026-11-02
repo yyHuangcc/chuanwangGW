@@ -80,6 +80,18 @@ typedef int SOCKET;
 // #define INADDR_NONE    ((uint32_t)0xFFFFFFFF)
 #define SOCKADDR       struct sockaddr
 
+// shutdown() modes (fallback definitions for environments where the
+// system headers do not expose them)
+#ifndef SHUT_RD
+#define SHUT_RD   0
+#endif
+#ifndef SHUT_WR
+#define SHUT_WR   1
+#endif
+#ifndef SHUT_RDWR
+#define SHUT_RDWR 2
+#endif
+
 // ============================================================
 // File operation constants
 // ============================================================
